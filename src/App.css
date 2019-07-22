@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  background-image: url("./images/Main1.png");
+  overflow:hidden;
+}
+
+html,body, #app, #app>div, #root{
+    height: 100%;
 }
 
 .App-logo {
@@ -30,4 +36,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+.button{
+    color:white;
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    border-radius: 8px;
 }
