@@ -2,7 +2,7 @@ import { createActions } from "reduxsauce";
 
 const { Types, Creators: actions } = createActions(
   {
-    doLogin: ["username", "password"],
+    doLogin: ["email", "password"],
   },
   {
     prefix: "LOG_IN/"

@@ -12,11 +12,13 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "3.0.1",
     "recompose": "^0.30.0",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.0.5",
+    "redux-saga-firebase": "^0.15.0",
     "reduxsauce": "^1.1.0",
     "reselect": "^4.0.0"
   },
