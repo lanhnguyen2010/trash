@@ -5,7 +5,6 @@ import { actions, Types } from "./actions";
 function* doLogin({username, password}) {
   console.log("username", username);
   console.log("password", password);
-
 }
 
 function* rootSaga() {
