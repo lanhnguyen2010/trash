@@ -3,15 +3,13 @@ import createSagaMiddleware from "redux-saga";
 
 import sagas from "./sagas";
 import reducer from "./redux/reducer";
-import {routerReducer} from "react-router-redux";
 
 const preloadedState = {};
 const sagaMiddleware = createSagaMiddleware();
 const composeFunc = compose;
 
 const rootReducer = combineReducers({
-  reducer,
-  routing: routerReducer
+  reducer
 });
 
 const store = createStore(

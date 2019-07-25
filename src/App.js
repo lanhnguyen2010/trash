@@ -10,17 +10,17 @@ import _ from "lodash";
 import store from "./store";
 import * as ROUTES from './constants/routes';
 import Home from './components/Home';
-import Login from './components/Login/container';
+import Login from './components/Login';
 import DaNang from './components/DaNang/container';
 import SignUp from './components/SignUp';
 
 const AppStateLess = () => (
   <Provider store={store}>
     <Router>
-      <Route path={ROUTES.HOME} component={Home}/>
       <Route path={ROUTES.LOG_IN} component={Login}/>
       <Route path={ROUTES.DA_NANG} component={DaNang}/>
       <Route path={ROUTES.SIGN_UP} component={SignUp}/>
+      <Route path={ROUTES.HOME} component={Home}/>
     </Router>
   </Provider>
 );

@@ -2,7 +2,6 @@ import { call, put, takeEvery } from "redux-saga/effects";
 
 import { actions, Types } from "./actions";
 import firebaseService from "../components/Firebase";
-import {push} from "react-router-redux";
 import * as ROUTES from "../constants/routes";
 
 function* loadData() {
@@ -10,12 +9,12 @@ function* loadData() {
   yield put(actions.updateData(3));
 }
 
-function* doLogin({email, password}) {
+function* doLogin({navigation, email, password}) {
   try {
     const data = yield call(firebaseService.auth.signInWithEmailAndPassword, email, password);
-    //yield put(loginWithEmailSuccess(data));
-    console.log(data);
-    yield put(push(ROUTES.HOME));
+    // //yield put(loginWithEmailSuccess(data));
+    // console.log(data);
+    navigation.push(ROUTES.HOME);
   } catch (error) {
     console.log(error)
 
