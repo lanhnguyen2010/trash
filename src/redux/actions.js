@@ -4,9 +4,10 @@ const { Types, Creators: actions } = createActions(
   {
     loadData: null,
     updateData: ["count"],
+    doLogin: ["email", "password"],
   },
   {
-    prefix: "DA_NANG/"
+    prefix: "ACTIONS/"
   }
 );
 

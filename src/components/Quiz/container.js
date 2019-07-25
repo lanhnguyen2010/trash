@@ -1,11 +1,10 @@
 import {connect} from "react-redux";
 import {compose} from "redux";
 
-import Login from "./component";
 import {selectors, actions} from "../../redux";
 import {lifecycle} from "recompose";
 
-const LoginContainer = compose(
+const QuizContainer = compose(
   connect(
     selectors.root,
     {
@@ -15,6 +14,6 @@ const LoginContainer = compose(
   lifecycle({
 
   })
-)(Login);
+)(Quiz);
 
-export default LoginContainer;
+export default QuizContainer;

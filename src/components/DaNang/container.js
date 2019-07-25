@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 
 import DaNang from "./component";
-import {selectors, actions} from "./redux";
+import {selectors, actions} from "../../redux";
 import {lifecycle} from "recompose";
 
 const DaNangContainer = compose(
@@ -15,13 +15,13 @@ const DaNangContainer = compose(
   ),
   lifecycle({
     componentWillMount() {
-      const {loadData, updateData} = this.props;
-      console.log("componentWillNount");
+      const { loadData } = this.props;
+      console.log(this.props);
       loadData();
 
     },
     componentDidMount() {
-      const {loadData, updateData} = this.props;
+      const { loadData } = this.props;
       loadData();
       console.log("componentWillNount");
     }

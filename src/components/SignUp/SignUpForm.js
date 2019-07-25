@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { actions } from './redux';
+import { actions } from '../../redux';
 
 const updateByPropertyName = (propertyName, value) => () => ({
   [propertyName]: value,
