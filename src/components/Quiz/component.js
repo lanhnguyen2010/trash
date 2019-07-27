@@ -16,10 +16,19 @@ const styles = {
   textField: {}
 };
 
-const Quiz = ({}) => (
-  <div>
+const Quiz = ({render}) => (
+    <div className="container">
+      {render ? <Question/> : <Intro/> }
+    </div>
+  )
+;
 
-  </div>
+const Intro = () => (
+  <div>Intro</div>
+);
+
+const Question = () => (
+  <div>Question</div>
 );
 
 export default withStyles(styles)(Quiz);
