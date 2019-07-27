@@ -21,7 +21,8 @@
     "redux-saga": "^1.0.5",
     "redux-saga-firebase": "^0.15.0",
     "reduxsauce": "^1.1.0",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "prop-types": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
