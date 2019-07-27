@@ -10,7 +10,7 @@ const QuizContainer = compose(
   connect(
     selectors.root,
     {
-      doLogin: actions.doLogin,
+
     },
   ),
   lifecycle({

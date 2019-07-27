@@ -1,9 +1,43 @@
-import React from 'react';
+import {connect} from "react-redux";
+import {compose} from "redux";
 
-const LuckyDraw = () => (
-  <div>
-    LuckyDraw
-  </div>
-);
+import {selectors, actions} from "../../redux";
+import {lifecycle} from "recompose";
+import LuckyDraw from "./component"
 
-export default LuckyDraw;
+
+const LuckyDrawContainer = compose(
+  connect(
+    selectors.root,
+    {
+      getRandomGift: actions.getRandomGift
+    },
+  ),
+  lifecycle({
+
+    componentDidMount() {
+
+      const { getRandomGift } = this.props;
+
+      const initState = {
+        isLoading: false, onClickSpinner: () => {
+          this.setState({
+            isLoading: true, onClickSpinner: () => {
+            }
+          });
+
+          setTimeout(function () {
+            this.setState({isLoading: false});
+            getRandomGift();
+
+          }.bind(this), 3000)
+
+        }
+      };
+
+      this.setState(initState);
+    }
+  })
+)(LuckyDraw);
+
+export default LuckyDrawContainer;
