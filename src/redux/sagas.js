@@ -1,8 +1,13 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 import { actions, Types } from "./actions";
 import firebaseService from "../components/Firebase";
 import * as ROUTES from "../constants/routes";
+import React from 'react';
+
+const SMS_API_KEY="60F486560907DE73746D199F8EF80A";
+const SMS_SECRET_KEY="4F784074A243ED85FBAB849CAA3BF5";
+const SMS_BRANDNAME="QCAO_ONLINE";
 
 function* loadData() {
   console.log("loadData");
@@ -124,6 +129,72 @@ function* getGifts({city}) {
   }
 }
 
+function generateOTP() {
+  let digits = '0123456789';
+  let OTP = '';
+  for (let i = 0; i < 4; i++ ) {
+    OTP += digits[Math.floor(Math.random() * 10)];
+  }
+  return OTP;
+}
+
+const sendRequest = async(path) =>{
+  const result = await fetch(path, {headers:{
+      "Content-Type":"application/json"
+    }});
+  return await result.json();
+}
+
+function* doOtp({navigation, data}) {
+  try {
+    console.log(data);
+    yield put(actions.updatePhoneNumber(data.phoneNumber));
+    let otp = generateOTP();
+    yield call(firebaseService.database.update, "otps/" + data.phoneNumber, otp);
+    yield call(firebaseService.database.update, "players/" + data.phoneNumber, data);
+    const params=`Phone=${data.phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=1`;
+    const response = yield call(sendRequest, `http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
+    console.log(response);
+    if(response.CodeResult == 100){
+      navigation.push(ROUTES.VERIFY_OTP)
+    }else{
+      window.alert(response.ErrorMessage)
+    }
+    //navigation.push(ROUTES.HOME);
+  } catch (error) {
+    window.alert(error.message)
+  }
+}
+
+function* doVerifyOtp({navigation, phoneNumber, otp}) {
+  console.log("otp: ", otp);
+  try {
+    const response = yield call(firebaseService.database.read, "otps/" + phoneNumber);
+    if(otp == response) {
+      navigation.push(ROUTES.LUCKY_DRAW);
+    }else {
+      window.alert("Mã Xác Thực không chính xác");
+    }
+  } catch (error) {
+    window.alert(error.message)
+  }
+}
+
+function* checkSmsAccountBalance({navigation}) {
+  try {
+    console.log("Check SMS account Balance");
+
+    const response = yield call(sendRequest, `http://rest.esms.vn/MainService.svc/json/GetBalance/${SMS_API_KEY}/${SMS_SECRET_KEY}`);
+    console.log(response);
+    if(response.CodeResponse === "100"){
+      console.log("Account Balance: ", response.Balance);
+      yield put(actions.updateSmsBalance(response.Balance))
+    }
+    //navigation.push(ROUTES.HOME);
+  } catch (error) {
+    window.alert(error.message)
+  }
+}
 function* rootSaga() {
   yield takeEvery(Types.DO_LOGIN, doLogin);
   yield takeEvery(Types.LOAD_DATA, loadData);
@@ -131,7 +202,9 @@ function* rootSaga() {
   yield takeEvery(Types.UPDATE_GIFT, updateGift);
   yield takeEvery(Types.GET_GIFTS, getGifts);
   yield takeEvery(Types.DO_SIGN_UP, doSignUp);
-
+  yield takeEvery(Types.DO_OTP, doOtp);
+  yield takeEvery(Types.DO_VERIFY_OTP, doVerifyOtp);
+  yield takeEvery(Types.CHECK_SMS_ACCOUNT_BALANCE, checkSmsAccountBalance);
 }
 
 export { rootSaga };

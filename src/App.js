@@ -16,7 +16,8 @@ import Quiz from './components/Quiz/container';
 import SignUp from './components/SignUp';
 import LuckyDraw from './components/LuckyDraw';
 import Admin from './components/Admin';
-
+import Otp from './components/Otp';
+import VerifyOtp from './components/VerifyOtp'
 
 const AppStateLess = () => (
   <Provider store={store}>
@@ -28,6 +29,8 @@ const AppStateLess = () => (
       <Route path={ROUTES.HOME} component={Home}/>
       <Route path={ROUTES.LUCKY_DRAW} component={LuckyDraw}/>
       <Route path={ROUTES.ADMIN} component={Admin}/>
+      <Route path={ROUTES.OTP} component={Otp}/>
+      <Route path={ROUTES.VERIFY_OTP} component={VerifyOtp}/>
     </Router>
   </Provider>
 );

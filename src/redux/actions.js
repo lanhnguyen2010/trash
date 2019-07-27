@@ -11,7 +11,12 @@ const { Types, Creators: actions } = createActions(
     updateGift: ["navigation", "data"],
     getGifts: ["city"],
     updateBoothsData:["boothsData"],
-    updateCity:["city"]
+    updateCity:["city"],
+    doOtp:["navigation", "data"],
+    doVerifyOtp:["navigation", "phoneNumber", "otp"],
+    updatePhoneNumber:["phoneNumber"],
+    checkSmsAccountBalance:["navigation"],
+    updateSmsBalance:["smsBalance"]
   },
   {
     prefix: "ACTIONS/"

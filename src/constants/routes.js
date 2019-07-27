@@ -10,3 +10,5 @@ export const HOME = '/home';
 export const QUIZ = '/quiz';
 export const LUCKY_DRAW = '/lucky-draw';
 export const ADMIN = '/admin';
+export const OTP = '/Otp';
+export const VERIFY_OTP = '/VerifyOtp';

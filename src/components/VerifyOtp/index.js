@@ -1,0 +1,91 @@
+import {connect} from "react-redux";
+import {compose} from "redux";
+import {selectors, actions} from "../../redux";
+import {lifecycle} from "recompose";
+import React from 'react';
+import {withStyles} from '@material-ui/styles';
+import ReactCodeInput  from 'react-code-input';
+
+import {
+  withRouter
+} from 'react-router-dom'
+
+import {
+  TextField,
+  Button
+} from '@material-ui/core';
+
+
+const styles = {
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    padding: 50
+  },
+
+  textField: {
+    marginTop: 20,
+    minWidth: 300
+  },
+
+  btnVerifyOtp: {
+    marginTop: 30
+  }
+};
+
+const props = {
+  inputStyle: {
+    fontFamily: 'monospace',
+    margin:  '4px',
+    MozAppearance: 'textfield',
+    width: '20px',
+    borderRadius: '3px',
+    fontSize: '14px',
+    height: '30px',
+    paddingLeft:'7px',
+    color: 'lightskyblue',
+    border: '1px solid lightskyblue'
+  },
+  inputStyleInvalid: {
+    fontFamily: 'monospace',
+    margin:  '4px',
+    MozAppearance: 'textfield',
+    width: '20px',
+    borderRadius: '3px',
+    fontSize: '14px',
+    height: '30px',
+    color: 'red',
+    border: '1px solid red'
+  }
+}
+
+const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber}) => {
+  let otpRef = null;
+  console.log(phoneNumber);
+
+  function handleOtpChange(otp){
+    console.log(otp);
+    if(otp.length == 4){
+      doVerifyOtp(history, phoneNumber, otp)
+    }
+  }
+  return (
+    <div style={styles.container}>
+      <ReactCodeInput fields={4} {...props} onChange={handleOtpChange}/>
+    </div>)
+};
+
+const VerifyOtp = withStyles(styles)(VerifyOtpForm);
+
+const VerifyOtpContainer = compose(
+  connect(
+    selectors.root,
+    {
+      doVerifyOtp: actions.doVerifyOtp
+    }
+  ),
+  lifecycle({})
+)(VerifyOtp);
+
+export default VerifyOtpContainer;

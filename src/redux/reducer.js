@@ -6,6 +6,8 @@ const initialState = {
   count: 0,
   boothsData:'',
   city:'',
+  phoneNumber:'',
+  smsBalance:0,
   selectedGift: "",
 };
 
@@ -25,7 +27,16 @@ const reducer = createReducer(initialState, {
   [Types.UPDATE_CITY]: (state, {city}) =>
   _.assign({}, state, {
     city: city
-  })
+  }),
+  [Types.UPDATE_PHONE_NUMBER]: (state, {phoneNumber}) =>
+  _.assign({}, state, {
+    phoneNumber: phoneNumber
+  }),
+  [Types.UPDATE_SMS_BALANCE]: (state, {smsBalance}) => {
+    return _.assign({}, state, {
+      smsBalance: smsBalance
+    })
+  }
 });
 
 

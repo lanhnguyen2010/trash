@@ -26,7 +26,8 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  TableBody
+  TableBody,
+  InputAdornment
 } from "@material-ui/core";
 
 const styles = {
@@ -83,7 +84,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
+const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBalance, smsBalance}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -116,7 +117,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
   }
 
   console.log(boothsData);
-  console.log(today);
+  console.log("balance:", smsBalance);
 
   return (
     <div className={classes.root}>
@@ -124,6 +125,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
         <Tabs value={value} onChange={handleTabChange} aria-label="simple tabs example">
           <Tab label="Update" {...a11yProps(0)} />
           <Tab label="Report" {...a11yProps(1)} />
+          <Tab label="SMS" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -198,6 +200,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
               binhthuytinh: binhthuytinhRef.value,
               date: dateRef.value
             });
+
           }}>Submit</Button>
         </div>
       </TabPanel>
@@ -238,6 +241,25 @@ const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
           </TableBody>
         </Table>
       </TabPanel>
+      <TabPanel index={2} value={value}>
+        <div style={styles.container}>
+        <Button style={styles.btnLogin} onClick={() => {
+          checkSmsAccountBalance(history);
+        }}>Kiểm Tra Số Dư</Button>
+
+        <TextField
+          style={styles.textField}
+          label="Số Dư Tài Khoản eSMS"
+          id="balance"
+          type="label"
+          value={smsBalance}
+          disabled
+          InputProps={{
+            endAdornment: <InputAdornment position="start">VND</InputAdornment>,
+          }}
+        />
+        </div>
+      </TabPanel>
     </div>
   );
 };
@@ -249,7 +271,8 @@ const AdminContainer = compose(
     selectors.root,
     {
       updateGift: actions.updateGift,
-      getGifts: actions.getGifts
+      getGifts: actions.getGifts,
+      checkSmsAccountBalance: actions.checkSmsAccountBalance
     }
   ),
   lifecycle({})
