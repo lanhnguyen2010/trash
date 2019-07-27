@@ -15,9 +15,8 @@ import {
   Select,
   FilledInput,
   MenuItem,
-  InputLabel,
   FormControl,
-  FormHelperText
+  OutlinedInput
 } from '@material-ui/core';
 
 
@@ -63,20 +62,28 @@ const OtpForm = ({history, doOtp}) => {
     setGender(event.target.value);
   };
 
+  const inputLabel = React.useRef(null);
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  React.useEffect(() => {
+    setLabelWidth(0);
+  }, []);
+
   return (
     <div style={styles.container}>
-      Vui Lòng Nhập Thông Tin Cá Nhân Để Nhận Thông Tin Về Chương Trình
+      Vui lòng nhập thông tin cá nhân để nhận thông tin về chương trình
       <TextField
         style={styles.textField}
         placeholder="Tên"
         id="name"
+        variant="outlined"
         inputRef={input => nameRef = input}
       />
       <FormControl variant="filled" className={classes.formControl}>
       <Select
         value={gender}
         onChange={handleGenderChange}
-        input={<FilledInput name="gender" id="filled-gender-simple"/>}
+        variant="outlined"
+        input={<OutlinedInput labelWidth={labelWidth} name="gender" id="filled-gender-simple"/>}
       >
         <MenuItem value={"GioiTinh"} disabled>Giới Tính</MenuItem>
         <MenuItem value={"Nam"}>Nam</MenuItem>
@@ -86,19 +93,22 @@ const OtpForm = ({history, doOtp}) => {
       <TextField
         style={styles.textField}
         placeholder="Ngày Sinh"
-        id="date"
         type="date"
+        variant="outlined"
+        helperText=""
         inputRef={input => birthDayRef = input}
       />
       <TextField
         style={styles.textField}
         placeholder="Số Điện Thoại"
+        variant="outlined"
         id="phoneNumber"
         inputRef={input => phoneNumberRef = input}
       />
       <TextField
         style={styles.textField}
         placeholder="Email"
+        variant="outlined"
         id="email"
         inputRef={input => emailRef = input}
       />

@@ -72,6 +72,7 @@ const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber}) => {
   }
   return (
     <div style={styles.container}>
+      Vui lòng nhập mã OTP để xác nhận
       <ReactCodeInput fields={4} {...props} onChange={handleOtpChange}/>
     </div>)
 };
