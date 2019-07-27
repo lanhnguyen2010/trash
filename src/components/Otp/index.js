@@ -16,7 +16,8 @@ import {
   FilledInput,
   MenuItem,
   InputLabel,
-  FormControl
+  FormControl,
+  FormHelperText
 } from '@material-ui/core';
 
 
@@ -44,6 +45,7 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     minWidth: 300,
+    paddingTop:20
   },
   selectEmpty: {
   },
@@ -55,7 +57,7 @@ const OtpForm = ({history, doOtp}) => {
   let emailRef = null;
   const classes = useStyles();
 
-  const [gender, setGender] = React.useState('');
+  const [gender, setGender] = React.useState('GioiTinh');
 
   const handleGenderChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setGender(event.target.value);
@@ -66,41 +68,37 @@ const OtpForm = ({history, doOtp}) => {
       Vui Lòng Nhập Thông Tin Cá Nhân Để Nhận Thông Tin Về Chương Trình
       <TextField
         style={styles.textField}
-        label="Tên"
+        placeholder="Tên"
         id="name"
         inputRef={input => nameRef = input}
       />
       <FormControl variant="filled" className={classes.formControl}>
-      <InputLabel htmlFor="filled-age-simple">Age</InputLabel>
-
       <Select
         value={gender}
-        placeholder="Giới Tính"
         onChange={handleGenderChange}
         input={<FilledInput name="gender" id="filled-gender-simple"/>}
       >
+        <MenuItem value={"GioiTinh"} disabled>Giới Tính</MenuItem>
         <MenuItem value={"Nam"}>Nam</MenuItem>
         <MenuItem value={"Nu"}>Nữ</MenuItem>
       </Select>
       </FormControl>
       <TextField
         style={styles.textField}
-        label="Ngày Sinh"
+        placeholder="Ngày Sinh"
         id="date"
         type="date"
         inputRef={input => birthDayRef = input}
       />
       <TextField
         style={styles.textField}
-        required={true}
-        label="Số Điện Thoại"
+        placeholder="Số Điện Thoại"
         id="phoneNumber"
         inputRef={input => phoneNumberRef = input}
       />
       <TextField
         style={styles.textField}
-        required={true}
-        label="Email"
+        placeholder="Email"
         id="email"
         inputRef={input => emailRef = input}
       />
