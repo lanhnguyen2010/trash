@@ -15,6 +15,8 @@ import DaNang from './components/DaNang/container';
 import Quiz from './components/Quiz/container';
 import SignUp from './components/SignUp';
 import LuckyDraw from './components/LuckyDraw';
+import Admin from './components/Admin';
+
 
 const AppStateLess = () => (
   <Provider store={store}>
@@ -25,6 +27,7 @@ const AppStateLess = () => (
       <Route path={ROUTES.QUIZ} component={Quiz}/>
       <Route path={ROUTES.HOME} component={Home}/>
       <Route path={ROUTES.LUCKY_DRAW} component={LuckyDraw}/>
+      <Route path={ROUTES.ADMIN} component={Admin}/>
     </Router>
   </Provider>
 );

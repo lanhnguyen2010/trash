@@ -6,16 +6,13 @@
     "@material-ui/core": "^4.2.1",
     "@material-ui/icons": "^4.2.1",
     "bootstrap": "^4.3.1",
-    "easing": "^1.2.1",
+    "dateformat": "^3.0.3",
     "firebase": "^6.3.1",
-    "lodash.random": "^3.2.0",
-    "node-sass": "^4.12.0",
-    "prop-types": "^15.7.2",
+    "prop-types": "latest",
     "react": "^16.8.6",
     "react-awesome-slider": "^1.0.1",
     "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6",
-    "react-random-wheel": "^0.1.0",
     "react-redux": "^7.1.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
@@ -26,8 +23,7 @@
     "redux-saga": "^1.0.5",
     "redux-saga-firebase": "^0.15.0",
     "reduxsauce": "^1.1.0",
-    "reselect": "^4.0.0",
-    "winwheel": "^1.0.1"
+    "reselect": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
