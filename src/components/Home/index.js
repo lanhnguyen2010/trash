@@ -20,9 +20,23 @@ const styles = {
     backgroundColor: "white",
   },
   text: {
-
+    position:"absolute", 
+    bottom:"15vh", 
+    color: "#BA0000", 
+    fontSize: "calc(1em + 2.5vw)", 
+    textAlign:"center", 
+    width: "74vw"
+  }, 
+  button: {
+    position:"fixed", 
+    bottom:"7vh", 
+    alignSelf: "center", 
+    backgroundColor: '#D20C08', 
+    fontSize: "calc(1em + 0.8vh)",
+    width: "74vw", 
+    height:"6vh", 
+    borderRadius: "50px"
   }
- 
 };
 
 export default class Home extends Component {
@@ -52,14 +66,14 @@ export default class Home extends Component {
           <div data-src='./images/home4.png'/>
         </AwesomeSlider>
         <div style={styles.footer}>
-          <p style={{position:"absolute", bottom:"15vh", color: "#BA0000", fontSize: "calc(1em + 2.5vw)", display: 'block', textAlign:"center"}}>Cái giá thật sự <b>CỦA NHỰA</b> bạn chưa biết</p>
+          <p style={styles.text}>Cái giá thật sự <b>CỦA NHỰA</b> bạn chưa biết</p>
           
-          <Fab style={{position:"fixed", bottom:"7vh", alignSelf: "center", backgroundColor: '#D20C08', width: "30vw"}} 
-                  variant='extended'
-                  color='primary'
-                  size='large'
+          <Button style={styles.button} 
+                  variant="contained"
+                  color="primary"
+                  size="large"
                   onClick={() => this.routeChange()}>
-            Tìm hiểu thêm</Fab>
+            Tìm hiểu thêm</Button>
         </div> 
       </div>
     );
