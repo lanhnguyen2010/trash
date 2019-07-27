@@ -4,7 +4,8 @@ import {Types} from "./actions";
 
 const initialState = {
   count: 0,
-  boothsData:''
+  boothsData:'',
+  city:''
 };
 
 const reducer = createReducer(initialState, {
@@ -15,7 +16,11 @@ const reducer = createReducer(initialState, {
   [Types.UPDATE_BOOTHS_DATA]: (state, {boothsData}) =>
     _.assign({}, state, {
       boothsData: boothsData
-    })
+    }),
+  [Types.UPDATE_CITY]: (state, {city}) =>
+  _.assign({}, state, {
+    city: city
+  })
 });
 
 

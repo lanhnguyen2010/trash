@@ -11,10 +11,32 @@ function* loadData() {
 
 function* doLogin({navigation, email, password}) {
   try {
-    const data = yield call(firebaseService.auth.signInWithEmailAndPassword, email, password);
-    // //yield put(loginWithEmailSuccess(data));
-    // console.log(data);
+    const user = yield call(firebaseService.auth.signInWithEmailAndPassword, email, password);
+    console.log(user);
+    const city = yield call(firebaseService.database.read, "users/" + user.user.uid);
+    console.log(city);
+    if(city != null) {
+      yield put(actions.updateCity(city));
+    } else{
+      window.alert("Account không thuộc về thành phố nào, chuyển mặc định về Hồ Chính Minh");
+      yield put(actions.updateCity('Ho Chi Minh'));
+    }
     navigation.push(ROUTES.HOME);
+  } catch (error) {
+    window.alert(error.message)
+  }
+}
+
+function* doSignUp({navigation, email, password, confirmPassword, city}) {
+  try {
+    if (password ===  confirmPassword) {
+      const user = yield call(firebaseService.auth.createUserWithEmailAndPassword, email, password, city);
+      yield call(firebaseService.database.update, "users/"+user.user.uid, city);
+      navigation.push(ROUTES.HOME);
+    }
+    else{
+      window.alert("Password and Confirm Password must be same");
+    }
   } catch (error) {
     window.alert(error.message)
 
@@ -73,6 +95,8 @@ function* rootSaga() {
   yield takeEvery(Types.LOAD_DATA, loadData);
   yield takeEvery(Types.UPDATE_GIFT, updateGift);
   yield takeEvery(Types.GET_GIFTS, getGifts);
+  yield takeEvery(Types.DO_SIGN_UP, doSignUp);
+
 }
 
 export { rootSaga };

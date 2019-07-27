@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  BrowserRouter as Router, Redirect,
   Route
 } from 'react-router-dom';
 import {lifecycle} from 'recompose';
