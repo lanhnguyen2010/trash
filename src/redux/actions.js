@@ -5,7 +5,9 @@ const { Types, Creators: actions } = createActions(
     loadData: null,
     updateData: ["count"],
     doLogin: ["navigation", "email", "password"],
-    updateGift: ["navigation", "data"]
+    updateGift: ["navigation", "data"],
+    getGifts: ["city"],
+    updateBoothsData:["boothsData"]
   },
   {
     prefix: "ACTIONS/"

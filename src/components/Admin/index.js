@@ -15,7 +15,19 @@ import {withStyles} from '@material-ui/styles';
 import {
   withRouter
 } from 'react-router-dom'
-import {InputLabel, FilledInput, Select, TextField, MenuItem, Button} from "@material-ui/core";
+import {
+  InputLabel,
+  FilledInput,
+  Select,
+  TextField,
+  MenuItem,
+  Button,
+  Table,
+  TableCell,
+  TableHead,
+  TableRow,
+  TableBody
+} from "@material-ui/core";
 
 const styles = {
   container: {
@@ -45,8 +57,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
+      {...other}>
       <Box p={3}>{children}</Box>
     </Typography>
   );
@@ -72,7 +83,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AdminForm = ({history, updateGift}) => {
+function createData(name, calories, fat, carbs, protein) {
+  return {name, calories, fat, carbs, protein};
+}
+
+const rows = [
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+];
+const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -82,19 +104,30 @@ const AdminForm = ({history, updateGift}) => {
   let daoniaRef = null;
   let binhthuytinhRef = null;
   let dateRef = null;
-
-
-  const [city, setCity] = React.useState({
-    city: ''
-  });
+  const [city, setCity] = React.useState('Ho Chi Minh');
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCity(event.target.value);
   };
 
+  const today = new Date();
+
+  let formattedDate=today.getDate() + "-" + today.getMonth() +"-"+ today.getFullYear();
+
+  const handleCityChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setCity(event.target.value);
+    getGifts(event.target.value);
+  };
+
   function handleTabChange(event, newValue) {
     setValue(newValue);
+    if (newValue === 1){
+      getGifts(city);
+    }
   }
+
+  console.log(boothsData);
+  console.log(today);
 
   return (
     <div className={classes.root}>
@@ -106,7 +139,7 @@ const AdminForm = ({history, updateGift}) => {
       </AppBar>
       <TabPanel value={value} index={0}>
         <div style={styles.container}>
-          <InputLabel htmlFor="age-simple">Thanh Pho</InputLabel>
+          <InputLabel htmlFor="age-simple">Thành Phố</InputLabel>
           <Select
             value={city}
             onChange={handleChange}
@@ -121,7 +154,9 @@ const AdminForm = ({history, updateGift}) => {
             required={true}
             label="Ngày"
             id="date"
-            type="date"
+            type="label"
+            defaultValue={formattedDate}
+            disabled
             inputRef={input => dateRef = input}
           />
           <TextField
@@ -132,7 +167,6 @@ const AdminForm = ({history, updateGift}) => {
             type="number"
             inputRef={input => onghutinoxRef = input}
           />
-
           <TextField
             style={styles.textField}
             required={true}
@@ -141,7 +175,6 @@ const AdminForm = ({history, updateGift}) => {
             type="number"
             inputRef={input => tuivaiRef = input}
           />
-
           <TextField
             style={styles.textField}
             required={true}
@@ -150,7 +183,6 @@ const AdminForm = ({history, updateGift}) => {
             type="number"
             inputRef={input => daoniaRef = input}
           />
-
           <TextField
             style={styles.textField}
             required={true}
@@ -159,7 +191,6 @@ const AdminForm = ({history, updateGift}) => {
             type="number"
             inputRef={input => onghutgaoRef = input}
           />
-
           <TextField
             style={styles.textField}
             required={true}
@@ -168,7 +199,7 @@ const AdminForm = ({history, updateGift}) => {
             type="number"
             inputRef={input => binhthuytinhRef = input}
           />
-          <Button onClick={() => {
+          <Button style={styles.btnLogin} onClick={() => {
             updateGift(history, {
               city: city,
               onghutinox: onghutinoxRef.value,
@@ -178,12 +209,45 @@ const AdminForm = ({history, updateGift}) => {
               binhthuytinh: binhthuytinhRef.value,
               date: dateRef.value
             });
-          }}
-                  style={styles.btnLogin}>Submit</Button>
+          }}>Submit</Button>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <InputLabel htmlFor="age-simple">Thành Phố</InputLabel>
+        <Select
+          value={city}
+          onChange={handleCityChange}
+          input={<FilledInput name="city" id="filled-city-simple"/>}
+        >
+          <MenuItem value={"Ha Noi"}>Hà Nội</MenuItem>
+          <MenuItem value={"Ho Chi Minh"}>Hồ Chí Minh</MenuItem>
+          <MenuItem value={"Da Nang"}>Đà Nẵng</MenuItem>
+        </Select>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">Ngày</TableCell>
+              <TableCell align="right">Ống Hút Inox&nbsp;(cái)</TableCell>
+              <TableCell align="right">Túi Vải&nbsp;(cái)</TableCell>
+              <TableCell align="right">Bộ Dao, Nĩa Gỗ&nbsp;(cái)</TableCell>
+              <TableCell align="right">Ống Hút Gạo&nbsp;(cái)</TableCell>
+              <TableCell align="right">Bình Thủy Tinh&nbsp;(cái)</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {boothsData &&
+            (boothsData.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell align="right">{row.date}</TableCell>
+                <TableCell align="right">{row.onghutinox}</TableCell>
+                <TableCell align="right">{row.tuivai}</TableCell>
+                <TableCell align="right">{row.daonia}</TableCell>
+                <TableCell align="right">{row.onghutgao}</TableCell>
+                <TableCell align="right">{row.binhthuytinh}</TableCell>
+              </TableRow>
+            )))}
+          </TableBody>
+        </Table>
       </TabPanel>
     </div>
   );
@@ -195,7 +259,8 @@ const AdminContainer = compose(
   connect(
     selectors.root,
     {
-      updateGift: actions.updateGift
+      updateGift: actions.updateGift,
+      getGifts: actions.getGifts
     }
   ),
   lifecycle({})
