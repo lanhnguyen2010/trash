@@ -8,6 +8,7 @@ export const SIGN_UP = '/SignUp';
 
 export const HOME = '/home';
 export const QUIZ = '/quiz';
+export const SUB_QUIZ = '/sub-quiz';
 export const LUCKY_DRAW = '/lucky-draw';
 export const ADMIN = '/admin';
 export const OTP = '/Otp';

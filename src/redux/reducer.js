@@ -10,7 +10,9 @@ const initialState = {
   smsBalance: 0,
   selectedGift: "",
   otpList: '',
-  isLoggedIn: false
+  isLoggedIn: false,
+  selectedTrash: "",
+  answerResult: "",
 };
 
 const reducer = createReducer(initialState, {
@@ -50,7 +52,25 @@ const reducer = createReducer(initialState, {
     return _.assign({}, state, {
       isLoggedIn: isLoggedIn
     })
-  }
+  },
+  [Types.UPDATE_SELECTED_TRASH_TYPE]: (state, {selectedTrash}) =>
+  _.assign({}, state, {
+    selectedTrash: selectedTrash
+  }),
+
+  [Types.UPDATE_ANSWER_RESULT]: (state, {answerResult}) =>
+  _.assign({}, state, {
+    answerResult: answerResult
+  }),
+
+  [Types.END_FLOW]:  (state) =>
+  _.assign({}, state, {
+    count: 0,
+    selectedGift: "",
+    boothsData:'',
+    selectedTrash: "",
+    answerResult: "",
+  })
 });
 
 

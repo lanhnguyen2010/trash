@@ -10,7 +10,6 @@ const { Types, Creators: actions } = createActions(
     doSignUp: ["navigation", "email", "password", "confirmPassword", "city"],
     updateGift: ["navigation", "data"],
     getGifts: ["city"],
-    updateBoothsData:["boothsData"],
     updateCity:["city"],
     doOtp:["navigation", "data"],
     doVerifyOtp:["navigation", "phoneNumber", "otp"],
@@ -19,7 +18,16 @@ const { Types, Creators: actions } = createActions(
     updateSmsBalance:["smsBalance"],
     getAllOtps: ["searchPhoneNumber"],
     updateOtpList:["otpList"],
-    updateIsLoggedIn:["isLoggedIn"]
+    updateIsLoggedIn:["isLoggedIn"],
+    updateBoothsData:["boothsData"],
+
+
+    //QUIZ
+    updateSelectedTrashType:["selectedTrash"],
+    updateSelectedAnswer:["seletedAnswer"],
+    updateAnswerResult: ["answerResult"],
+
+    endFlow: null
   },
   {
     prefix: "ACTIONS/"

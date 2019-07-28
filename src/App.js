@@ -17,6 +17,8 @@ import LuckyDraw from './components/LuckyDraw';
 import Admin from './components/Admin';
 import Otp from './components/Otp';
 import VerifyOtp from './components/VerifyOtp'
+import SubQuiz from './components/SubQuiz';
+
 
 
 const AppStateLess = () => (
@@ -30,12 +32,14 @@ const AppStateLess = () => (
       <Route path={ROUTES.ADMIN} component={Admin}/>
       <Route path={ROUTES.OTP} component={Otp}/>
       <Route path={ROUTES.VERIFY_OTP} component={VerifyOtp}/>
+      <Route path={ROUTES.SUB_QUIZ} component={SubQuiz}/>
     </Router>
   </Provider>
 );
 
 const App = lifecycle({
   componentDidMount() {
+
   }
 })(AppStateLess);
 

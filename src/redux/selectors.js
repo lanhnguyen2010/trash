@@ -10,6 +10,9 @@ const smsBalance = createSelector(localState, state => state.smsBalance);
 const phoneNumber = createSelector(localState, state => state.phoneNumber);
 const otpList = createSelector(localState, state => state.otpList);
 const isLoggedIn = createSelector(localState, state => state.isLoggedIn);
+const selectedTrash = createSelector(localState, state => state.selectedTrash);
+const answerResult = createSelector(localState, state => state.answerResult);
+
 
 const root = createStructuredSelector({
   count,
@@ -20,6 +23,9 @@ const root = createStructuredSelector({
   phoneNumber,
   otpList,
   isLoggedIn
+  boothsData,
+  selectedTrash,
+  answerResult
 });
 
 export {root, city};

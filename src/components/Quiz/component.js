@@ -58,7 +58,6 @@ const Question = ({btnState, toogleState}) => (
     </div>
 
   </div>
-
 );
 
 export default withStyles(styles)(Quiz);
