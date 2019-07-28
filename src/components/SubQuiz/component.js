@@ -5,6 +5,7 @@ import {
   Button
 } from '@material-ui/core';
 
+import * as Routes from "../../constants/routes"
 
 const styles = {
   questionTitle: {},
@@ -33,17 +34,16 @@ const styles = {
   },
 };
 
-const SubQuiz = ({answerResult, btnState, toogleState, selectedTrash, question}) => {
-    console.log(answerResult);
+const SubQuiz = ({history, answerResult, btnState, toogleState, selectedTrash, question}) => {
     return (
       <div className="container" style={{display: 'flex', alignItems: 'stretch', alignContent: 'stretch'}}>
-        {answerResult ? <Result {...{answerResult}}/> : <Question {...{btnState, toogleState, selectedTrash, question}}/>}
+        {answerResult ? <Result {...{history, answerResult}}/> : <Question {...{btnState, toogleState, selectedTrash, question}}/>}
       </div>
     )
   }
 ;
 
-const Result = ({answerResult}) => (
+const Result = ({history, answerResult}) => (
   <div>
     <div>
       {answerResult ? "Bạn đã chọn chính xac" : "Câu trả lời chưa đúng"}
@@ -53,7 +53,7 @@ const Result = ({answerResult}) => (
       Cái giá thật sự phải trả cho việc sử dụng nhựa thật sự đắt hơn chúng ta biết đấy.
     </div>
 
-    <button>Tìm hiểu thêm về cái giá thật sự của nhựa</button>
+    <button onClick={() => history.push(Routes.MORE_INFO)}>Tìm hiểu thêm về cái giá thật sự của nhựa</button>
   </div>
 );
 
