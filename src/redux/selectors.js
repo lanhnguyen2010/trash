@@ -22,8 +22,7 @@ const root = createStructuredSelector({
   smsBalance,
   phoneNumber,
   otpList,
-  isLoggedIn
-  boothsData,
+  isLoggedIn,
   selectedTrash,
   answerResult
 });
