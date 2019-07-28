@@ -51,23 +51,52 @@ html, body, #app, #app > div, body > #root {
     animation: spin 1200ms infinite linear;
 }
 
+input{
+    border-radius: 34px !important;
+    background: rgba(207, 0, 0, 0.5) !important;
+    border-color:  rgba(207, 0, 0, 1) !important;
+}
+
 fieldset{
-    border-radius: 50px !important;
+    border-radius: 34px !important;
+    border-color:  rgba(207, 0, 0, 0) !important;
 }
 
 @keyframes spin {
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);}
 }
+
+input{
+    color: white !important;
+    font-size: 22px !important;
+
+}
+.MuiSelect-outlined{
+    color: white !important;
+    font-size: 22px !important;
+    border-radius: 34px !important;
+    background: rgba(207, 0, 0, 0.5) !important;
+    border-color:  rgba(207, 0, 0, 1) !important;
+}
+
+.MuiOutlinedInput-input{
+    color: white !important;
+}
+::placeholder {
+    color: white !important;
+    opacity: 1 !important;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    color: white;
+}
+
+:-ms-input-placeholder { /* Internet Explorer */
+    color: white;
+}
+
 input[type="date"]:before {
     content: attr(placeholder) !important;
-    color: #aaa;
     margin-right: 0.5em;
 }
-input[type="date"]:focus:before{
-    content: "" !important;
-}
-
-
-input[type="date"]::-webkit-datetime-edit{ color: transparent; }
-input[type="date"]:focus::-webkit-datetime-edit{ color: #000; }

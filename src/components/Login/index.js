@@ -21,7 +21,12 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    padding: 50
+    padding: 50,
+    backgroundImage: "url('./images/player_info_background.png')",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    width: '100%',
+    height: '100%'
   },
 
   textField: {

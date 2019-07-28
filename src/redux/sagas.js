@@ -169,6 +169,7 @@ const sendRequest = async(path) =>{
 
 function* doOtp({navigation, data}) {
   try {
+    debugger;
     console.log(data);
     yield put(actions.updatePhoneNumber(data.phoneNumber));
     let otp = generateOTP();

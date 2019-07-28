@@ -1,41 +1,56 @@
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {selectors, actions} from "../../redux";
+import {actions, selectors} from "../../redux";
 import {lifecycle} from "recompose";
 import React from 'react';
-import {withStyles, makeStyles} from '@material-ui/styles';
+import {makeStyles, withStyles} from '@material-ui/styles';
 
-import {
-  withRouter
-} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
-import {
-  TextField,
-  Button,
-  Select,
-  FilledInput,
-  MenuItem,
-  FormControl,
-  OutlinedInput
-} from '@material-ui/core';
+import {Button, MenuItem, OutlinedInput, Select, TextField} from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
 
 
 const styles = {
+  main: {
+    backgroundImage: "url('./images/player_info_background.png')",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    width: '100%',
+    height: '100%'
+  },
   container: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    padding: 50
+    paddingTop: 40
   },
 
   textField: {
-    marginTop: 20,
-    minWidth: 300
+    marginTop: 30,
+    minWidth: 350,
+    minHeight: 70
+  },
+
+  text: {
+    fontSize: 33,
+    color: 'white',
+    width: '70%',
+    paddingTop: 50,
+    textAlign: 'center',
+    paddingLeft: '15%'
   },
 
   btnOtp: {
-    marginTop: 30
+    position:"fixed",
+    bottom:"7%",
+    alignSelf: "center",
+    backgroundColor: '#D20C08',
+    fontSize: 18,
+    borderRadius: "50px",
+    color: 'white',
+    minWidth: 200,
+    minHeight: 50
   }
 };
 const useStyles = makeStyles(theme => ({
@@ -71,60 +86,60 @@ const OtpForm = ({history, doOtp, city}) => {
   }, []);
 
   return (
-    <div style={styles.container}>
-      Vui lòng nhập thông tin cá nhân để nhận thông tin về chương trình
-      <TextField
-        style={styles.textField}
-        placeholder="Tên"
-        id="name"
-        variant="outlined"
-        inputRef={input => nameRef = input}
-      />
-      <FormControl variant="filled" className={classes.formControl}>
+    <div style={styles.main}>
+      <div style={styles.text}> Vui lòng nhập thông tin cá nhân để nhận thông tin về chương trình</div>
+      <div style={styles.container}>
+        <TextField
+          style={styles.textField}
+          placeholder="Tên"
+          id="name"
+          variant="outlined"
+          inputRef={input => nameRef = input}
+        />
         <Select
+          style={styles.textField}
           value={gender}
           onChange={handleGenderChange}
           variant="outlined"
-          input={<OutlinedInput labelWidth={labelWidth} name="gender" id="filled-gender-simple"/>}
+          input={<OutlinedInput labelWidth={labelWidth} name="gender" id="gender"/>}
         >
           <MenuItem value={"GioiTinh"} disabled>Giới Tính</MenuItem>
           <MenuItem value={"Nam"}>Nam</MenuItem>
           <MenuItem value={"Nu"}>Nữ</MenuItem>
         </Select>
-      </FormControl>
-      <TextField
-        style={styles.textField}
-        placeholder="Ngày Sinh"
-        type="date"
-        variant="outlined"
-        helperText=""
-        inputRef={input => birthDayRef = input}
-      />
-      <TextField
-        style={styles.textField}
-        placeholder="Số Điện Thoại"
-        variant="outlined"
-        id="phoneNumber"
-        inputRef={input => phoneNumberRef = input}
-      />
-      <TextField
-        style={styles.textField}
-        placeholder="Email"
-        variant="outlined"
-        id="email"
-        inputRef={input => emailRef = input}
-      />
-      <Button onClick={() => {
-        doOtp(history, {
-          phoneNumber: phoneNumberRef.value,
-          name: nameRef.value,
-          gender: gender,
-          birthDay: birthDayRef.value,
-          email: emailRef.value,
-          city: city
-        });
-      }}
-              style={styles.btnOtp}>Xác Thực</Button>
+        <TextField
+          style={styles.textField}
+          placeholder="Ngày Sinh"
+          variant="outlined"
+          helperText=""
+          inputRef={input => birthDayRef = input}
+        />
+        <TextField
+          style={styles.textField}
+          placeholder="Số Điện Thoại"
+          variant="outlined"
+          id="phoneNumber"
+          inputRef={input => phoneNumberRef = input}
+        />
+        <TextField
+          style={styles.textField}
+          placeholder="Email"
+          variant="outlined"
+          id="email"
+          inputRef={input => emailRef = input}
+        />
+        <Button onClick={() => {
+          doOtp(history, {
+            phoneNumber: phoneNumberRef.value,
+            name: nameRef.value,
+            gender: gender,
+            birthDay: birthDayRef.value,
+            email: emailRef.value,
+            city: city
+          });
+        }}
+                style={styles.btnOtp}>Tiếp Tục</Button>
+      </div>
     </div>)
 };
 
