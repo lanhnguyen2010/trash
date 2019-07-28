@@ -7,23 +7,23 @@ export const BINH_THUY_TINH = "binhthuytinh";
 export const GiftType = [ONG_HUT_INOX, TUI_VAI, DAO_NIA, ONG_HUT_GAO, BINH_THUY_TINH];
 export const GiftResource = {
   onghutinox: {
-    image: "./images/Main1.png", //TODO image url
+    image: "./images/onghutinox.png", //TODO image url
     label: "ỐNG HÚT INOX"
   },
   tuivai : {
-    image: "./images/Main1.png",
+    image: "./images/tuivai.png",
     label: "TÚI VẢI"
   },
   daonia : {
-    image: "./images/Main1.png",
+    image: "./images/daonia.png",
     label: "BỘ DAO, NỈA, MUỔNG GỖ"
   },
   onghutgao : {
-    image: "./images/Main1.png",
+    image: "./images/onghutgao.png",
     label: "ỐNG HÚT GẠO"
   },
   binhthuytinh : {
-    image: "./images/Main1.png",
+    image: "./images/binhnuoc.png",
     label: "BÌNH THUỶ TINH"
   }
 };

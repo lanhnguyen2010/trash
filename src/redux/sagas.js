@@ -28,7 +28,7 @@ function* doLogin({navigation, email, password}) {
       window.alert("Account không thuộc về thành phố nào, chuyển mặc định về Hồ Chính Minh");
       yield put(actions.updateCity('Ho Chi Minh'));
     }
-    navigation.push(ROUTES.OTP);
+    navigation.push(ROUTES.HOME);
   } catch (error) {
     window.alert(error.message)
   }
