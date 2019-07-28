@@ -5,7 +5,6 @@ import {selectors, actions} from "../../redux";
 import {lifecycle} from "recompose";
 import SubQuiz from "./component"
 import * as Const from "../../constants/Const"
-import * as Routes from "../../constants/routes"
 import * as utils from "../../constants/utils"
 
 
