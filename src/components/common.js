@@ -1,3 +1,10 @@
 import React from 'react';
 
-export default {}
+const commonStyle = {
+  container : {
+
+  },
+
+};
+
+export default commonStyle;
