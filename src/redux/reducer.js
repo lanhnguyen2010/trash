@@ -66,8 +66,11 @@ const reducer = createReducer(initialState, {
   [Types.END_FLOW]:  (state) =>
   _.assign({}, state, {
     count: 0,
+    boothsData: '',
+    phoneNumber: '',
+    smsBalance: 0,
     selectedGift: "",
-    boothsData:'',
+    otpList: '',
     selectedTrash: "",
     answerResult: "",
   })
