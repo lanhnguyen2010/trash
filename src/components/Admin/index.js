@@ -84,7 +84,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBalance, smsBalance}) => {
+const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBalance, smsBalance, getAllOtps, otpList, city, updateOtpList}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -94,7 +94,8 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
   let daoniaRef = null;
   let binhthuytinhRef = null;
   let dateRef = null;
-  const [city, setCity] = React.useState('Ho Chi Minh');
+  let searchPhoneNumberRef = null;
+  const [citySelector, setCity] = React.useState(city);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCity(event.target.value);
@@ -112,10 +113,12 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
   function handleTabChange(event, newValue) {
     setValue(newValue);
     if (newValue === 1){
-      getGifts(city);
+      getGifts(citySelector);
+    }
+    if (newValue === 4){
+      updateOtpList([]);
     }
   }
-
   console.log(boothsData);
   console.log("balance:", smsBalance);
 
@@ -126,13 +129,15 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           <Tab label="Update" {...a11yProps(0)} />
           <Tab label="Report" {...a11yProps(1)} />
           <Tab label="SMS" {...a11yProps(2)} />
+          <Tab label="Players" {...a11yProps(3)} />
+          <Tab label="OTP" {...a11yProps(4)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <div style={styles.container}>
           <InputLabel htmlFor="age-simple">Thành Phố</InputLabel>
           <Select
-            value={city}
+            value={citySelector}
             onChange={handleChange}
             input={<FilledInput name="city" id="filled-city-simple"/>}
           >
@@ -192,7 +197,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           />
           <Button style={styles.btnLogin} onClick={() => {
             updateGift(history, {
-              city: city,
+              city: citySelector,
               onghutinox: onghutinoxRef.value,
               tuivai: tuivaiRef.value,
               daonia: daoniaRef.value,
@@ -207,7 +212,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
       <TabPanel value={value} index={1}>
         <InputLabel htmlFor="age-simple">Thành Phố</InputLabel>
         <Select
-          value={city}
+          value={citySelector}
           onChange={handleCityChange}
           input={<FilledInput name="city" id="filled-city-simple"/>}
         >
@@ -260,6 +265,42 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
         />
         </div>
       </TabPanel>
+
+      <TabPanel index={3} value={value}>
+      Players
+    </TabPanel>
+      <TabPanel index={4} value={value}>
+        <div style={styles.container}>
+        <TextField
+          style={styles.textField}
+          placeholder="Số Điện Thoại"
+          variant="outlined"
+          id="phoneNumber"
+          inputRef={input => searchPhoneNumberRef = input}
+        />
+        <Button onClick={() => {
+          getAllOtps(searchPhoneNumberRef.value);
+        }}
+                style={styles.btnOtp}>Tìm Kiếm</Button>
+        </div>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">Số Điện Thoại</TableCell>
+              <TableCell align="right">OTP</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {otpList &&
+            (otpList.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell align="right">{row.phoneNumber}</TableCell>
+                <TableCell align="right">{row.otp}</TableCell>
+              </TableRow>
+            )))}
+          </TableBody>
+        </Table>
+      </TabPanel>
     </div>
   );
 };
@@ -272,7 +313,9 @@ const AdminContainer = compose(
     {
       updateGift: actions.updateGift,
       getGifts: actions.getGifts,
-      checkSmsAccountBalance: actions.checkSmsAccountBalance
+      checkSmsAccountBalance: actions.checkSmsAccountBalance,
+      getAllOtps:actions.getAllOtps,
+      updateOtpList: actions.updateOtpList
     }
   ),
   lifecycle({})

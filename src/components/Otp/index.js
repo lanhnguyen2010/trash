@@ -49,12 +49,14 @@ const useStyles = makeStyles(theme => ({
   selectEmpty: {
   },
 }));
-const OtpForm = ({history, doOtp}) => {
+const OtpForm = ({history, doOtp, city}) => {
   let phoneNumberRef = null;
   let nameRef = null;
   let birthDayRef = null;
   let emailRef = null;
   const classes = useStyles();
+
+  console.log(city);
 
   const [gender, setGender] = React.useState('GioiTinh');
 
@@ -119,6 +121,7 @@ const OtpForm = ({history, doOtp}) => {
           gender: gender,
           birthDay: birthDayRef.value,
           email: emailRef.value,
+          city: city
         });
       }}
               style={styles.btnOtp}>Xác Thực</Button>

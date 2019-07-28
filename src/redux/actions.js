@@ -16,7 +16,9 @@ const { Types, Creators: actions } = createActions(
     doVerifyOtp:["navigation", "phoneNumber", "otp"],
     updatePhoneNumber:["phoneNumber"],
     checkSmsAccountBalance:["navigation"],
-    updateSmsBalance:["smsBalance"]
+    updateSmsBalance:["smsBalance"],
+    getAllOtps: ["searchPhoneNumber"],
+    updateOtpList:["otpList"]
   },
   {
     prefix: "ACTIONS/"

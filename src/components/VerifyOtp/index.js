@@ -60,7 +60,7 @@ const props = {
   }
 }
 
-const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber}) => {
+const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber, city}) => {
   let otpRef = null;
   console.log(phoneNumber);
 

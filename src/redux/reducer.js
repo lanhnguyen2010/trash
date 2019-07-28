@@ -9,6 +9,7 @@ const initialState = {
   phoneNumber:'',
   smsBalance:0,
   selectedGift: "",
+  otpList:''
 };
 
 const reducer = createReducer(initialState, {
@@ -24,10 +25,12 @@ const reducer = createReducer(initialState, {
     _.assign({}, state, {
       boothsData: boothsData
     }),
-  [Types.UPDATE_CITY]: (state, {city}) =>
-  _.assign({}, state, {
-    city: city
-  }),
+  [Types.UPDATE_CITY]: (state, {city}) => {
+    console.log("city update:, " , city);
+    return _.assign({}, state, {
+      city: city
+    })
+  },
   [Types.UPDATE_PHONE_NUMBER]: (state, {phoneNumber}) =>
   _.assign({}, state, {
     phoneNumber: phoneNumber
@@ -36,7 +39,12 @@ const reducer = createReducer(initialState, {
     return _.assign({}, state, {
       smsBalance: smsBalance
     })
-  }
+  },
+  [Types.UPDATE_OTP_LIST]: (state, {otpList}) => {
+  return _.assign({}, state, {
+    otpList: otpList
+  })
+}
 });
 
 

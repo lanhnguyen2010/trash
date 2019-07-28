@@ -1,9 +1,10 @@
-import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import { call, put, takeEvery, takeLatest, select } from "redux-saga/effects";
 
 import { actions, Types } from "./actions";
 import firebaseService from "../components/Firebase";
 import * as ROUTES from "../constants/routes";
 import React from 'react';
+import * as selectors from './selectors'
 
 const SMS_API_KEY="60F486560907DE73746D199F8EF80A";
 const SMS_SECRET_KEY="4F784074A243ED85FBAB849CAA3BF5";
@@ -26,7 +27,7 @@ function* doLogin({navigation, email, password}) {
       window.alert("Account không thuộc về thành phố nào, chuyển mặc định về Hồ Chính Minh");
       yield put(actions.updateCity('Ho Chi Minh'));
     }
-    navigation.push(ROUTES.HOME);
+    navigation.push(ROUTES.OTP);
   } catch (error) {
     window.alert(error.message)
   }
@@ -129,6 +130,26 @@ function* getGifts({city}) {
   }
 }
 
+function* getAllOtps({searchPhoneNumber}) {
+  try {
+    console.log("Get Otps .....");
+
+    let city = yield select(selectors.city);
+    console.log("Get Otps city.....", city);
+
+    const result = yield call(firebaseService.database.read, "otps/" + city + "/" + searchPhoneNumber);
+
+    console.log("Get Otps", result);
+    let otps = [];
+    otps.push({phoneNumber: searchPhoneNumber, otp: result});
+
+    console.log("date gifts: ", otps);
+    yield put(actions.updateOtpList(otps));
+  } catch (error) {
+    window.alert(error.message)
+  }
+}
+
 function generateOTP() {
   let digits = '0123456789';
   let OTP = '';
@@ -143,17 +164,18 @@ const sendRequest = async(path) =>{
       "Content-Type":"application/json"
     }});
   return await result.json();
-}
+};
 
 function* doOtp({navigation, data}) {
   try {
     console.log(data);
     yield put(actions.updatePhoneNumber(data.phoneNumber));
     let otp = generateOTP();
-    yield call(firebaseService.database.update, "otps/" + data.phoneNumber, otp);
-    yield call(firebaseService.database.update, "players/" + data.phoneNumber, data);
+    let city = yield select(selectors.city);
+    yield call(firebaseService.database.update, "otps/" + city + "/" + data.phoneNumber, otp);
+    yield call(firebaseService.database.update, "players/"+ city + "/" + data.phoneNumber, data);
     const params=`Phone=${data.phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=1`;
-    const response = yield call(sendRequest, `http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
+    const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
     console.log(response);
     if(response.CodeResult == 100){
       navigation.push(ROUTES.VERIFY_OTP)
@@ -168,8 +190,10 @@ function* doOtp({navigation, data}) {
 
 function* doVerifyOtp({navigation, phoneNumber, otp}) {
   console.log("otp: ", otp);
+  let city = yield select(selectors.city);
+
   try {
-    const response = yield call(firebaseService.database.read, "otps/" + phoneNumber);
+    const response = yield call(firebaseService.database.read, "otps/" + city + "/" + phoneNumber);
     if(otp == response) {
       navigation.push(ROUTES.LUCKY_DRAW);
     }else {
@@ -184,7 +208,7 @@ function* checkSmsAccountBalance({navigation}) {
   try {
     console.log("Check SMS account Balance");
 
-    const response = yield call(sendRequest, `http://rest.esms.vn/MainService.svc/json/GetBalance/${SMS_API_KEY}/${SMS_SECRET_KEY}`);
+    const response = yield call(sendRequest, `https://rest.esms.vn/MainService.svc/json/GetBalance/${SMS_API_KEY}/${SMS_SECRET_KEY}`);
     console.log(response);
     if(response.CodeResponse === "100"){
       console.log("Account Balance: ", response.Balance);
@@ -205,6 +229,8 @@ function* rootSaga() {
   yield takeEvery(Types.DO_OTP, doOtp);
   yield takeEvery(Types.DO_VERIFY_OTP, doVerifyOtp);
   yield takeEvery(Types.CHECK_SMS_ACCOUNT_BALANCE, checkSmsAccountBalance);
+  yield takeEvery(Types.GET_ALL_OTPS, getAllOtps);
+
 }
 
 export { rootSaga };
