@@ -46,6 +46,11 @@ const QuizContainer = compose(
         history.push(ROUTES.LOG_IN)
       }
     },
+    componentWillUnmount() {
+      this.setState = (state,callback)=>{
+        return;
+      };
+    }
   })
 )(Quiz);
 

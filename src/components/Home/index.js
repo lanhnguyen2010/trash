@@ -44,16 +44,13 @@ const styles = {
 };
 
 export default class Home extends Component {
+
   componentDidMount() {
     this.interval = setInterval(() => this.track.clickNext(), 3000);
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
-    const {history, isLoggedIn} = this.props;
-    if (!isLoggedIn) {
-      history.push(ROUTES.LOG_IN)
-    }
   }
 
   routeChange() {
