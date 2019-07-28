@@ -11,6 +11,14 @@ import * as ROUTES from "../../constants/routes";
 
 
 const styles = {
+  main: {
+    backgroundImage: "url('./images/player_info_background.png')",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    width: '100%',
+    height: '100%'
+  },
+
   container: {
     display: 'flex',
     alignItems: 'center',
@@ -25,21 +33,28 @@ const styles = {
 
   btnVerifyOtp: {
     marginTop: 30
-  }
+  },
+  text: {
+    fontSize: 33,
+    color: 'white',
+    width: '70%',
+    paddingTop: 70,
+    textAlign: 'center',
+    marginBottom:40
+  },
 };
 
 const props = {
   inputStyle: {
     fontFamily: 'monospace',
-    margin: '4px',
+    margin: 8,
     MozAppearance: 'textfield',
-    width: '20px',
-    borderRadius: '3px',
+    width: 70,
+    borderRadius: "15px !important",
     fontSize: '14px',
-    height: '30px',
-    paddingLeft: '7px',
+    height: 104,
     color: 'lightskyblue',
-    border: '1px solid lightskyblue'
+    border: '2px solid lightskyblue',
   },
   inputStyleInvalid: {
     fontFamily: 'monospace',
@@ -66,9 +81,11 @@ const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber, city}) => {
   }
 
   return (
-    <div style={styles.container}>
-      Vui lòng nhập mã OTP để xác nhận
-      <ReactCodeInput fields={4} {...props} onChange={handleOtpChange}/>
+    <div style={styles.main}>
+      <div style={styles.container}>
+        <div style={styles.text}>Vui lòng nhập mã OTP để xác nhận</div>
+        <ReactCodeInput className="otp" fields={4} {...props} onChange={handleOtpChange}/>
+      </div>
     </div>)
 };
 

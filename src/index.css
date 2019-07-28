@@ -51,10 +51,22 @@ html, body, #app, #app > div, body > #root {
     animation: spin 1200ms infinite linear;
 }
 
-input{
+.info input{
     border-radius: 34px !important;
     background: rgba(207, 0, 0, 0.5) !important;
     border-color:  rgba(207, 0, 0, 1) !important;
+    color: white !important;
+    font-size: 22px !important;
+}
+
+.otp input{
+    border-radius: 15px !important;
+    background: transparent !important;
+    border-color:  white !important;
+    color: white !important;
+    font-size: 75px !important;
+    text-align: center;
+    border-width: 2px;
 }
 
 fieldset{
@@ -67,12 +79,7 @@ fieldset{
     to {transform:rotate(360deg);}
 }
 
-input{
-    color: white !important;
-    font-size: 22px !important;
-
-}
-.MuiSelect-outlined{
+.info .MuiSelect-outlined{
     color: white !important;
     font-size: 22px !important;
     border-radius: 34px !important;
@@ -80,10 +87,10 @@ input{
     border-color:  rgba(207, 0, 0, 1) !important;
 }
 
-.MuiOutlinedInput-input{
+.info .MuiOutlinedInput-input{
     color: white !important;
 }
-::placeholder {
+.info ::placeholder {
     color: white !important;
     opacity: 1 !important;
 }

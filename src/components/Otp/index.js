@@ -94,9 +94,11 @@ const OtpForm = ({history, doOtp, city}) => {
           placeholder="Tên"
           id="name"
           variant="outlined"
+          className='info'
           inputRef={input => nameRef = input}
         />
         <Select
+          className='info'
           style={styles.textField}
           value={gender}
           onChange={handleGenderChange}
@@ -108,6 +110,7 @@ const OtpForm = ({history, doOtp, city}) => {
           <MenuItem value={"Nu"}>Nữ</MenuItem>
         </Select>
         <TextField
+          className='info'
           style={styles.textField}
           placeholder="Ngày Sinh"
           variant="outlined"
@@ -115,6 +118,7 @@ const OtpForm = ({history, doOtp, city}) => {
           inputRef={input => birthDayRef = input}
         />
         <TextField
+          className='info'
           style={styles.textField}
           placeholder="Số Điện Thoại"
           variant="outlined"
@@ -122,6 +126,7 @@ const OtpForm = ({history, doOtp, city}) => {
           inputRef={input => phoneNumberRef = input}
         />
         <TextField
+          className='info'
           style={styles.textField}
           placeholder="Email"
           variant="outlined"
