@@ -1,5 +1,6 @@
 import React from 'react';
 import * as Const from "../../constants/Const"
+import commonStyles from "../common"
 
 const styles = {
   image: {
