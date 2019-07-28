@@ -19,10 +19,9 @@ const styles = {
     backgroundColor: "white",
   },
   text: {
-    position:"absolute", 
-    bottom:"15vh", 
+    position:"relative", 
     color: "#BA0000", 
-    fontSize: "calc(1em + 2.5vw)", 
+    fontSize: 30, 
     textAlign:"center", 
     width: "74%"
   }, 
@@ -31,16 +30,15 @@ const styles = {
     bottom:"7%", 
     alignSelf: "center", 
     backgroundColor: '#D20C08', 
-    fontSize: "calc(1em + 0.8vh)",
+    fontSize: 25,
     width: "74%", 
-    height:"6%", 
-    borderRadius: "50px"
+    borderRadius: 50
   },
   logo: {
     position:"fixed",
     zIndex: 100,
-    top: "4vh",
-    left: "4vh"
+    top: 30,
+    left: 30
   }
 };
 
