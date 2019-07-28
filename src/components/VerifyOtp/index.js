@@ -1,19 +1,13 @@
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {selectors, actions} from "../../redux";
+import {actions, selectors} from "../../redux";
 import {lifecycle} from "recompose";
 import React from 'react';
 import {withStyles} from '@material-ui/styles';
-import ReactCodeInput  from 'react-code-input';
+import ReactCodeInput from 'react-code-input';
 
-import {
-  withRouter
-} from 'react-router-dom'
-
-import {
-  TextField,
-  Button
-} from '@material-ui/core';
+import {withRouter} from 'react-router-dom'
+import * as ROUTES from "../../constants/routes";
 
 
 const styles = {
@@ -37,19 +31,19 @@ const styles = {
 const props = {
   inputStyle: {
     fontFamily: 'monospace',
-    margin:  '4px',
+    margin: '4px',
     MozAppearance: 'textfield',
     width: '20px',
     borderRadius: '3px',
     fontSize: '14px',
     height: '30px',
-    paddingLeft:'7px',
+    paddingLeft: '7px',
     color: 'lightskyblue',
     border: '1px solid lightskyblue'
   },
   inputStyleInvalid: {
     fontFamily: 'monospace',
-    margin:  '4px',
+    margin: '4px',
     MozAppearance: 'textfield',
     width: '20px',
     borderRadius: '3px',
@@ -64,12 +58,13 @@ const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber, city}) => {
   let otpRef = null;
   console.log(phoneNumber);
 
-  function handleOtpChange(otp){
+  function handleOtpChange(otp) {
     console.log(otp);
-    if(otp.length == 4){
+    if (otp.length == 4) {
       doVerifyOtp(history, phoneNumber, otp)
     }
   }
+
   return (
     <div style={styles.container}>
       Vui lòng nhập mã OTP để xác nhận
@@ -86,7 +81,14 @@ const VerifyOtpContainer = compose(
       doVerifyOtp: actions.doVerifyOtp
     }
   ),
-  lifecycle({})
+  lifecycle({
+    componentWillMount() {
+      const {history, isLoggedIn} = this.props;
+      if (!isLoggedIn) {
+        history.push(ROUTES.LOG_IN)
+      }
+    }
+  })
 )(VerifyOtp);
 
 export default VerifyOtpContainer;

@@ -22,6 +22,7 @@ function* doLogin({navigation, email, password}) {
     const city = yield call(firebaseService.database.read, "users/" + user.user.uid);
     console.log(city);
     if(city != null) {
+      yield put(actions.updateIsLoggedIn(true));
       yield put(actions.updateCity(city));
     } else{
       window.alert("Account không thuộc về thành phố nào, chuyển mặc định về Hồ Chính Minh");
@@ -208,7 +209,7 @@ function* checkSmsAccountBalance({navigation}) {
   try {
     console.log("Check SMS account Balance");
 
-    const response = yield call(sendRequest, `https://rest.esms.vn/MainService.svc/json/GetBalance/${SMS_API_KEY}/${SMS_SECRET_KEY}`);
+    const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/GetBalance/${SMS_API_KEY}/${SMS_SECRET_KEY}`);
     console.log(response);
     if(response.CodeResponse === "100"){
       console.log("Account Balance: ", response.Balance);

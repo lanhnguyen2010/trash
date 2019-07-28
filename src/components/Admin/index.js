@@ -29,6 +29,7 @@ import {
   TableBody,
   InputAdornment
 } from "@material-ui/core";
+import * as ROUTES from "../../constants/routes";
 
 const styles = {
   container: {
@@ -318,7 +319,14 @@ const AdminContainer = compose(
       updateOtpList: actions.updateOtpList
     }
   ),
-  lifecycle({})
+  lifecycle({
+    componentWillMount() {
+      const {history, isLoggedIn} = this.props;
+      if (!isLoggedIn) {
+        history.push(ROUTES.LOG_IN)
+      }
+    },
+  })
 )(Admin);
 
 export default AdminContainer;

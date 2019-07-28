@@ -18,7 +18,8 @@ const { Types, Creators: actions } = createActions(
     checkSmsAccountBalance:["navigation"],
     updateSmsBalance:["smsBalance"],
     getAllOtps: ["searchPhoneNumber"],
-    updateOtpList:["otpList"]
+    updateOtpList:["otpList"],
+    updateIsLoggedIn:["isLoggedIn"]
   },
   {
     prefix: "ACTIONS/"

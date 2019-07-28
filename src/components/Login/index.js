@@ -13,6 +13,7 @@ import {
   TextField,
   Button
 } from '@material-ui/core';
+import * as ROUTES from "../../constants/routes";
 
 
 const styles = {
@@ -36,6 +37,7 @@ const styles = {
 const LoginForm = ({history, doLogin}) => {
   let usernameRef = null;
   let passwordRef = null;
+
   return (
     <div style={styles.container}>
       ĐĂNG NHẬP
@@ -71,7 +73,17 @@ const LoginContainer = compose(
       doLogin: actions.doLogin
     }
   ),
-  lifecycle({})
+  lifecycle({
+    componentDidMount() {
+      const {history, isLoggedIn} = this.props;
+      if(isLoggedIn){
+        history.push(ROUTES.HOME)
+      }
+      else {
+        history.push(ROUTES.LOG_IN)
+      }
+    }
+  })
 )(Login);
 
 export default LoginContainer;

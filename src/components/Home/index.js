@@ -19,21 +19,21 @@ const styles = {
     backgroundColor: "white",
   },
   text: {
-    position:"absolute", 
-    bottom:"15vh", 
-    color: "#BA0000", 
-    fontSize: "calc(1em + 2.5vw)", 
-    textAlign:"center", 
+    position:"absolute",
+    bottom:"15vh",
+    color: "#BA0000",
+    fontSize: "calc(1em + 2.5vw)",
+    textAlign:"center",
     width: "74%"
-  }, 
+  },
   button: {
-    position:"fixed", 
-    bottom:"7%", 
-    alignSelf: "center", 
-    backgroundColor: '#D20C08', 
+    position:"fixed",
+    bottom:"7%",
+    alignSelf: "center",
+    backgroundColor: '#D20C08',
     fontSize: "calc(1em + 0.8vh)",
-    width: "74%", 
-    height:"6%", 
+    width: "74%",
+    height:"6%",
     borderRadius: "50px"
   },
   logo: {
@@ -51,8 +51,11 @@ export default class Home extends Component {
 
   componentWillUnmount() {
     clearInterval(this.interval);
+    const {history, isLoggedIn} = this.props;
+    if (!isLoggedIn) {
+      history.push(ROUTES.LOG_IN)
+    }
   }
-
   routeChange() {
     this.props.history.push(ROUTES.QUIZ);
   }
@@ -73,14 +76,14 @@ export default class Home extends Component {
         </AwesomeSlider>
         <div style={styles.footer}>
           <p style={styles.text}>Cái giá thật sự <b>CỦA NHỰA</b> bạn chưa biết</p>
-          
-          <Button style={styles.button} 
+
+          <Button style={styles.button}
                   variant="contained"
                   color="primary"
                   size="large"
                   onClick={() => this.routeChange()}>
             Tìm hiểu thêm</Button>
-        </div> 
+        </div>
       </div>
     );
   }

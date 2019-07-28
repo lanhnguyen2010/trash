@@ -18,6 +18,7 @@ import {
   FormControl,
   OutlinedInput
 } from '@material-ui/core';
+import * as ROUTES from "../../constants/routes";
 
 
 const styles = {
@@ -44,10 +45,9 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     minWidth: 300,
-    paddingTop:20
+    paddingTop: 20
   },
-  selectEmpty: {
-  },
+  selectEmpty: {},
 }));
 const OtpForm = ({history, doOtp, city}) => {
   let phoneNumberRef = null;
@@ -81,16 +81,16 @@ const OtpForm = ({history, doOtp, city}) => {
         inputRef={input => nameRef = input}
       />
       <FormControl variant="filled" className={classes.formControl}>
-      <Select
-        value={gender}
-        onChange={handleGenderChange}
-        variant="outlined"
-        input={<OutlinedInput labelWidth={labelWidth} name="gender" id="filled-gender-simple"/>}
-      >
-        <MenuItem value={"GioiTinh"} disabled>Giới Tính</MenuItem>
-        <MenuItem value={"Nam"}>Nam</MenuItem>
-        <MenuItem value={"Nu"}>Nữ</MenuItem>
-      </Select>
+        <Select
+          value={gender}
+          onChange={handleGenderChange}
+          variant="outlined"
+          input={<OutlinedInput labelWidth={labelWidth} name="gender" id="filled-gender-simple"/>}
+        >
+          <MenuItem value={"GioiTinh"} disabled>Giới Tính</MenuItem>
+          <MenuItem value={"Nam"}>Nam</MenuItem>
+          <MenuItem value={"Nu"}>Nữ</MenuItem>
+        </Select>
       </FormControl>
       <TextField
         style={styles.textField}
@@ -137,7 +137,14 @@ const OtpContainer = compose(
       doOtp: actions.doOtp
     }
   ),
-  lifecycle({})
+  lifecycle({
+    componentWillMount() {
+      const {history, isLoggedIn} = this.props;
+      if (!isLoggedIn) {
+        history.push(ROUTES.LOG_IN)
+      }
+    }
+  })
 )(Otp);
 
 export default OtpContainer;

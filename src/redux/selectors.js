@@ -9,7 +9,7 @@ const city = createSelector(localState, state => state.city);
 const smsBalance = createSelector(localState, state => state.smsBalance);
 const phoneNumber = createSelector(localState, state => state.phoneNumber);
 const otpList = createSelector(localState, state => state.otpList);
-
+const isLoggedIn = createSelector(localState, state => state.isLoggedIn);
 
 const root = createStructuredSelector({
   count,
@@ -18,7 +18,8 @@ const root = createStructuredSelector({
   city,
   smsBalance,
   phoneNumber,
-  otpList
+  otpList,
+  isLoggedIn
 });
 
 export {root, city};

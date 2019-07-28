@@ -4,6 +4,7 @@ import {compose} from "redux";
 import {selectors, actions} from "../../redux";
 import {lifecycle} from "recompose";
 import Quiz from "./component"
+import * as ROUTES from "../../constants/routes";
 
 
 const QuizContainer = compose(
@@ -31,7 +32,13 @@ const QuizContainer = compose(
       setTimeout(function() {
         this.setState({...initState, render:true}) ;
       }.bind(this), 1000)
-    }
+    },
+    componentWillMount() {
+      const {history, isLoggedIn} = this.props;
+      if (!isLoggedIn) {
+        history.push(ROUTES.LOG_IN)
+      }
+    },
   })
 )(Quiz);
 
