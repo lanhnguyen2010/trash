@@ -11,7 +11,8 @@ const LuckyDrawContainer = compose(
   connect(
     selectors.root,
     {
-      getRandomGift: actions.getRandomGift
+      getRandomGift: actions.getRandomGift,
+      endFlow: actions.endFlow
     },
   ),
   lifecycle({

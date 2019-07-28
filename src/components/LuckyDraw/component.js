@@ -1,6 +1,8 @@
 import React from 'react';
 import * as Const from "../../constants/Const"
+import * as Routes from "../../constants/routes"
 import commonStyles from "../common"
+import {Button} from '@material-ui/core';
 
 const styles = {
   image: {
@@ -24,6 +26,12 @@ const styles = {
   },
 };
 
+const finish = ({history, endFlow}) => {
+  endFlow();
+  history.push(Routes.HOME);
+
+};
+
 const LoadingSpinner = ({isLoading, onClickSpinner}) => (
   <div className="container" style={{...commonStyles.container, ...styles.backGroundLucky}}>
     <div style={commonStyles.topText}>CẢM ƠN BẠN ĐÃ GIẢM DÙNG ĐỒ NHỰA VÌ SỨC KHỎE NGƯỜI THÂN YÊU</div>
@@ -34,17 +42,18 @@ const LoadingSpinner = ({isLoading, onClickSpinner}) => (
   </div>
 );
 
-const ResultView = ({selectedGift}) => (
+const ResultView = ({selectedGift, history, endFlow}) => (
   <div className="container"  style={styles.container}>
     <img src={Const.GiftResource[selectedGift].image} style={styles.imageResult}/>
     <div style={commonStyles.topText}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC {Const.GiftResource[selectedGift].label} TỪ PRUDENTIAL</div>
     <div style={commonStyles.topText}>CẢM ƠN BẠN ĐÃ THAM GIA CHƯƠNG TRÌNH</div>
+    <Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
   </div>
 );
 
-const LuckyDraw = ({isLoading, onClickSpinner, selectedGift}) => (
+const LuckyDraw = ({isLoading, onClickSpinner, selectedGift, history, endFlow}) => (
   <div className="container" style={{...commonStyles.container, ...styles.backGroundResult}}>
-    {!selectedGift ? <LoadingSpinner {...{isLoading, onClickSpinner}}/> : <ResultView {...{selectedGift}}/>}
+    {!selectedGift ? <LoadingSpinner {...{isLoading, onClickSpinner}}/> : <ResultView {...{selectedGift, history, endFlow}}/>}
 
   </div>
 );
