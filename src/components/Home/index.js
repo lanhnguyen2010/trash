@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import * as ROUTES from "../../constants/routes";
 
-import {Button, Container, Fab} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
-import { Link } from "react-router-dom";
 
 
 const styles = {
@@ -16,7 +15,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     width: "100%",
-    height: "30vh",
+    height: "30%",
     backgroundColor: "white",
   },
   text: {
@@ -25,17 +24,23 @@ const styles = {
     color: "#BA0000", 
     fontSize: "calc(1em + 2.5vw)", 
     textAlign:"center", 
-    width: "74vw"
+    width: "74%"
   }, 
   button: {
     position:"fixed", 
-    bottom:"7vh", 
+    bottom:"7%", 
     alignSelf: "center", 
     backgroundColor: '#D20C08', 
     fontSize: "calc(1em + 0.8vh)",
-    width: "74vw", 
-    height:"6vh", 
+    width: "74%", 
+    height:"6%", 
     borderRadius: "50px"
+  },
+  logo: {
+    position:"fixed",
+    zIndex: 100,
+    top: "4vh",
+    left: "4vh"
   }
 };
 
@@ -55,6 +60,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="container">
+        <img src="./images/logo.svg" alt="prudential logo" style={styles.logo}/>
         <AwesomeSlider style={{width: '100%', height:'100%'}}
                        bullets={false}
                        infinite={true}
