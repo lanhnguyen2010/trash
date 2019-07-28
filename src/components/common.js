@@ -7,4 +7,4 @@ const commonStyle = {
 
 };
 
-export default style;
+export default commonStyle;
