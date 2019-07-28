@@ -16,6 +16,7 @@ import Quiz from './components/Quiz/container';
 import SignUp from './components/SignUp';
 import LuckyDraw from './components/LuckyDraw';
 import Admin from './components/Admin';
+import SubQuiz from './components/SubQuiz';
 
 
 
@@ -29,6 +30,7 @@ const AppStateLess = () => (
       <Route path={ROUTES.HOME} component={Home}/>
       <Route path={ROUTES.LUCKY_DRAW} component={LuckyDraw}/>
       <Route path={ROUTES.ADMIN} component={Admin}/>
+      <Route path={ROUTES.SUB_QUIZ} component={SubQuiz}/>
     </Router>
   </Provider>
 );

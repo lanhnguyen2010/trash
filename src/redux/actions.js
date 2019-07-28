@@ -9,7 +9,15 @@ const { Types, Creators: actions } = createActions(
     updateSelectedGift: ["selectedGift"],
     updateGift: ["navigation", "data"],
     getGifts: ["city"],
-    updateBoothsData:["boothsData"]
+    updateBoothsData:["boothsData"],
+
+
+    //QUIZ
+    updateSelectedTrashType:["selectedTrash"],
+    updateSelectedAnswer:["seletedAnswer"],
+    updateAnswerResult: ["answerResult"],
+
+    endFlow: null
   },
   {
     prefix: "ACTIONS/"

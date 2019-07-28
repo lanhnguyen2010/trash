@@ -4,7 +4,6 @@ import createSagaMiddleware from "redux-saga";
 import sagas from "./sagas";
 import reducer from "./redux/reducer";
 import {loadState, saveState} from "./localStoragePersist";
-import _ from "lodash";
 import {select} from "redux-saga/effects"
 
 
