@@ -19,8 +19,7 @@ const styles = {
     backgroundColor: "white",
   },
   text: {
-    position:"absolute", 
-    bottom:"15vh", 
+    position:"relative", 
     color: "#BA0000", 
     fontSize: "calc(1em + 2.5vw)", 
     textAlign:"center", 
@@ -31,9 +30,8 @@ const styles = {
     bottom:"7%", 
     alignSelf: "center", 
     backgroundColor: '#D20C08', 
-    fontSize: "calc(1em + 0.8vh)",
+    fontSize: "3vh",
     width: "74%", 
-    height:"6%", 
     borderRadius: "50px"
   },
   logo: {
