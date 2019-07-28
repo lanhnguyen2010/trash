@@ -19,7 +19,6 @@ const styles = {
     backgroundColor: "white",
   },
   text: {
-    bottom:"15vh",
     position:"relative",
     color: "#BA0000",
     fontSize: 30,
