@@ -27,11 +27,6 @@ const styles = {
   },
 };
 
-const finish = ({history, endFlow}) => {
-  endFlow();
-  history.push(Routes.HOME);
-
-};
 
 const LoadingSpinner = ({isLoading, onClickSpinner}) => (
   <div className="container" style={{...commonStyles.container, ...styles.backGroundLucky}}>
@@ -43,19 +38,9 @@ const LoadingSpinner = ({isLoading, onClickSpinner}) => (
   </div>
 );
 
-const ResultView = ({selectedGift, history, endFlow}) => (
-  <div className="container"  style={styles.container}>
-    <img src={Const.GiftResource[selectedGift].image} style={styles.imageResult}/>
-    <div style={commonStyles.topText}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC {Const.GiftResource[selectedGift].label} TỪ PRUDENTIAL</div>
-    <div style={commonStyles.topText}>CẢM ƠN BẠN ĐÃ THAM GIA CHƯƠNG TRÌNH</div>
-    <Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
-  </div>
-);
-
-const LuckyDraw = ({isLoading, onClickSpinner, selectedGift, history, endFlow}) => (
-  <div className="container" style={{...commonStyles.container, ...styles.backGroundResult}}>
-    {!selectedGift ? <LoadingSpinner {...{isLoading, onClickSpinner}}/> : <ResultView {...{selectedGift, history, endFlow}}/>}
-
+const LuckyDraw = ({isLoading, onClickSpinner}) => (
+  <div className="container" style={commonStyles.container}>
+    <LoadingSpinner {...{isLoading, onClickSpinner}}/>
   </div>
 );
 

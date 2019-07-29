@@ -14,3 +14,5 @@ export const ADMIN = '/admin';
 export const OTP = '/Otp';
 export const MORE_INFO = '/more-info';
 export const VERIFY_OTP = '/VerifyOtp';
+export const GIFT_RESULT = '/giftResult';
+export const GIFT_SELECT = '/giftSelect';

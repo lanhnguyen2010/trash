@@ -90,7 +90,7 @@ const MoreInfo = ({history}) => {
 
     if (trackRef.index == 4) {
       setTimeout(function () {
-        history.push(ROUTES.OTP)
+        history.push(ROUTES.HOME)
       }.bind(this), 3000)
     }
   };

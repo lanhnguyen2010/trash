@@ -19,6 +19,8 @@ import Admin from './components/Admin';
 import Otp from './components/Otp';
 import VerifyOtp from './components/VerifyOtp'
 import SubQuiz from './components/SubQuiz';
+import GiftSelect from './components/GiftSelect';
+import GiftResult from './components/GiftResult';
 
 
 
@@ -35,6 +37,8 @@ const AppStateLess = () => (
       <Route path={ROUTES.OTP} component={Otp}/>
       <Route path={ROUTES.VERIFY_OTP} component={VerifyOtp}/>
       <Route path={ROUTES.SUB_QUIZ} component={SubQuiz}/>
+      <Route path={ROUTES.GIFT_SELECT} component={GiftSelect}/>
+      <Route path={ROUTES.GIFT_RESULT} component={GiftResult}/>
     </Router>
   </Provider>
 );

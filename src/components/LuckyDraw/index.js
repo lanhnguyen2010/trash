@@ -24,7 +24,7 @@ const LuckyDrawContainer = compose(
     },
     componentDidMount() {
 
-      const { getRandomGift } = this.props;
+      const { getRandomGift, history } = this.props;
 
       const initState = {
         isLoading: false, onClickSpinner: () => {
@@ -35,7 +35,11 @@ const LuckyDrawContainer = compose(
 
           setTimeout(function () {
             this.setState({isLoading: false});
-            getRandomGift();
+            setTimeout(function () {
+              getRandomGift();
+              history.push(ROUTES.GIFT_RESULT)
+
+            }.bind(this), 2000)
 
           }.bind(this), 3000)
 
