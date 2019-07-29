@@ -43,6 +43,7 @@ html, body, #app, #app > div, body > #root {
 
 .box {
     position: relative;
+    height: calc(50% - 40px);
     margin: 20px;
     align-items: center;
  }

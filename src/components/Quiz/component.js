@@ -12,8 +12,6 @@ const styles = {
     justifyContent: "center",
     color: 'white',
     width: '80%',
-    height: "15%",
-    left:"50%",
     paddingTop: 80,
   },
 
@@ -29,7 +27,9 @@ const styles = {
     textAlign: 'center',
     backgroundImage: "url('./images/base.png')",
     backgroundSize: "cover",
+  container: {
     display: 'flex',
+    alignItems: 'center',
     flexDirection: 'column',
     width: "100%",
     alignItems: "center"
@@ -39,7 +39,8 @@ const styles = {
     position: "relative",
     maxWidth: "70%",
     minWidth: "50%",
-  
+    maxHeight: "70%",
+    minHeight: "50%"
   },
   reminder:{
     position: "absolute",
@@ -55,18 +56,67 @@ const styles = {
     fontWeight: "bold",
     fontSize: 20,
     color: "white"
+  },
+
+  label4:{
+    position: "absolute",
+    bottom: 0,
+    fontWeight: "bold",
+    fontSize: 17,
+    color: "white" 
+    backgroundImage: "url('./images/luuH.png')",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    width: "100%",
+    height: '100%'
+  },
+  intro: {
+    width: '100%',
+    height: '40%',
+    textAlign: 'center',
+    marginTop: '40%',
+    fontSize:'6vh',
+    color:'white'
+  },
+  footer: {
+    position: "fixed",
+    bottom: 0,
+    right: 0,
+    zIndex: 100,
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
+    height: "30vh",
+  },
+  button: {
+    position:"fixed",
+    bottom:"7vh",
+    alignSelf: "center",
+    backgroundColor: '#D20C08',
+    fontSize: "3vh",
+    width: "74vw",
+    borderRadius: "50px"
   }
 };
 
 const Quiz = ({render, btnState, toogleState}) => (
-    <div className="container" style={{display: 'flex', alignItems: 'stretch', alignContent: 'stretch'}}>
+    <div className="container-fuild" style={styles.container}>
       {render ? <Question {...{btnState, toogleState}}/> : <Intro/>}
     </div>
   )
 ;
 
 const Intro = () => (
-  <div>Intro</div>
+    <div>
+      <div style={styles.intro}>NÀO CŨNG BỎ VÀO MÁY ĐỒ DÙNG NHỰA BẠN ĐANG CÓ</div>
+      <div style={styles.footer}> <Button style={styles.button}
+                                          variant="contained"
+                                          color="primary"
+                                          size="large">
+        Bạn đã sẵn sàng</Button>
+      </div>
+    </div>
+
 );
 
 
@@ -89,7 +139,7 @@ const Question = ({btnState, toogleState}) => (
       </div>
       <div className="box" style={btnState[3] ? styles.activeAnswer : styles.passiveAnswer} onClick={() => toogleState(3)}>
         <img src="./images/muong_nia.svg" alt="muong nia" style={styles.image}/>
-        <div style={styles.label}>Các đồ nhựa khác (Muỗng nĩa, ống hút, túi ni lông,...)</div>
+        <div style={styles.label4}>Các đồ nhựa khác (Muỗng nĩa, ống hút, túi ni lông,...)</div>
       </div>
     </div>
     <div style={styles.reminder}>*Khuyến khích ít nhất 2 món</div>
