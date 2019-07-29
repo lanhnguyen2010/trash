@@ -118,6 +118,11 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
     if (newValue === 1){
       getGifts(citySelector);
     }
+
+    if (newValue === 2){
+      checkSmsAccountBalance();
+    }
+
     if (newValue === 4){
       updateOtpList([]);
     }
