@@ -5,6 +5,8 @@ import {
   Button
 } from '@material-ui/core';
 
+import commonStyles from '../common'
+
 
 const styles = {
   questionTitle: {
@@ -12,7 +14,7 @@ const styles = {
     justifyContent: "center",
     color: 'white',
     width: '80%',
-    paddingTop: 80,
+    margin: 'auto'
   },
 
   activeAnswer: {
@@ -25,22 +27,28 @@ const styles = {
 
   questionSection: {
     textAlign: 'center',
-    backgroundImage: "url('./images/base.png')",
     backgroundSize: "cover",
+    margin:'auto',
+    paddingTop: 100
   },
   container: {
-    display: 'flex',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    minHeight: '100%',
+    alignItems: 'center',
     flexDirection: 'column',
     width: "100%",
-    alignItems: "center"
+    textAlign: 'center'
+  },
+
+  background:{
+    backgroundImage: "url('./images/luuH.png')"
   },
 
   image: {
     position: "relative",
-    maxWidth: "70%",
-    minWidth: "50%",
-    maxHeight: "70%",
-    minHeight: "50%"
+    width: "50%",
+    height: "50%",
   },
   reminder:{
     position: "absolute",
@@ -51,7 +59,6 @@ const styles = {
   },
 
   label:{
-    position: "absolute",
     bottom: 0,
     fontWeight: "bold",
     fontSize: 20,
@@ -59,27 +66,22 @@ const styles = {
   },
 
   label4:{
-    position: "absolute",
     bottom: 0,
     fontWeight: "bold",
     fontSize: 17,
     color: "white",
-    backgroundImage: "url('./images/luuH.png')",
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
     width: "100%",
     height: '100%'
   },
   intro: {
-    width: '100%',
-    height: '40%',
+    width: '70%',
     textAlign: 'center',
-    marginTop: '40%',
-    fontSize:'6vh',
-    color:'white'
+    fontSize: 25,
+    color:'white',
+    margin:'auto',
+    paddingTop: '30%'
   },
   footer: {
-    position: "fixed",
     bottom: 0,
     right: 0,
     zIndex: 100,
@@ -89,32 +91,33 @@ const styles = {
     height: "30vh",
   },
   button: {
-    position:"fixed",
-    bottom:"7vh",
+    position:'fixed',
+    bottom:'5%',
     alignSelf: "center",
     backgroundColor: '#D20C08',
-    fontSize: "3vh",
-    width: "74vw",
+    fontSize: 20,
+    width: "70%",
     borderRadius: "50px",
+    left: '15%'
   }
 };
 
-const Quiz = ({render, btnState, toogleState}) => (
-    <div className="container-fuild" style={styles.container}>
-      {render ? <Question {...{btnState, toogleState}}/> : <Intro/>}
+const Quiz = ({render, btnState, toogleState, updateRender}) => (
+    <div className="container-fuild" style={{...commonStyles.container, ... styles.background}}>
+      {render ? <Question {...{btnState, toogleState}}/> : <Intro {...{updateRender}}/>}
     </div>
   )
 ;
 
-const Intro = () => (
-    <div>
-      <div style={styles.intro}>NÀO CŨNG BỎ VÀO MÁY ĐỒ DÙNG NHỰA BẠN ĐANG CÓ</div>
-      <div style={styles.footer}> <Button style={styles.button}
+const Intro = ({updateRender}) => (
+    <div style={styles.container}>
+      <div style={styles.intro}>NÀO CÙNG BỎ VÀO MÁY ĐỒ DÙNG NHỰA BẠN ĐANG CÓ</div>
+      <Button style={styles.button}
                                           variant="contained"
                                           color="primary"
-                                          size="large">
+                                          size="large"
+      onClick={()=> updateRender(true)}>
         Bạn đã sẵn sàng</Button>
-      </div>
     </div>
 
 );
@@ -122,8 +125,8 @@ const Intro = () => (
 
 const Question = ({btnState, toogleState}) => (
   <div style={styles.questionSection}>
-    <div style={styles.questionTitle}><b>Đồ nhựa mà bạn vừa bỏ vào máy là gì trong những vật sau</b></div>
-    
+    <div style={styles.questionTitle}>Đồ nhựa mà bạn vừa bỏ vào máy là gì trong những vật sau</div>
+
     <div className="grid2x2">
       <div className="box" style={btnState[0] ? styles.activeAnswer : styles.passiveAnswer} onClick={() => toogleState(0)}>
         <img src="./images/chai.svg" alt="chai nhua" style={styles.image}/>
@@ -142,7 +145,6 @@ const Question = ({btnState, toogleState}) => (
         <div style={styles.label4}>Các đồ nhựa khác (Muỗng nĩa, ống hút, túi ni lông,...)</div>
       </div>
     </div>
-    <div style={styles.reminder}>*Khuyến khích ít nhất 2 món</div>
   </div>
 );
 

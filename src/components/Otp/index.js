@@ -17,7 +17,7 @@ const styles = {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     width: '100%',
-    height: '100%'
+    minHeight: '100%'
   },
   container: {
     display: 'flex',
@@ -42,15 +42,15 @@ const styles = {
   },
 
   btnOtp: {
-    position:"fixed",
-    bottom:"7%",
+    position:"relative",
     alignSelf: "center",
     backgroundColor: '#D20C08',
     fontSize: 18,
     borderRadius: "50px",
     color: 'white',
     minWidth: 200,
-    minHeight: 50
+    minHeight: 50,
+    marginTop: 30
   }
 };
 const useStyles = makeStyles(theme => ({

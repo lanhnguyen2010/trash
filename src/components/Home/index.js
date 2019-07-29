@@ -12,27 +12,31 @@ const styles = {
     bottom: 0,
     right: 0,
     zIndex: 100,
-    display: "flex",
     justifyContent: "center",
     width: "100%",
-    height: "30%",
+    minHeight:'30%',
+    maxHeight:'40%',
     backgroundColor: "white",
+    textAlign:"center"
   },
   text: {
     position:"relative",
     color: "#BA0000",
-    fontSize: 30,
+    fontSize: 35,
     textAlign:"center",
-    width: "74%"
+    width: "74%",
+    margin: "2%",
+    marginBottom:"4%",
+    marginLeft:"13%"
   },
   button: {
-    position:"fixed",
-    bottom:"7%",
+    position:"relative",
     alignSelf: "center",
     backgroundColor: '#D20C08',
-    fontSize: 25,
+    fontSize: 22,
     width: "74%",
-    borderRadius: 50
+    borderRadius: 50,
+    margin:'1%'
   },
   logo: {
     position:"fixed",
@@ -60,7 +64,7 @@ export default class Home extends Component {
     return (
       <div className="container">
         <img src="./images/logo.svg" alt="prudential logo" style={styles.logo}/>
-        <AwesomeSlider style={{width: '100%', height:'100%'}}
+        <AwesomeSlider style={{width: '100%', height:'100%', position:'absolute'}}
                        bullets={false}
                        infinite={true}
                        organicArrows={false}
@@ -71,7 +75,7 @@ export default class Home extends Component {
           <div data-src='./images/home4.png'/>
         </AwesomeSlider>
         <div style={styles.footer}>
-          <p style={styles.text}>Cái giá thật sự <b>CỦA NHỰA</b> bạn chưa biết</p>
+          <div style={styles.text}>Cái giá thật sự <b>CỦA NHỰA</b> bạn chưa biết</div>
 
           <Button style={styles.button}
                   variant="contained"

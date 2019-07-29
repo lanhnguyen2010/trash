@@ -31,14 +31,14 @@ const QuizContainer = compose(
           console.log("selectedTrashType", Const.TrashType[index]);
           updateSelectedTrashType(Const.TrashType[index]);
           history.push(Routes.SUB_QUIZ)
-        }
+        },
+
+        updateRender: ((render) => {
+          this.setState({...this.props.state, render:render});
+        })
       };
 
       this.setState(initState);
-
-      setTimeout(function() {
-        this.setState({...initState, render:true}) ;
-      }.bind(this), 1000)
     },
     componentWillMount() {
       const {history, isLoggedIn} = this.props;

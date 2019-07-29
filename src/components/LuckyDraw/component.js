@@ -22,7 +22,8 @@ const styles = {
   container: {
     display: 'flex',
     alignItems: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    minHeight:'100%'
   },
 };
 
