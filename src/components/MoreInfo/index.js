@@ -50,18 +50,6 @@ const styles = {
     letterSpacing: 1,
     textAlign: 'center'
   },
-  button: {
-    position: 'fixed',
-    zIndex: 100,
-    bottom: 0,
-    display: 'flex',
-    alignSelf: "center",
-    backgroundColor: '#D20C08',
-    fontSize: 25,
-    borderRadius: 50,
-    marginBottom: '5%',
-    width: '70%',
-  },
   logo: {
     position: "fixed",
     zIndex: 100,
@@ -90,7 +78,9 @@ const MoreInfo = ({history}) => {
     }
 
     if (trackRef.index == 5) {
-      setTimeout
+      setTimeout(function () {
+        history.push(ROUTES.LUCKY_DRAW)
+      }.bind(this), 3000)
     }
   };
 
@@ -102,20 +92,10 @@ const MoreInfo = ({history}) => {
                      organicArrows={false}
                      ref={t => trackRef = t}>
 
-        <div data-src='./images/home2.png'>
-          <div style={{...styles.footer, background: 'white'}}>
-            <div style={{display: 'flex', flexDirection: 'column', width:"70%", padding: 30}}>
-              <div style={styles.textEnd}>Cảm Ơn Sự Ủng Hộ Và Tinh Thần Hành Động Của Bạn.</div>
-              <div style={styles.textBlackEnd}>Nhân viên của Prudential tại quầy sẽ hướng dẫn bạn các bước tiếp theo</div>
-            </div>
-          </div>
-        </div>
-
         <div data-src='./images/home1.png'/>
         <div data-src='./images/home2.png'/>
         <div data-src='./images/home3.png'/>
         <div data-src='./images/home4.png'/>
-
 
         <div data-src='./images/home2.png'>
           <div style={{...styles.footer, flexDirection: 'row', background: 'white'}}>
@@ -130,12 +110,19 @@ const MoreInfo = ({history}) => {
           </div>
         </div>
 
-
+        <div data-src='./images/home2.png'>
+          <div style={{...styles.footer, background: 'white'}}>
+            <div style={{display: 'flex', flexDirection: 'column', width:"70%", padding: 30}}>
+              <div style={styles.textEnd}>Cảm Ơn Sự Ủng Hộ Và Tinh Thần Hành Động Của Bạn.</div>
+              <div style={styles.textBlackEnd}>Nhân viên của Prudential tại quầy sẽ hướng dẫn bạn các bước tiếp theo</div>
+            </div>
+          </div>
+        </div>
 
       </AwesomeSlider>
 
       <div style={styles.footer}>
-        <Button style={{...styles.button, display:'none'}}
+        <Button style={{...styles.button}}
                 variant="contained"
                 color="primary"
                 size="large"
