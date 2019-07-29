@@ -28,6 +28,10 @@ const { Types, Creators: actions } = createActions(
     updateSelectedTrashType:["selectedTrash"],
     updateSelectedAnswer:["seletedAnswer"],
     updateAnswerResult: ["answerResult"],
+    saveQuizResult: ["question", "answerIndex"],
+
+    updateInputData: ["inputData"],
+    saveGiftResult: null,
 
     endFlow: null
   },

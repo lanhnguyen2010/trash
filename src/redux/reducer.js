@@ -13,7 +13,8 @@ const initialState = {
   isLoggedIn: false,
   selectedTrash: "",
   answerResult: "",
-  players:''
+  players:'',
+  inputData: ''
 };
 
 const reducer = createReducer(initialState, {
@@ -68,6 +69,11 @@ const reducer = createReducer(initialState, {
       players: players
     }),
 
+  [Types.UPDATE_INPUT_DATA]: (state, {inputData}) =>
+    _.assign({}, state, {
+      inputData: inputData
+    }),
+
   [Types.END_FLOW]:  (state) =>
   _.assign({}, state, {
     count: 0,
@@ -78,6 +84,7 @@ const reducer = createReducer(initialState, {
     otpList: '',
     selectedTrash: "",
     answerResult: "",
+    inputDate: ""
   })
 });
 

@@ -173,6 +173,7 @@ function* doOtp({navigation, data}) {
   try {
     console.log(data);
     yield put(actions.updatePhoneNumber(data.phoneNumber));
+    yield put(actions.updateInputData(data));
     let otp = generateOTP();
     const params = `Phone=${data.phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=1`;
     const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
@@ -213,7 +214,7 @@ function* doVerifyOtp({navigation, phoneNumber, otp}) {
   try {
     const response = yield call(firebaseService.database.read, "otps/" + city + "/" + phoneNumber);
     if (otp == response) {
-      navigation.push(ROUTES.LUCKY_DRAW);
+      navigation.push(ROUTES.GIFT_SELECT);
     } else {
       window.alert("Mã Xác Thực không chính xác");
     }
@@ -259,6 +260,24 @@ function* getAllPlayers() {
   }
 }
 
+function* saveQuizResult({question, answerIndex}) {
+  console.log("saveQuiz", question);
+  console.log("saveQuiz index", answerIndex);
+  //todo create Quiz report with {label: question.label, answers: question.answers, result: answerIndex}
+}
+
+function* saveGiftResult() {
+  console.log("saveGiftResu;t");
+  const userData = yield select(selectors.inputData);
+  const selectedGift = yield select(selectors.selectedGift);
+
+  console.log("saveGifResult", userData);
+  console.log("selectedGid", selectedGift);
+
+  //todo update userData with selected gift
+
+}
+
 function* rootSaga() {
   yield takeEvery(Types.DO_LOGIN, doLogin);
   yield takeEvery(Types.LOAD_DATA, loadData);
@@ -272,6 +291,8 @@ function* rootSaga() {
   yield takeEvery(Types.GET_ALL_OTPS, getAllOtps);
   yield takeEvery(Types.GET_ALL_PLAYERS, getAllPlayers);
   yield takeEvery(Types.RESEND_OTP, resendOtp);
+  yield takeEvery(Types.SAVE_QUIZ_RESULT, saveQuizResult);
+  yield takeEvery(Types.SAVE_GIFT_RESULT, saveGiftResult);
 }
 
 export {rootSaga};
