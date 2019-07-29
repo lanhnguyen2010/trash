@@ -140,7 +140,8 @@ const OtpForm = ({history, doOtp, city}) => {
             gender: gender,
             birthDay: birthDayRef.value,
             email: emailRef.value,
-            city: city
+            city: city,
+            time: new Date().toLocaleString()
           });
         }}
                 style={styles.btnOtp}>Tiếp Tục</Button>
