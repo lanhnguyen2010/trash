@@ -6,26 +6,85 @@ import {
 } from '@material-ui/core';
 
 import * as Routes from "../../constants/routes"
+import commonStyles from "../common"
 
 const styles = {
-  questionTitle: {},
+  questionTitle: {
+    color: 'white',
+    textAlign: 'left',
+    width: '70%',
+    paddingLeft: '5%',
+  },
+
+  questionLabel: {
+    fontSize: '6vh',
+  },
+
+  questionContent: {
+    fontSize: '3vh',
+  },
+
+  answer:{
+    margin: 'auto',
+    width:'70%'
+  },
 
   baseAnswer: {
-    border: 1,
-    borderColor: 'white',
-    borderRadius: 15
+    borderRadius: 100,
+    background: 'rgba(207, 0, 0, 0.5)',
+    borderColor: 'rgba(255, 255, 255, 0.5)',
+    color: 'white',
+    fontSize: '3vh',
+    textAlign: 'left',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    padding: 15,
+    marginTop: 20
   },
 
   correctAnswer: {
-    color: 'blue'
+    borderRadius: 100,
+    background: 'rgba(207, 0, 0, 0.5)',
+    borderColor: 'rgba(255, 255, 255, 1)',
+    color: 'white',
+    fontSize: '3vh',
+    textAlign: 'left',
+    borderWidth: 2,
+    borderStyle: 'solid',
+    padding: 15,
+    marginTop: 20
   },
 
   wrongAnswer: {
-    color: 'green'
+    borderRadius: 100,
+    background: 'gray',
+    borderColor: 'rgba(255, 255, 255, 1)',
+    color: 'white',
+    fontSize: '3vh',
+    textAlign: 'left',
+    borderWidth: 2,
+    borderStyle: 'solid',
+    padding: 15,
+    marginTop: 20
   },
 
+  backgroundChaiNhua: {
+    backgroundImage: "url('./images/background_chai.png')"
+  },
+
+  backgroundLyNhua: {
+    backgroundImage: "url('./images/background_ly.png')"
+  },
+
+  backgroundHop: {
+    backgroundImage: "url('./images/background_hop.png')"
+  },
+
+  backgroundOther: {
+    backgroundImage: "url('./images/background_other.png')"
+  },
   questionSection: {
-    padding: 60,
+    paddingTop: '48%',
     textAlign: 'center',
     backgroundColor: 'red',
     display: 'flex',
@@ -37,7 +96,8 @@ const styles = {
 const SubQuiz = ({history, answerResult, btnState, toogleState, selectedTrash, question}) => {
     return (
       <div className="container" style={{display: 'flex', alignItems: 'stretch', alignContent: 'stretch'}}>
-        {answerResult ? <Result {...{history, answerResult}}/> : <Question {...{btnState, toogleState, selectedTrash, question}}/>}
+        {answerResult ? <Result {...{history, answerResult}}/> :
+          <Question {...{btnState, toogleState, selectedTrash, question}}/>}
       </div>
     )
   }
@@ -65,23 +125,48 @@ const QuestionStyle = {
 
 
 const Question = ({btnState, toogleState, selectedTrash, question}) => {
+
+  function getStyle(label) {
+    if (label == "hộp nhựa") {
+      return {...styles.questionSection, ...styles.backgroundHop, ...commonStyles.container}
+    }
+    else if (label == "chai nhựa") {
+      return {...styles.questionSection, ...styles.backgroundChaiNhua, ...commonStyles.container}
+
+    }
+    else if (label == "ly nhựa") {
+      return {...styles.questionSection, ...styles.backgroundLyNhua, ...commonStyles.container}
+
+    }
+    else {
+      return {...styles.questionSection, ...styles.backgroundOther, ...commonStyles.container}
+    }
+  }
+
   return question ? (
-    <div style={styles.questionSection}>
-      <div style={styles.questionTitle}>Theo bạn, cái giá thực sự
-        của {question.label == "món đồ nhựa" ? "các" : "một"} {question.label} này là bao nhiêu?
+    <div style={getStyle(question.label)}>
+      <div style={styles.questionTitle}>
+        <div style={styles.questionContent}>Theo bạn,</div>
+        <div style={styles.questionContent}>cái giá thực sự
+          của {question.label == "món đồ nhựa" ? "các" : "một"}</div>
+        <div style={styles.questionLabel}> {question.label}</div>
+        <div style={styles.questionContent}> này là bao nhiêu?</div>
       </div>
-      <div onClick={() => toogleState(0)}>
-        {question.answers[0]}
-      </div>
+      <div style={styles.answer}>
+        <div style={QuestionStyle[btnState[0]]}
+             onClick={() => toogleState(0)}>
+          A. {question.answers[0]}
+        </div>
 
-      <div style={QuestionStyle[btnState[1]]}
-           onClick={() => toogleState(1)}>
-        {question.answers[1]}
-      </div>
+        <div style={QuestionStyle[btnState[1]]}
+             onClick={() => toogleState(1)}>
+          B. {question.answers[1]}
+        </div>
 
-      <div style={QuestionStyle[btnState[2]]}
-           onClick={() => toogleState(2)}>
-        {question.answers[2]}
+        <div style={QuestionStyle[btnState[2]]}
+             onClick={() => toogleState(2)}>
+          C. {question.answers[2]}
+        </div>
       </div>
     </div>
   ) : <div/>

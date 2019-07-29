@@ -46,6 +46,11 @@ const SubQuizContainer = compose(
       const toogleState = (index) => {
         const result = buildQuestion.answers[index] == correctAnswer ? "correct" : "wrong";
         btnStateInit[index] = result;
+        for(let i =0; i<buildQuestion.answers.length; i++){
+          if(buildQuestion.answers[i] == correctAnswer){
+            btnStateInit[i] = "correct";
+          }
+        }
         showResultScreen(result);
         this.setState({
           ...this.props.state, btnState: btnStateInit, toogleState: (index) => {
