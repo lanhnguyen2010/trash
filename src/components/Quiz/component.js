@@ -12,8 +12,6 @@ const styles = {
     justifyContent: "center",
     color: 'white',
     width: '80%',
-    
-    left:"50%",
     paddingTop: 80,
   },
 
@@ -37,9 +35,9 @@ const styles = {
 
   image: {
     position: "relative",
-    maxWidth: "80%",
+    maxWidth: "70%",
     minWidth: "50%",
-    maxHeight: "80%",
+    maxHeight: "70%",
     minHeight: "50%"
   },
   reminder:{
@@ -56,6 +54,14 @@ const styles = {
     fontWeight: "bold",
     fontSize: 20,
     color: "white"
+  },
+
+  label4:{
+    position: "absolute",
+    bottom: 0,
+    fontWeight: "bold",
+    fontSize: 17,
+    color: "white" 
   }
 };
 
@@ -90,7 +96,7 @@ const Question = ({btnState, toogleState}) => (
       </div>
       <div className="box" style={btnState[3] ? styles.activeAnswer : styles.passiveAnswer} onClick={() => toogleState(3)}>
         <img src="./images/muong_nia.svg" alt="muong nia" style={styles.image}/>
-        <div style={styles.label}>Các đồ nhựa khác (Muỗng nĩa, ống hút, túi ni lông,...)</div>
+        <div style={styles.label4}>Các đồ nhựa khác (Muỗng nĩa, ống hút, túi ni lông,...)</div>
       </div>
     </div>
     <div style={styles.reminder}>*Khuyến khích ít nhất 2 món</div>
