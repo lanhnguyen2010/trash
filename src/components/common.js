@@ -11,7 +11,7 @@ const commonStyle = {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     width: '100%',
-    height: '100%',
+    minHeight: '100%',
     textAlign: 'center'
   },
   topText: {
@@ -22,6 +22,17 @@ const commonStyle = {
     textAlign: 'center',
     marginBottom:40,
     margin: "auto"
+  },
+  button: {
+    position:"relative",
+    alignSelf: "center",
+    backgroundColor: '#D20C08',
+    fontSize: 18,
+    borderRadius: "50px",
+    color: 'white',
+    minWidth: 200,
+    minHeight: 50,
+    marginTop: 30
   }
 
 };
