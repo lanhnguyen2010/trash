@@ -29,7 +29,7 @@ const styles = {
 
 
 const LoadingSpinner = ({isLoading, onClickSpinner}) => (
-  <div className="container" style={{...commonStyles.container, ...styles.backGroundLucky}}>
+  <div className="container" style={{...commonStyles.container}}>
     <div style={commonStyles.topText}>CẢM ƠN BẠN ĐÃ GIẢM DÙNG ĐỒ NHỰA VÌ SỨC KHỎE NGƯỜI THÂN YÊU</div>
     <img className={isLoading ? "loading" : ""} style={styles.image}
          src="./images/loading.png"
@@ -39,7 +39,7 @@ const LoadingSpinner = ({isLoading, onClickSpinner}) => (
 );
 
 const LuckyDraw = ({isLoading, onClickSpinner}) => (
-  <div className="container" style={commonStyles.container}>
+  <div className="container" style={{...commonStyles.container, ...styles.backGroundLucky}}>
     <LoadingSpinner {...{isLoading, onClickSpinner}}/>
   </div>
 );
