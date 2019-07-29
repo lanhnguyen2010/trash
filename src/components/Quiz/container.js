@@ -30,7 +30,7 @@ const QuizContainer = compose(
 
       setTimeout(function() {
         this.setState({...initState, render:true}) ;
-      }.bind(this), 1000)
+      }.bind(this), 3000)
     }
   })
 )(Quiz);

@@ -7,35 +7,63 @@ import {
 
 
 const styles = {
-  questionTitle: {},
-
-  activeAnswer: {
-    border: 1,
-    borderColor: 'white',
-    borderRadius: 15
-  },
-
-  passiveAnswer: {},
-
-  questionSection: {
-    padding: 60,
-    textAlign: 'center',
-    backgroundColor: 'red',
+  container: {
     display: 'flex',
+    alignItems: 'center',
     flexDirection: 'column',
-    width: "100%"
+    backgroundImage: "url('./images/luuH.png')",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    width: "100%",
+    height: '100%'
   },
+  intro: {
+    width: '100%',
+    height: '40%',
+    textAlign: 'center',
+    marginTop: '40%',
+    fontSize:'6vh',
+    color:'white'
+  },
+  footer: {
+    position: "fixed",
+    bottom: 0,
+    right: 0,
+    zIndex: 100,
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
+    height: "30vh",
+  },
+  button: {
+    position:"fixed",
+    bottom:"7vh",
+    alignSelf: "center",
+    backgroundColor: '#D20C08',
+    fontSize: "3vh",
+    width: "74vw",
+    borderRadius: "50px"
+  }
 };
 
 const Quiz = ({render, btnState, toogleState}) => (
-    <div className="container" style={{display: 'flex', alignItems: 'stretch', alignContent: 'stretch'}}>
+    <div className="container-fuild" style={styles.container}>
       {render ? <Question {...{btnState, toogleState}}/> : <Intro/>}
     </div>
   )
 ;
 
 const Intro = () => (
-  <div>Intro</div>
+    <div>
+      <div style={styles.intro}>NÀO CŨNG BỎ VÀO MÁY ĐỒ DÙNG NHỰA BẠN ĐANG CÓ</div>
+      <div style={styles.footer}> <Button style={styles.button}
+                                          variant="contained"
+                                          color="primary"
+                                          size="large">
+        Bạn đã sẵn sàng</Button>
+      </div>
+    </div>
+
 );
 
 
