@@ -263,19 +263,77 @@ function* getAllPlayers() {
 function* saveQuizResult({question, answerIndex}) {
   console.log("saveQuiz", question);
   console.log("saveQuiz index", answerIndex);
-  //todo create Quiz report with {label: question.label, answers: question.answers, result: answerIndex}
+  let city = yield select(selectors.city);
+
+
+  let data = {label: question.label, answers: question.answers, result: answerIndex}
+  yield call(firebaseService.database.create, "quiz/" + city, data);
+}
+
+function* getAllQuizResults() {
+  try {
+    let city = yield select(selectors.city);
+    const result = yield call(firebaseService.database.read, "quiz/" + city);
+
+    console.log("Get QuizResults", result);
+    let quizes = [];
+    for (let key in result) {
+      if (result.hasOwnProperty(key)) {
+        console.log(key + " -> " + result[key]);
+
+        quizes.push({label: result[key].label,
+          answer1: result[key].answers['0'],
+          answer2: result[key].answers['1'],
+          answer3: result[key].answers['2'],
+          result: result[key].result})
+      }
+    }
+    console.log("date quizes: ", quizes);
+    yield put(actions.updateQuizResults(quizes));
+  } catch (error) {
+    window.alert(error.message)
+  }
 }
 
 function* saveGiftResult() {
   console.log("saveGiftResu;t");
-  const userData = yield select(selectors.inputData);
+  const phoneNumber = yield select(selectors.phoneNumber);
   const selectedGift = yield select(selectors.selectedGift);
+  let city = yield select(selectors.city);
 
-  console.log("saveGifResult", userData);
   console.log("selectedGid", selectedGift);
+  yield call(firebaseService.database.create, "gifts/" + city + "/" + phoneNumber,
+    {gift: selectedGift,
+    date: new Date().toLocaleString()});
+}
 
-  //todo update userData with selected gift
+function* getAllGiftResults() {
+  try {
+    let city = yield select(selectors.city)
+    const result = yield call(firebaseService.database.read, "gifts/" + city);
 
+    console.log("Get GiftsResults", result);
+    let giftResults = [];
+    for (let key in result) {
+      if (result.hasOwnProperty(key)) {
+        console.log(key + " -> " + result[key]);
+        let phoneNumberGift = '';
+        let gifts = result[key];
+        for (let keySnap in gifts) {
+          if (gifts.hasOwnProperty(keySnap)) {
+            console.log(keySnap + " -> " + gifts[keySnap]);
+            phoneNumberGift = gifts[keySnap];
+          }
+        }
+        phoneNumberGift["phoneNumber"] = key;
+        giftResults.push(phoneNumberGift)
+      }
+    }
+    console.log("phonenumber gifts: ", giftResults);
+    yield put(actions.updateGiftResults(giftResults));
+  } catch (error) {
+    window.alert(error.message)
+  }
 }
 
 function* rootSaga() {
@@ -293,6 +351,8 @@ function* rootSaga() {
   yield takeEvery(Types.RESEND_OTP, resendOtp);
   yield takeEvery(Types.SAVE_QUIZ_RESULT, saveQuizResult);
   yield takeEvery(Types.SAVE_GIFT_RESULT, saveGiftResult);
+  yield takeEvery(Types.GET_ALL_QUIZ_RESULTS, getAllQuizResults);
+  yield takeEvery(Types.GET_ALL_GIFT_RESULTS, getAllGiftResults);
 }
 
 export {rootSaga};

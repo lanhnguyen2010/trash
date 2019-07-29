@@ -86,7 +86,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBalance, smsBalance, getAllOtps, otpList, city, updateOtpList, getAllPlayers, players}) => {
+const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBalance, smsBalance, getAllOtps, otpList,
+                     city, updateOtpList, getAllPlayers, players, getAllQuizResults, quizResults, getAllGiftResults, giftResults}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -124,6 +125,12 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
     if (newValue === 3){
       getAllPlayers([]);
     }
+    if (newValue === 5){
+      getAllQuizResults();
+    }
+    if (newValue === 6){
+      getAllGiftResults();
+    }
   }
 
   return (
@@ -135,6 +142,8 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           <Tab label="SMS" {...a11yProps(2)} />
           <Tab label="Players" {...a11yProps(3)} />
           <Tab label="OTP" {...a11yProps(4)} />
+          <Tab label="Quiz Results" {...a11yProps(5)} />
+          <Tab label="Gift Results" {...a11yProps(6)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -319,7 +328,38 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
             )))}
           </TableBody>
         </Table>
-
+      </TabPanel>
+      <TabPanel index={5} value={value}>
+        <Button onClick={()=> getAllQuizResults()}>Refresh</Button>
+        <MaterialTable
+          title="Người chơi"
+          columns={[
+            { title: 'Loại Rác', field: 'label' },
+            { title: 'Đáp Án 1', field: 'answer1' },
+            { title: 'Đáp Án 2', field: 'answer2' },
+            { title: 'Đáp Án 3', field: 'answer3' },
+            { title: 'Lựa Chọn', field: 'result'},
+          ]}
+          data={quizResults}
+          options={{
+            exportButton: true
+          }}
+        />
+      </TabPanel>
+      <TabPanel index={6} value={value}>
+        <Button onClick={()=> getAllGiftResults()}>Refresh</Button>
+        <MaterialTable
+          title="Quà Đã Trao"
+          columns={[
+            { title: 'Số Điện Thoại', field: 'phoneNumber' },
+            { title: 'Quà', field: 'gift' },
+            { title: 'Thời Gian', field: 'date' }
+          ]}
+          data={giftResults}
+          options={{
+            exportButton: true
+          }}
+        />
       </TabPanel>
     </div>
   );
@@ -336,7 +376,9 @@ const AdminContainer = compose(
       checkSmsAccountBalance: actions.checkSmsAccountBalance,
       getAllOtps:actions.getAllOtps,
       updateOtpList: actions.updateOtpList,
-      getAllPlayers: actions.getAllPlayers
+      getAllPlayers: actions.getAllPlayers,
+      getAllQuizResults: actions.getAllQuizResults,
+      getAllGiftResults: actions.getAllGiftResults
     }
   ),
   lifecycle({

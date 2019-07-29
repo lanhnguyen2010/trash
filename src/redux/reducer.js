@@ -14,7 +14,9 @@ const initialState = {
   selectedTrash: "",
   answerResult: "",
   players:'',
-  inputData: ''
+  inputData: '',
+  quizResults:'',
+  giftResults:''
 };
 
 const reducer = createReducer(initialState, {
@@ -72,6 +74,16 @@ const reducer = createReducer(initialState, {
   [Types.UPDATE_INPUT_DATA]: (state, {inputData}) =>
     _.assign({}, state, {
       inputData: inputData
+    }),
+
+  [Types.UPDATE_QUIZ_RESULTS]: (state, {quizResults}) =>
+    _.assign({}, state, {
+      quizResults: quizResults
+    }),
+
+  [Types.UPDATE_GIFT_RESULTS]: (state, {giftResults}) =>
+    _.assign({}, state, {
+      giftResults: giftResults
     }),
 
   [Types.END_FLOW]:  (state) =>

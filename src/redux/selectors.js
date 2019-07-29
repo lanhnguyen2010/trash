@@ -14,6 +14,8 @@ const selectedTrash = createSelector(localState, state => state.selectedTrash);
 const answerResult = createSelector(localState, state => state.answerResult);
 const players = createSelector(localState, state => state.players);
 const inputData = createSelector(localState, state => state.inputData);
+const quizResults = createSelector(localState, state => state.quizResults);
+const giftResults = createSelector(localState, state => state.giftResults);
 
 
 const root = createStructuredSelector({
@@ -28,7 +30,9 @@ const root = createStructuredSelector({
   selectedTrash,
   answerResult,
   players,
-  inputData
+  inputData,
+  quizResults,
+  giftResults
 });
 
 export {root, city, phoneNumber, inputData, selectedGift};
