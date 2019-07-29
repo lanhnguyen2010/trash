@@ -7,7 +7,7 @@ import {Button} from '@material-ui/core';
 const styles = {
   image: {
     width: '70%',
-    paddingTop: 50
+    marginTop: 50
   },
   backGroundLucky: {
     backgroundImage: "url('./images/player_info_background.png')",
