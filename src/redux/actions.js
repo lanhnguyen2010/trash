@@ -22,6 +22,7 @@ const { Types, Creators: actions } = createActions(
     updateBoothsData:["boothsData"],
     getAllPlayers: null,
     updatePlayers: ["players"],
+    resendOtp: null,
 
     //QUIZ
     updateSelectedTrashType:["selectedTrash"],

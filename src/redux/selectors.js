@@ -30,4 +30,4 @@ const root = createStructuredSelector({
   players
 });
 
-export {root, city};
+export {root, city, phoneNumber};

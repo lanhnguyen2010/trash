@@ -5,9 +5,10 @@ import {lifecycle} from "recompose";
 import React from 'react';
 import {withStyles} from '@material-ui/styles';
 import ReactCodeInput from 'react-code-input';
-
+import {Button} from '@material-ui/core';
 import {withRouter} from 'react-router-dom'
 import * as ROUTES from "../../constants/routes";
+import commonStyle from "../common";
 
 
 const styles = {
@@ -67,9 +68,10 @@ const props = {
     color: 'red',
     border: '1px solid red'
   }
-}
+};
 
-const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber, city}) => {
+
+const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber, city, isShowResend, resendOtp}) => {
   let otpRef = null;
   console.log(phoneNumber);
 
@@ -85,6 +87,8 @@ const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber, city}) => {
       <div style={styles.container}>
         <div style={styles.text}>Vui lòng nhập mã OTP để xác nhận</div>
         <ReactCodeInput className="otp" fields={4} {...props} onChange={handleOtpChange}/>
+
+        {isShowResend && <Button style={commonStyle.button} onClick={() => resendOtp()}>Gửi lại</Button>}
       </div>
     </div>)
 };
@@ -95,7 +99,8 @@ const VerifyOtpContainer = compose(
   connect(
     selectors.root,
     {
-      doVerifyOtp: actions.doVerifyOtp
+      doVerifyOtp: actions.doVerifyOtp,
+      resendOtp: actions.resendOtp
     }
   ),
   lifecycle({
@@ -104,6 +109,11 @@ const VerifyOtpContainer = compose(
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }
+    },
+    componentDidMount() {
+      setTimeout(function () {
+        this.setState({isShowResend: true});
+      }.bind(this), 5000)
     }
   })
 )(VerifyOtp);
