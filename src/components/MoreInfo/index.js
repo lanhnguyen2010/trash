@@ -50,6 +50,18 @@ const styles = {
     letterSpacing: 1,
     textAlign: 'center'
   },
+  button: {
+    position: 'fixed',
+    zIndex: 100,
+    bottom: 0,
+    display: 'flex',
+    alignSelf: "center",
+    backgroundColor: '#D20C08',
+    fontSize: 25,
+    borderRadius: 50,
+    marginBottom: '5%',
+    width: '70%',
+  },
   logo: {
     position: "fixed",
     zIndex: 100,
