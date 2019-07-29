@@ -12,6 +12,8 @@ const otpList = createSelector(localState, state => state.otpList);
 const isLoggedIn = createSelector(localState, state => state.isLoggedIn);
 const selectedTrash = createSelector(localState, state => state.selectedTrash);
 const answerResult = createSelector(localState, state => state.answerResult);
+const players = createSelector(localState, state => state.players);
+
 
 
 const root = createStructuredSelector({
@@ -24,7 +26,8 @@ const root = createStructuredSelector({
   otpList,
   isLoggedIn,
   selectedTrash,
-  answerResult
+  answerResult,
+  players
 });
 
 export {root, city};

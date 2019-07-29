@@ -13,6 +13,7 @@ const initialState = {
   isLoggedIn: false,
   selectedTrash: "",
   answerResult: "",
+  players:''
 };
 
 const reducer = createReducer(initialState, {
@@ -62,6 +63,10 @@ const reducer = createReducer(initialState, {
   _.assign({}, state, {
     answerResult: answerResult
   }),
+  [Types.UPDATE_PLAYERS]: (state, {players}) =>
+    _.assign({}, state, {
+      players: players
+    }),
 
   [Types.END_FLOW]:  (state) =>
   _.assign({}, state, {

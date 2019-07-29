@@ -1,14 +1,14 @@
-import { call, put, takeEvery, takeLatest, select } from "redux-saga/effects";
+import {call, put, takeEvery, takeLatest, select} from "redux-saga/effects";
 
-import { actions, Types } from "./actions";
+import {actions, Types} from "./actions";
 import firebaseService from "../components/Firebase";
 import * as ROUTES from "../constants/routes";
 import React from 'react';
 import * as selectors from './selectors'
 
-const SMS_API_KEY="60F486560907DE73746D199F8EF80A";
-const SMS_SECRET_KEY="4F784074A243ED85FBAB849CAA3BF5";
-const SMS_BRANDNAME="QCAO_ONLINE";
+const SMS_API_KEY = "60F486560907DE73746D199F8EF80A";
+const SMS_SECRET_KEY = "4F784074A243ED85FBAB849CAA3BF5";
+const SMS_BRANDNAME = "QCAO_ONLINE";
 
 function* loadData() {
   console.log("loadData");
@@ -21,10 +21,10 @@ function* doLogin({navigation, email, password}) {
     console.log(user);
     const city = yield call(firebaseService.database.read, "users/" + user.user.uid);
     console.log(city);
-    if(city != null) {
+    if (city != null) {
       yield put(actions.updateIsLoggedIn(true));
       yield put(actions.updateCity(city));
-    } else{
+    } else {
       window.alert("Account không thuộc về thành phố nào, chuyển mặc định về Hồ Chính Minh");
       yield put(actions.updateCity('Ho Chi Minh'));
     }
@@ -36,12 +36,12 @@ function* doLogin({navigation, email, password}) {
 
 function* doSignUp({navigation, email, password, confirmPassword, city}) {
   try {
-    if (password ===  confirmPassword) {
+    if (password === confirmPassword) {
       const user = yield call(firebaseService.auth.createUserWithEmailAndPassword, email, password, city);
-      yield call(firebaseService.database.update, "users/"+user.user.uid, city);
+      yield call(firebaseService.database.update, "users/" + user.user.uid, city);
       navigation.push(ROUTES.HOME);
     }
-    else{
+    else {
       window.alert("Password and Confirm Password must be same");
     }
   } catch (error) {
@@ -97,7 +97,7 @@ function* updateGift({navigation, data}) {
         binhthuytinh: data.binhthuytinh > 0 ? data.binhthuytinh : 0,
       };
     const result = yield call(firebaseService.database.create, "booths/" + data.city + '/' + data.date, booth);
-    console.log("Successful update Gift: ", result);
+    window.alert("Successful update Gift");
   } catch (error) {
     window.alert(error.message)
   }
@@ -114,7 +114,7 @@ function* getGifts({city}) {
         console.log(key + " -> " + result[key]);
         let dateGift = '';
         let gifts = result[key];
-        for(let keySnap in gifts){
+        for (let keySnap in gifts) {
           if (gifts.hasOwnProperty(keySnap)) {
             console.log(keySnap + " -> " + gifts[keySnap]);
             dateGift = gifts[keySnap];
@@ -154,16 +154,18 @@ function* getAllOtps({searchPhoneNumber}) {
 function generateOTP() {
   let digits = '0123456789';
   let OTP = '';
-  for (let i = 0; i < 4; i++ ) {
+  for (let i = 0; i < 4; i++) {
     OTP += digits[Math.floor(Math.random() * 10)];
   }
   return OTP;
 }
 
-const sendRequest = async(path) =>{
-  const result = await fetch(path, {headers:{
-      "Content-Type":"application/json"
-    }});
+const sendRequest = async (path) => {
+  const result = await fetch(path, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
   return await result.json();
 };
 
@@ -172,15 +174,15 @@ function* doOtp({navigation, data}) {
     console.log(data);
     yield put(actions.updatePhoneNumber(data.phoneNumber));
     let otp = generateOTP();
-    let city = yield select(selectors.city);
-    yield call(firebaseService.database.update, "otps/" + city + "/" + data.phoneNumber, otp);
-    yield call(firebaseService.database.update, "players/"+ city + "/" + data.phoneNumber, data);
-    const params=`Phone=${data.phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=0`;
+    const params = `Phone=${data.phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=1`;
     const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
     console.log(response);
-    if(response.CodeResult == 100){
+    if (response.CodeResult == 100) {
+      let city = yield select(selectors.city);
+      yield call(firebaseService.database.update, "otps/" + city + "/" + data.phoneNumber, otp);
+      yield call(firebaseService.database.update, "players/" + city + "/" + data.phoneNumber, data);
       navigation.push(ROUTES.VERIFY_OTP)
-    }else{
+    } else {
       window.alert(response.ErrorMessage)
     }
     //navigation.push(ROUTES.HOME);
@@ -195,9 +197,9 @@ function* doVerifyOtp({navigation, phoneNumber, otp}) {
 
   try {
     const response = yield call(firebaseService.database.read, "otps/" + city + "/" + phoneNumber);
-    if(otp == response) {
+    if (otp == response) {
       navigation.push(ROUTES.LUCKY_DRAW);
-    }else {
+    } else {
       window.alert("Mã Xác Thực không chính xác");
     }
   } catch (error) {
@@ -211,7 +213,7 @@ function* checkSmsAccountBalance({navigation}) {
 
     const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/GetBalance/${SMS_API_KEY}/${SMS_SECRET_KEY}`);
     console.log(response);
-    if(response.CodeResponse === "100"){
+    if (response.CodeResponse === "100") {
       console.log("Account Balance: ", response.Balance);
       yield put(actions.updateSmsBalance(response.Balance))
     }
@@ -220,6 +222,28 @@ function* checkSmsAccountBalance({navigation}) {
     window.alert(error.message)
   }
 }
+
+function* getAllPlayers() {
+  try {
+    let city = yield select(selectors.city);
+    const result = yield call(firebaseService.database.read, "players/" + city);
+
+    console.log("Get Players", result);
+    let players = [];
+    for (let key in result) {
+      if (result.hasOwnProperty(key)) {
+        console.log(key + " -> " + result[key]);
+        let player = result[key];
+        players.push(player)
+      }
+    }
+    console.log("date gifts: ", players);
+    yield put(actions.updatePlayers(players));
+  } catch (error) {
+    window.alert(error.message)
+  }
+}
+
 function* rootSaga() {
   yield takeEvery(Types.DO_LOGIN, doLogin);
   yield takeEvery(Types.LOAD_DATA, loadData);
@@ -231,7 +255,7 @@ function* rootSaga() {
   yield takeEvery(Types.DO_VERIFY_OTP, doVerifyOtp);
   yield takeEvery(Types.CHECK_SMS_ACCOUNT_BALANCE, checkSmsAccountBalance);
   yield takeEvery(Types.GET_ALL_OTPS, getAllOtps);
-
+  yield takeEvery(Types.GET_ALL_PLAYERS, getAllPlayers);
 }
 
-export { rootSaga };
+export {rootSaga};

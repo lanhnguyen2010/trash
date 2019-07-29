@@ -20,7 +20,8 @@ const { Types, Creators: actions } = createActions(
     updateOtpList:["otpList"],
     updateIsLoggedIn:["isLoggedIn"],
     updateBoothsData:["boothsData"],
-
+    getAllPlayers: null,
+    updatePlayers: ["players"],
 
     //QUIZ
     updateSelectedTrashType:["selectedTrash"],

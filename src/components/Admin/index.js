@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBalance, smsBalance, getAllOtps, otpList, city, updateOtpList}) => {
+const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBalance, smsBalance, getAllOtps, otpList, city, updateOtpList, getAllPlayers, players}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -119,15 +119,17 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
     if (newValue === 4){
       updateOtpList([]);
     }
+
+    if (newValue === 3){
+      getAllPlayers([]);
+    }
   }
-  console.log(boothsData);
-  console.log("balance:", smsBalance);
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleTabChange} aria-label="simple tabs example">
-          <Tab label="Update" {...a11yProps(0)} />
+          <Tab label="Gifts" {...a11yProps(0)} />
           <Tab label="Report" {...a11yProps(1)} />
           <Tab label="SMS" {...a11yProps(2)} />
           <Tab label="Players" {...a11yProps(3)} />
@@ -268,7 +270,32 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
       </TabPanel>
 
       <TabPanel index={3} value={value}>
-      Players
+        <Button onClick={()=> getAllPlayers()}>Refresh</Button>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">Tên</TableCell>
+              <TableCell align="right">Giới Tính</TableCell>
+              <TableCell align="right">Ngày Sinh</TableCell>
+              <TableCell align="right">Số Điện Thoại</TableCell>
+              <TableCell align="right">Email</TableCell>
+              <TableCell align="right">Thời Gian</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {players &&
+            (players.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell align="right">{row.name}</TableCell>
+                <TableCell align="right">{row.gender}</TableCell>
+                <TableCell align="right">{row.birthDay}</TableCell>
+                <TableCell align="right">{row.phoneNumber}</TableCell>
+                <TableCell align="right">{row.email}</TableCell>
+                <TableCell align="right">{row.time}</TableCell>
+              </TableRow>
+            )))}
+          </TableBody>
+        </Table>
     </TabPanel>
       <TabPanel index={4} value={value}>
         <div style={styles.container}>
@@ -316,7 +343,8 @@ const AdminContainer = compose(
       getGifts: actions.getGifts,
       checkSmsAccountBalance: actions.checkSmsAccountBalance,
       getAllOtps:actions.getAllOtps,
-      updateOtpList: actions.updateOtpList
+      updateOtpList: actions.updateOtpList,
+      getAllPlayers: actions.getAllPlayers
     }
   ),
   lifecycle({
