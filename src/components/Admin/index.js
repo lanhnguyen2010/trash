@@ -11,6 +11,7 @@ import {compose} from "redux";
 import {selectors, actions} from "../../redux";
 import {lifecycle} from "recompose";
 import {withStyles} from '@material-ui/styles';
+import MaterialTable from 'material-table'
 
 import {
   withRouter
@@ -271,31 +272,21 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
 
       <TabPanel index={3} value={value}>
         <Button onClick={()=> getAllPlayers()}>Refresh</Button>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">Tên</TableCell>
-              <TableCell align="right">Giới Tính</TableCell>
-              <TableCell align="right">Ngày Sinh</TableCell>
-              <TableCell align="right">Số Điện Thoại</TableCell>
-              <TableCell align="right">Email</TableCell>
-              <TableCell align="right">Thời Gian</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {players &&
-            (players.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell align="right">{row.name}</TableCell>
-                <TableCell align="right">{row.gender}</TableCell>
-                <TableCell align="right">{row.birthDay}</TableCell>
-                <TableCell align="right">{row.phoneNumber}</TableCell>
-                <TableCell align="right">{row.email}</TableCell>
-                <TableCell align="right">{row.time}</TableCell>
-              </TableRow>
-            )))}
-          </TableBody>
-        </Table>
+        <MaterialTable
+          title="Người chơi"
+          columns={[
+            { title: 'Tên', field: 'name' },
+            { title: 'Giới Tính', field: 'gender' },
+            { title: 'Ngày Sinh', field: 'birthDay'},
+            { title: 'Email', field: 'email'},
+            { title: 'Số Điện Thoại', field: 'phoneNumber'},
+            { title: 'Thời Gian', field: 'time'}
+          ]}
+          data={players}
+          options={{
+            exportButton: true
+          }}
+        />
     </TabPanel>
       <TabPanel index={4} value={value}>
         <div style={styles.container}>
@@ -328,6 +319,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
             )))}
           </TableBody>
         </Table>
+
       </TabPanel>
     </div>
   );

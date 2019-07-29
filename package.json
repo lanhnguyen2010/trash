@@ -1,5 +1,5 @@
 {
-  "name": "trash",
+  "name": "PruGood",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -28,7 +28,8 @@
     "react-code-input": "^3.8.1",
     "redux-persist": "^5.10.0",
     "react-router-redux": "^5.0.0-alpha.9",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "material-table": "^1.40.1"
   },
   "scripts": {
     "start": "react-scripts start",
