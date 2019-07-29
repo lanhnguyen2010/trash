@@ -34,6 +34,7 @@ html, body, #app, #app > div, body > #root {
     flex-basis: calc(50% - 40px);
     justify-content: center;
     flex-direction: column;
+    padding-top: 30px;
 }
 .grid2x2 > div > div {
     display: flex;
@@ -43,8 +44,8 @@ html, body, #app, #app > div, body > #root {
 
 .box {
     position: relative;
-    height: calc(50% - 40px);
-    margin: 20px;
+    height: 40%;
+    padding-left: 25px;
     align-items: center;
  }
 
