@@ -64,12 +64,14 @@ const GiftResultContainer = compose(
   connect(
     selectors.root,
     {
-      endFlow : actions.endFlow
+      endFlow : actions.endFlow,
+      saveGiftResult: actions.saveGiftResult
     }
   ),
   lifecycle({
     componentWillMount() {
-      const {history, isLoggedIn} = this.props;
+      const {history, isLoggedIn, saveGiftResult} = this.props;
+      saveGiftResult();
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }

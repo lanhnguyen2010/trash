@@ -12,12 +12,13 @@ const SubQuizContainer = compose(
   connect(
     selectors.root,
     {
-      updateAnswerResult: actions.updateAnswerResult
+      updateAnswerResult: actions.updateAnswerResult,
+      saveQuizResult: actions.saveQuizResult
     },
   ),
   lifecycle({
     componentWillMount() {
-      const {history, selectedTrash, updateAnswerResult} = this.props;
+      const {history, selectedTrash, updateAnswerResult,saveQuizResult} = this.props;
 
       const question = Const.Questions[selectedTrash];
 
@@ -51,6 +52,7 @@ const SubQuizContainer = compose(
             btnStateInit[i] = "correct";
           }
         }
+        saveQuizResult(buildQuestion, index);
         showResultScreen(result);
         this.setState({
           ...this.props.state, btnState: btnStateInit, toogleState: (index) => {

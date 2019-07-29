@@ -13,7 +13,7 @@ const isLoggedIn = createSelector(localState, state => state.isLoggedIn);
 const selectedTrash = createSelector(localState, state => state.selectedTrash);
 const answerResult = createSelector(localState, state => state.answerResult);
 const players = createSelector(localState, state => state.players);
-
+const inputData = createSelector(localState, state => state.inputData);
 
 
 const root = createStructuredSelector({
@@ -27,7 +27,8 @@ const root = createStructuredSelector({
   isLoggedIn,
   selectedTrash,
   answerResult,
-  players
+  players,
+  inputData
 });
 
-export {root, city};
+export {root, city, phoneNumber, inputData, selectedGift};
