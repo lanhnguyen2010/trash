@@ -125,7 +125,7 @@ const Result = ({history, answerResult, question}) => (
   <div style={getStyle(question.label)}>\
     <div style={styles.questionTitle}>
       <div style={styles.questionLabel}>
-        {answerResult ? "Bạn đã chọn chính xác" : "Câu trả lời chưa đúng"}
+        {answerResult=="correct" ? "Bạn đã chọn chính xác" : "Câu trả lời chưa đúng"}
       </div>
 
       <div style={styles.questionContent}>
