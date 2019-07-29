@@ -12,7 +12,7 @@ const styles = {
     justifyContent: "center",
     color: 'white',
     width: '80%',
-    height: "15%",
+    
     left:"50%",
     paddingTop: 80,
   },
@@ -37,9 +37,10 @@ const styles = {
 
   image: {
     position: "relative",
-    maxWidth: "70%",
+    maxWidth: "80%",
     minWidth: "50%",
-  
+    maxHeight: "80%",
+    minHeight: "50%"
   },
   reminder:{
     position: "absolute",
