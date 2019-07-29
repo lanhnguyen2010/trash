@@ -27,9 +27,9 @@ const styles = {
     textAlign: 'center',
     backgroundImage: "url('./images/base.png')",
     backgroundSize: "cover",
+  },
   container: {
     display: 'flex',
-    alignItems: 'center',
     flexDirection: 'column',
     width: "100%",
     alignItems: "center"
@@ -63,7 +63,7 @@ const styles = {
     bottom: 0,
     fontWeight: "bold",
     fontSize: 17,
-    color: "white" 
+    color: "white",
     backgroundImage: "url('./images/luuH.png')",
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -95,7 +95,7 @@ const styles = {
     backgroundColor: '#D20C08',
     fontSize: "3vh",
     width: "74vw",
-    borderRadius: "50px"
+    borderRadius: "50px",
   }
 };
 

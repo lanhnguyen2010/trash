@@ -69,7 +69,7 @@ const MoreInfo = ({history}) => {
   const routeChange = () => {
     trackRef.clickNext();
     console.log("track", trackRef.index);
-    if (trackRef.index >= 0) {
+    if (trackRef.index >= 3) {
       btnRef.style.display = 'none';
       logoRef.style.display = 'none'
     }
@@ -83,9 +83,9 @@ const MoreInfo = ({history}) => {
                      organicArrows={false}
                      ref={t => trackRef = t}>
         <div data-src='./images/home1.png'/>
-        {/*<div data-src='./images/home2.png'/>*/}
-        {/*<div data-src='./images/home3.png'/>*/}
-        {/*<div data-src='./images/home4.png'/>*/}
+        <div data-src='./images/home2.png'/>
+        <div data-src='./images/home3.png'/>
+        <div data-src='./images/home4.png'/>
         <div data-src='./images/home2.png'>
           <div style={{...styles.footer, flexDirection: 'row', background: 'white'}}>
             <div style={{display: 'flex', flexDirection: 'column', width:"70%"}}>
