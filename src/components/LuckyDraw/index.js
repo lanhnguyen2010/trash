@@ -35,11 +35,8 @@ const LuckyDrawContainer = compose(
 
           setTimeout(function () {
             this.setState({isLoading: false});
-            setTimeout(function () {
-              getRandomGift();
-              history.push(ROUTES.GIFT_RESULT)
-
-            }.bind(this), 2000)
+            getRandomGift();
+            history.push(ROUTES.GIFT_RESULT)
 
           }.bind(this), 3000)
 
