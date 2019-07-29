@@ -9,6 +9,7 @@ import connect from "react-redux/es/connect/connect";
 import * as selectors from "../../redux/selectors";
 import {actions} from "../../redux";
 import {lifecycle} from "recompose";
+import commonStyle from "../common"
 
 
 const styles = {
@@ -22,12 +23,32 @@ const styles = {
     width: "100%",
   },
   text: {
-    bottom: "15vh",
-    position: "relative",
-    color: "#BA0000",
+    color: "#D20C08",
+    fontSize: 25,
+    fontWeight: 'bold',
+    lineHeight: 1.5,
+    letterSpacing: 1
+  },
+  textBlack: {
+    color: "black",
+    fontSize: 25,
+    fontWeight: 'bold',
+    lineHeight: 1.5,
+    letterSpacing: 1
+  },
+  textEnd: {
+    color: "#D20C08",
+    fontSize: 40,
+    lineHeight: 1.5,
+    letterSpacing: 0.5,
+    textAlign: 'center'
+  },
+  textBlackEnd: {
+    color: "black",
     fontSize: 30,
-    textAlign: "center",
-    width: "74%"
+    lineHeight: 1.5,
+    letterSpacing: 1,
+    textAlign: 'center'
   },
   button: {
     position: 'fixed',
@@ -39,28 +60,22 @@ const styles = {
     fontSize: 25,
     borderRadius: 50,
     marginBottom: '5%',
-    width: '70%'
+    width: '70%',
   },
   logo: {
     position: "fixed",
     zIndex: 100,
     top: 30,
     left: 30
+  },
+  pruImage : {
+    width: '33.3%'
+  },
+  pruButton : {
+    width: '100%',
+    fontSize: 35
   }
 };
-
-const PageConfirm = () => (
-  <div data-src='./images/home2.png' style={{...styles.footer, flexDirection: 'column'}}>
-    <div style={{display: 'flex', flexDirection: 'row'}}>
-      <div>Chung tay cùng prudential cam kết</div>
-      <div>Chọn giảm dùng nhựa vì sức khoẻ của những người thân yêu</div>
-
-
-    </div>
-
-
-  </div>
-);
 
 const MoreInfo = ({history}) => {
   let trackRef;
@@ -73,45 +88,54 @@ const MoreInfo = ({history}) => {
       btnRef.style.display = 'none';
       logoRef.style.display = 'none'
     }
+
+    if (trackRef.index == 5) {
+      setTimeout
+    }
   };
 
   return (
     <div className="container">
       <img src="./images/logo.svg" alt="prudential logo" style={styles.logo} ref={t => logoRef = t}/>
-      <AwesomeSlider style={{width: '100%', height: '100%'}}
+      <AwesomeSlider style={{width: '100%', height: '100%', position:'absolute'}}
                      bullets={false}
                      organicArrows={false}
                      ref={t => trackRef = t}>
+
+        <div data-src='./images/home2.png'>
+          <div style={{...styles.footer, background: 'white'}}>
+            <div style={{display: 'flex', flexDirection: 'column', width:"70%", padding: 30}}>
+              <div style={styles.textEnd}>Cảm Ơn Sự Ủng Hộ Và Tinh Thần Hành Động Của Bạn.</div>
+              <div style={styles.textBlackEnd}>Nhân viên của Prudential tại quầy sẽ hướng dẫn bạn các bước tiếp theo</div>
+            </div>
+          </div>
+        </div>
+
         <div data-src='./images/home1.png'/>
         <div data-src='./images/home2.png'/>
         <div data-src='./images/home3.png'/>
         <div data-src='./images/home4.png'/>
+
+
         <div data-src='./images/home2.png'>
           <div style={{...styles.footer, flexDirection: 'row', background: 'white'}}>
-            <div style={{display: 'flex', flexDirection: 'column', width:"70%"}}>
-              <div>Chung tay cùng prudential cam kết</div>
-              <div>Chọn giảm dùng nhựa vì sức khoẻ của những người thân yêu</div>
+            <div style={{display: 'flex', flexDirection: 'column', width:"70%", padding: 30}}>
+              <div style={styles.textBlack}>Chung Tay Cùng Prudential Cam Kết</div>
+              <div style={styles.text}>Chọn Giảm Dùng Nhựa Vì Sức Khoẻ Của Những Người Thân Yêu</div>
 
-              <Button onClick={() => routeChange()}>Tiếp tục</Button>
+              <Button style={{...commonStyle.button, ...styles.pruButton }} onClick={() => routeChange()}>Tiếp tục</Button>
             </div>
 
-            <img src="./images/logo.svg"/>
+            <img style={styles.pruImage} src="./images/logo.svg"/>
           </div>
         </div>
 
-        <div data-src='./images/home2.png'>
-          <div style={{...styles.footer, flexDirection: 'column', background: 'white'}}>
-              <div>Cảm Ơn Sự Ủng Hộ Và Tinh Thần Hành Động Của Bạn</div>
-              <div>Nhân viên của Prudential tại quầy sẽ hướng dẫn bạn làm các bước tiếp theo</div>
 
-              <Button onClick={()=> history.push(ROUTES.OTP)}>End</Button>
-
-          </div>
-        </div>
 
       </AwesomeSlider>
+
       <div style={styles.footer}>
-        <Button style={styles.button}
+        <Button style={{...styles.button, display:'none'}}
                 variant="contained"
                 color="primary"
                 size="large"
