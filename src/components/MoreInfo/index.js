@@ -83,13 +83,12 @@ const MoreInfo = ({history}) => {
   let logoRef;
   const routeChange = () => {
     trackRef.clickNext();
-    console.log("track", trackRef.index);
     if (trackRef.index >= 3) {
       btnRef.style.display = 'none';
       logoRef.style.display = 'none'
     }
 
-    if (trackRef.index == 5) {
+    if (trackRef.index == 4) {
       setTimeout(function () {
         history.push(ROUTES.LUCKY_DRAW)
       }.bind(this), 3000)
