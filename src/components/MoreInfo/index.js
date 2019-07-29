@@ -15,10 +15,10 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     width: "100%",
-    height: "30%",
     backgroundColor: "white",
   },
   text: {
+    bottom:"15vh",
     position:"relative",
     color: "#BA0000",
     fontSize: 30,
@@ -31,7 +31,7 @@ const styles = {
     alignSelf: "center",
     backgroundColor: '#D20C08',
     fontSize: 25,
-    width: "74%",
+    width: "70%",
     borderRadius: 50
   },
   logo: {
@@ -42,18 +42,23 @@ const styles = {
   }
 };
 
-export default class Home extends Component {
-
+export default class MoreInfo extends Component {
   componentDidMount() {
-    this.interval = setInterval(() => this.track.clickNext(), 3000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    const {history, isLoggedIn} = this.props;
+    if (!isLoggedIn) {
+      history.push(ROUTES.LOG_IN)
+    }
   }
 
   routeChange() {
-    this.props.history.push(ROUTES.QUIZ);
+    this.track.clickNext();
+    console.log("track", this.track.index);
+    if (this.track.index === 3) {
+      this.props.history.push(ROUTES.OTP);
+    }
   }
 
   render() {
@@ -62,7 +67,6 @@ export default class Home extends Component {
         <img src="./images/logo.svg" alt="prudential logo" style={styles.logo}/>
         <AwesomeSlider style={{width: '100%', height:'100%'}}
                        bullets={false}
-                       infinite={true}
                        organicArrows={false}
                        ref={t => this.track = t}>
           <div data-src='./images/home1.png'/>
@@ -71,8 +75,6 @@ export default class Home extends Component {
           <div data-src='./images/home4.png'/>
         </AwesomeSlider>
         <div style={styles.footer}>
-          <p style={styles.text}>Cái giá thật sự <b>CỦA NHỰA</b> bạn chưa biết</p>
-
           <Button style={styles.button}
                   variant="contained"
                   color="primary"

@@ -3,6 +3,9 @@ import createSagaMiddleware from "redux-saga";
 
 import sagas from "./sagas";
 import reducer from "./redux/reducer";
+import {loadState, saveState} from "./localStoragePersist";
+import {select} from "redux-saga/effects"
+
 
 const preloadedState = {};
 const sagaMiddleware = createSagaMiddleware();
@@ -12,12 +15,19 @@ const rootReducer = combineReducers({
   reducer
 });
 
+const persistedState = loadState();
+
 const store = createStore(
   rootReducer,
-  preloadedState,
+  persistedState,
   composeFunc(applyMiddleware(sagaMiddleware))
 );
 
 sagaMiddleware.run(sagas);
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
+
 
 export default store;

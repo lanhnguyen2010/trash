@@ -7,9 +7,27 @@ const { Types, Creators: actions } = createActions(
     doLogin: ["navigation", "email", "password"],
     getRandomGift: null,
     updateSelectedGift: ["selectedGift"],
+    doSignUp: ["navigation", "email", "password", "confirmPassword", "city"],
     updateGift: ["navigation", "data"],
     getGifts: ["city"],
-    updateBoothsData:["boothsData"]
+    updateCity:["city"],
+    doOtp:["navigation", "data"],
+    doVerifyOtp:["navigation", "phoneNumber", "otp"],
+    updatePhoneNumber:["phoneNumber"],
+    checkSmsAccountBalance:["navigation"],
+    updateSmsBalance:["smsBalance"],
+    getAllOtps: ["searchPhoneNumber"],
+    updateOtpList:["otpList"],
+    updateIsLoggedIn:["isLoggedIn"],
+    updateBoothsData:["boothsData"],
+
+
+    //QUIZ
+    updateSelectedTrashType:["selectedTrash"],
+    updateSelectedAnswer:["seletedAnswer"],
+    updateAnswerResult: ["answerResult"],
+
+    endFlow: null
   },
   {
     prefix: "ACTIONS/"

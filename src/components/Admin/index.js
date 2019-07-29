@@ -26,8 +26,10 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  TableBody
+  TableBody,
+  InputAdornment
 } from "@material-ui/core";
+import * as ROUTES from "../../constants/routes";
 
 const styles = {
   container: {
@@ -83,18 +85,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return {name, calories, fat, carbs, protein};
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
+const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBalance, smsBalance, getAllOtps, otpList, city, updateOtpList}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -104,7 +95,8 @@ const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
   let daoniaRef = null;
   let binhthuytinhRef = null;
   let dateRef = null;
-  const [city, setCity] = React.useState('Ho Chi Minh');
+  let searchPhoneNumberRef = null;
+  const [citySelector, setCity] = React.useState(city);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCity(event.target.value);
@@ -122,12 +114,14 @@ const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
   function handleTabChange(event, newValue) {
     setValue(newValue);
     if (newValue === 1){
-      getGifts(city);
+      getGifts(citySelector);
+    }
+    if (newValue === 4){
+      updateOtpList([]);
     }
   }
-
   console.log(boothsData);
-  console.log(today);
+  console.log("balance:", smsBalance);
 
   return (
     <div className={classes.root}>
@@ -135,13 +129,16 @@ const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
         <Tabs value={value} onChange={handleTabChange} aria-label="simple tabs example">
           <Tab label="Update" {...a11yProps(0)} />
           <Tab label="Report" {...a11yProps(1)} />
+          <Tab label="SMS" {...a11yProps(2)} />
+          <Tab label="Players" {...a11yProps(3)} />
+          <Tab label="OTP" {...a11yProps(4)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <div style={styles.container}>
           <InputLabel htmlFor="age-simple">Thành Phố</InputLabel>
           <Select
-            value={city}
+            value={citySelector}
             onChange={handleChange}
             input={<FilledInput name="city" id="filled-city-simple"/>}
           >
@@ -201,7 +198,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
           />
           <Button style={styles.btnLogin} onClick={() => {
             updateGift(history, {
-              city: city,
+              city: citySelector,
               onghutinox: onghutinoxRef.value,
               tuivai: tuivaiRef.value,
               daonia: daoniaRef.value,
@@ -209,13 +206,14 @@ const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
               binhthuytinh: binhthuytinhRef.value,
               date: dateRef.value
             });
+
           }}>Submit</Button>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <InputLabel htmlFor="age-simple">Thành Phố</InputLabel>
         <Select
-          value={city}
+          value={citySelector}
           onChange={handleCityChange}
           input={<FilledInput name="city" id="filled-city-simple"/>}
         >
@@ -249,6 +247,61 @@ const AdminForm = ({history, updateGift, getGifts, boothsData}) => {
           </TableBody>
         </Table>
       </TabPanel>
+      <TabPanel index={2} value={value}>
+        <div style={styles.container}>
+        <Button style={styles.btnLogin} onClick={() => {
+          checkSmsAccountBalance(history);
+        }}>Kiểm Tra Số Dư</Button>
+
+        <TextField
+          style={styles.textField}
+          label="Số Dư Tài Khoản eSMS"
+          id="balance"
+          type="label"
+          value={smsBalance}
+          disabled
+          InputProps={{
+            endAdornment: <InputAdornment position="start">VND</InputAdornment>,
+          }}
+        />
+        </div>
+      </TabPanel>
+
+      <TabPanel index={3} value={value}>
+      Players
+    </TabPanel>
+      <TabPanel index={4} value={value}>
+        <div style={styles.container}>
+        <TextField
+          style={styles.textField}
+          placeholder="Số Điện Thoại"
+          variant="outlined"
+          id="phoneNumber"
+          inputRef={input => searchPhoneNumberRef = input}
+        />
+        <Button onClick={() => {
+          getAllOtps(searchPhoneNumberRef.value);
+        }}
+                style={styles.btnOtp}>Tìm Kiếm</Button>
+        </div>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">Số Điện Thoại</TableCell>
+              <TableCell align="right">OTP</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {otpList &&
+            (otpList.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell align="right">{row.phoneNumber}</TableCell>
+                <TableCell align="right">{row.otp}</TableCell>
+              </TableRow>
+            )))}
+          </TableBody>
+        </Table>
+      </TabPanel>
     </div>
   );
 };
@@ -260,10 +313,20 @@ const AdminContainer = compose(
     selectors.root,
     {
       updateGift: actions.updateGift,
-      getGifts: actions.getGifts
+      getGifts: actions.getGifts,
+      checkSmsAccountBalance: actions.checkSmsAccountBalance,
+      getAllOtps:actions.getAllOtps,
+      updateOtpList: actions.updateOtpList
     }
   ),
-  lifecycle({})
+  lifecycle({
+    componentWillMount() {
+      const {history, isLoggedIn} = this.props;
+      if (!isLoggedIn) {
+        history.push(ROUTES.LOG_IN)
+      }
+    },
+  })
 )(Admin);
 
 export default AdminContainer;

@@ -18,15 +18,13 @@ html, body, #app, #app > div, body > #root {
 }
 
 .container {
-    max-width: 1024px;
     width: 100%;
     height: 100%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .grid2x2 {
-    min-height: 100%;
+    position: relative;
+    height: 70%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -43,18 +41,70 @@ html, body, #app, #app > div, body > #root {
     flex-direction: row;
 }
 
-.box { margin: 20px; }
-.box1 { background-color: red; }
-.box2 { background-color: orange; }
-.box3 { background-color: purple; }
-.box4 { background-color: grey; }
-
+.box { 
+    position: relative;
+    height: calc(50% - 40px);
+    margin: 20px;
+    align-items: center;
+ }
 
 .loading {
     animation: spin 1200ms infinite linear;
 }
 
+.info input{
+    border-radius: 34px !important;
+    background: rgba(207, 0, 0, 0.5) !important;
+    border-color:  rgba(207, 0, 0, 1) !important;
+    color: white !important;
+    font-size: 22px !important;
+}
+
+.otp input{
+    border-radius: 15px !important;
+    background: transparent !important;
+    border-color:  white !important;
+    color: white !important;
+    font-size: 75px !important;
+    text-align: center;
+    border-width: 2px;
+}
+
+fieldset{
+    border-radius: 34px !important;
+    border-color:  rgba(207, 0, 0, 0) !important;
+}
+
 @keyframes spin {
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);}
+}
+
+.info .MuiSelect-outlined{
+    color: white !important;
+    font-size: 22px !important;
+    border-radius: 34px !important;
+    background: rgba(207, 0, 0, 0.5) !important;
+    border-color:  rgba(207, 0, 0, 1) !important;
+}
+
+.info .MuiOutlinedInput-input{
+    color: white !important;
+}
+.info ::placeholder {
+    color: white !important;
+    opacity: 1 !important;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    color: white;
+}
+
+:-ms-input-placeholder { /* Internet Explorer */
+    color: white;
+}
+
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    margin-right: 0.5em;
 }

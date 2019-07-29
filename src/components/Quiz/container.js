@@ -4,17 +4,22 @@ import {compose} from "redux";
 import {selectors, actions} from "../../redux";
 import {lifecycle} from "recompose";
 import Quiz from "./component"
+import * as ROUTES from "../../constants/routes";
+import * as Const from "../../constants/Const"
+import * as Routes from "../../constants/routes"
 
 
 const QuizContainer = compose(
   connect(
     selectors.root,
     {
-
+      updateSelectedTrashType : actions.updateSelectedTrashType
     },
   ),
   lifecycle({
     componentDidMount() {
+      const { history, updateSelectedTrashType } = this.props;
+
       const btnStateInit = [false, false, false, false];
       const initState = {
         render: false,
@@ -22,7 +27,10 @@ const QuizContainer = compose(
         toogleState: (index) => {
           btnStateInit[index] = true;
           this.setState({...this.props.state, btnState: btnStateInit, toogleState: (index) => {} });
-          console.log(this);
+
+          console.log("selectedTrashType", Const.TrashType[index]);
+          updateSelectedTrashType(Const.TrashType[index]);
+          history.push(Routes.SUB_QUIZ)
         }
       };
 
@@ -30,7 +38,18 @@ const QuizContainer = compose(
 
       setTimeout(function() {
         this.setState({...initState, render:true}) ;
-      }.bind(this), 3000)
+      }.bind(this), 1000)
+    },
+    componentWillMount() {
+      const {history, isLoggedIn} = this.props;
+      if (!isLoggedIn) {
+        history.push(ROUTES.LOG_IN)
+      }
+    },
+    componentWillUnmount() {
+      this.setState = (state,callback)=>{
+        return;
+      };
     }
   })
 )(Quiz);

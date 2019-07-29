@@ -4,8 +4,15 @@ import {Types} from "./actions";
 
 const initialState = {
   count: 0,
+  boothsData: '',
+  city: '',
+  phoneNumber: '',
+  smsBalance: 0,
   selectedGift: "",
-  boothsData:''
+  otpList: '',
+  isLoggedIn: false,
+  selectedTrash: "",
+  answerResult: "",
 };
 
 const reducer = createReducer(initialState, {
@@ -20,7 +27,53 @@ const reducer = createReducer(initialState, {
   [Types.UPDATE_BOOTHS_DATA]: (state, {boothsData}) =>
     _.assign({}, state, {
       boothsData: boothsData
+    }),
+  [Types.UPDATE_CITY]: (state, {city}) => {
+    console.log("city update:, ", city);
+    return _.assign({}, state, {
+      city: city
     })
+  },
+  [Types.UPDATE_PHONE_NUMBER]: (state, {phoneNumber}) =>
+    _.assign({}, state, {
+      phoneNumber: phoneNumber
+    }),
+  [Types.UPDATE_SMS_BALANCE]: (state, {smsBalance}) => {
+    return _.assign({}, state, {
+      smsBalance: smsBalance
+    })
+  },
+  [Types.UPDATE_OTP_LIST]: (state, {otpList}) => {
+    return _.assign({}, state, {
+      otpList: otpList
+    })
+  },
+  [Types.UPDATE_IS_LOGGED_IN]: (state, {isLoggedIn}) => {
+    return _.assign({}, state, {
+      isLoggedIn: isLoggedIn
+    })
+  },
+  [Types.UPDATE_SELECTED_TRASH_TYPE]: (state, {selectedTrash}) =>
+  _.assign({}, state, {
+    selectedTrash: selectedTrash
+  }),
+
+  [Types.UPDATE_ANSWER_RESULT]: (state, {answerResult}) =>
+  _.assign({}, state, {
+    answerResult: answerResult
+  }),
+
+  [Types.END_FLOW]:  (state) =>
+  _.assign({}, state, {
+    count: 0,
+    boothsData: '',
+    phoneNumber: '',
+    smsBalance: 0,
+    selectedGift: "",
+    otpList: '',
+    selectedTrash: "",
+    answerResult: "",
+  })
 });
 
 
