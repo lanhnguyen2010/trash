@@ -107,7 +107,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
 
   const today = new Date();
 
-  let formattedDate=today.getDate() + "-" + today.getMonth() +"-"+ today.getFullYear();
+  let formattedDate=today.getDate() + "-" + (today.getMonth() + 1) +"-"+ today.getFullYear();
 
   const handleCityChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCity(event.target.value);

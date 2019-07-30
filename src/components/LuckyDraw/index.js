@@ -38,7 +38,7 @@ const LuckyDrawContainer = compose(
             getRandomGift();
             history.push(ROUTES.GIFT_RESULT)
 
-          }.bind(this), 3000)
+          }.bind(this), 1000)
 
         }
       };

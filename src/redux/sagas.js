@@ -6,10 +6,10 @@ import * as ROUTES from "../constants/routes";
 import React from 'react';
 import * as selectors from './selectors'
 
-const SMS_API_KEY = "F4978B22B0F6EBC4C0270D5EFA2D0D";
-const SMS_SECRET_KEY = "7AA38C072D3822BEA821562A8A896D";
-const SMS_BRANDNAME = "Svoucher";
-let sandbox=1
+const SMS_API_KEY = "60F486560907DE73746D199F8EF80A";
+const SMS_SECRET_KEY = "4F784074A243ED85FBAB849CAA3BF5";
+const SMS_BRANDNAME = "QCAO_ONLINE";
+let sandbox=0
 
 function* loadData() {
   console.log("loadData");
@@ -38,7 +38,7 @@ function* doLogin({navigation, email, password}) {
     }
     navigation.push(ROUTES.HOME);
   } catch (error) {
-    window.alert(error.message)
+    console.log(error.message)
   }
 }
 
@@ -68,17 +68,38 @@ function shuffleArray(array) {
   }
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function* getRandomGift() {
-  //TODO random function
-  console.log("getRandomGif");
-  const giftsQuantity = {
-    onghutinox: 2,
-    tuivai: 3,
-    daonia: 3,
-    onghutgao: 2,
-    binhthuytinh: 1,
+  const city = yield select(selectors.city);
+  console.log("city: ", city);
+
+  let today = new Date();
+  let formattedDate = today.getDate() + "-" + (today.getMonth() + 1) +"-"+ today.getFullYear();
+  console.log("date: ", formattedDate);
+
+  const result = yield call(firebaseService.database.read, "booths/" + city + '/' + formattedDate);
+
+  console.log("getRandomGif: ", result);
+  let giftsQuantity = {
+    onghutinox: 0,
+    tuivai: 0,
+    daonia: 0,
+    onghutga: 0,
+    binhthuytinh: 0,
   };
 
+  if(result){
+    for (let key in result) {
+      if(result.hasOwnProperty(key)) {
+        giftsQuantity = result[key];
+      }
+    }
+  }
+
+  console.log("gift of date: ", giftsQuantity);
   let buildGiftsArray = [];
   for (let key in giftsQuantity) {
     for (let i = 0; i < giftsQuantity[key]; i++) {
@@ -89,7 +110,10 @@ function* getRandomGift() {
   console.log("shuffle buildGiftArray", buildGiftsArray);
   const randomIndex = Math.floor(Math.random() * (buildGiftsArray.length));
   const selectedGift = buildGiftsArray[randomIndex];
-  console.log(selectedGift);
+  if(giftsQuantity[selectedGift] > 0){
+    giftsQuantity[selectedGift]--;
+  }
+  yield call(firebaseService.database.create, "booths/" + city + '/' + formattedDate, giftsQuantity);
   yield put(actions.updateSelectedGift(selectedGift));
 }
 
@@ -107,7 +131,7 @@ function* updateGift({navigation, data}) {
     const result = yield call(firebaseService.database.create, "booths/" + data.city + '/' + data.date, booth);
     window.alert("Successful update Gift");
   } catch (error) {
-    window.alert(error.message)
+    console.log(error.message)
   }
 }
 
@@ -135,7 +159,7 @@ function* getGifts({city}) {
     console.log("date gifts: ", dateGifts);
     yield put(actions.updateBoothsData(dateGifts));
   } catch (error) {
-    window.alert(error.message)
+    console.log(error.message)
   }
 }
 
@@ -155,7 +179,7 @@ function* getAllOtps({searchPhoneNumber}) {
     console.log("date gifts: ", otps);
     yield put(actions.updateOtpList(otps));
   } catch (error) {
-    window.alert(error.message)
+    console.log(error.message)
   }
 }
 
@@ -209,7 +233,7 @@ function* doOtp({navigation, data}) {
       }
     }
   } catch (error) {
-    window.alert(error.message)
+    console.log(error.message)
   }
 }
 
@@ -224,7 +248,7 @@ function * resendOtp() {
     let city = yield select(selectors.city);
     yield call(firebaseService.database.update, "otps/" + city + "/" + phoneNumber, otp);
   } else {
-    window.alert(response.ErrorMessage)
+    console.log(response.ErrorMessage)
   }
 }
 
@@ -240,7 +264,7 @@ function* doVerifyOtp({navigation, phoneNumber, otp}) {
       window.alert("Mã Xác Thực không chính xác");
     }
   } catch (error) {
-    window.alert(error.message)
+    console.log(error.message)
   }
 }
 
@@ -256,7 +280,7 @@ function* checkSmsAccountBalance({navigation}) {
     }
     //navigation.push(ROUTES.HOME);
   } catch (error) {
-    window.alert(error.message)
+    console.log(error.message)
   }
 }
 
@@ -277,7 +301,7 @@ function* getAllPlayers() {
     console.log("date gifts: ", players);
     yield put(actions.updatePlayers(players));
   } catch (error) {
-    window.alert(error.message)
+    console.log(error.message)
   }
 }
 
@@ -312,7 +336,7 @@ function* getAllQuizResults() {
     console.log("date quizes: ", quizes);
     yield put(actions.updateQuizResults(quizes));
   } catch (error) {
-    window.alert(error.message)
+    console.log(error.message)
   }
 }
 
@@ -354,7 +378,7 @@ function* getAllGiftResults() {
     console.log("phonenumber gifts: ", giftResults);
     yield put(actions.updateGiftResults(giftResults));
   } catch (error) {
-    window.alert(error.message)
+    console.log(error.message)
   }
 }
 
