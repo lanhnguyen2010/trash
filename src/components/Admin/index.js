@@ -286,6 +286,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
 
       <TabPanel index={3} value={value}>
         <Button onClick={()=> getAllPlayers()}>Refresh</Button>
+        {players &&
         <MaterialTable
           title="Người chơi"
           columns={[
@@ -300,7 +301,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           options={{
             exportButton: true
           }}
-        />
+        />}
     </TabPanel>
       <TabPanel index={4} value={value}>
         <div style={styles.container}>
@@ -336,6 +337,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
       </TabPanel>
       <TabPanel index={5} value={value}>
         <Button onClick={()=> getAllQuizResults()}>Refresh</Button>
+        {quizResults?
         <MaterialTable
           title="Người chơi"
           columns={[
@@ -349,10 +351,11 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           options={{
             exportButton: true
           }}
-        />
+        /> :''}
       </TabPanel>
       <TabPanel index={6} value={value}>
         <Button onClick={()=> getAllGiftResults()}>Refresh</Button>
+        {giftResults &&
         <MaterialTable
           title="Quà Đã Trao"
           columns={[
@@ -364,7 +367,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           options={{
             exportButton: true
           }}
-        />
+        />}
       </TabPanel>
     </div>
   );

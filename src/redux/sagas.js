@@ -175,13 +175,13 @@ function* doOtp({navigation, data}) {
     yield put(actions.updatePhoneNumber(data.phoneNumber));
     yield put(actions.updateInputData(data));
     let otp = generateOTP();
+    let city = yield select(selectors.city);
+    yield call(firebaseService.database.update, "players/" + city + "/" + data.phoneNumber, data);
     const params = `Phone=${data.phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=1`;
     const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
     console.log(response);
     if (response.CodeResult == 100) {
-      let city = yield select(selectors.city);
       yield call(firebaseService.database.update, "otps/" + city + "/" + data.phoneNumber, otp);
-      yield call(firebaseService.database.update, "players/" + city + "/" + data.phoneNumber, data);
       navigation.push(ROUTES.VERIFY_OTP)
     } else {
       window.alert(response.ErrorMessage)
