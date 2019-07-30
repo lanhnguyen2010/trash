@@ -9,7 +9,7 @@ import * as selectors from './selectors'
 const SMS_API_KEY = "60F486560907DE73746D199F8EF80A";
 const SMS_SECRET_KEY = "4F784074A243ED85FBAB849CAA3BF5";
 const SMS_BRANDNAME = "QCAO_ONLINE";
-let sandbox=0
+let sandbox=1
 
 function* loadData() {
   console.log("loadData");
