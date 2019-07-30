@@ -49,7 +49,7 @@ const styles = {
     zIndex: 100,
     left: 0,
     height: "22%",
-    width: "70%"
+    width: "68%"
   }
 };
 
