@@ -7,7 +7,7 @@ import {makeStyles, withStyles} from '@material-ui/styles';
 
 import {withRouter} from 'react-router-dom'
 
-import {Button, MenuItem, OutlinedInput, Select, TextField} from '@material-ui/core';
+import {Button, MenuItem, OutlinedInput, Select, TextField, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText} from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
 
 
@@ -64,12 +64,22 @@ const useStyles = makeStyles(theme => ({
   },
   selectEmpty: {},
 }));
+
+const fieldMap = {
+  phoneNumber: "Số Điện Thoại",
+  email: "Email",
+  name:"Tên",
+  birthDay:'Ngày Sinh',
+  gender:'Giới Tính'
+}
 const OtpForm = ({history, doOtp, city}) => {
   let phoneNumberRef = null;
   let nameRef = null;
   let birthDayRef = null;
   let emailRef = null;
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const [invalidField, setInvalidFields] = React.useState([]);
 
   console.log(city);
 
@@ -84,6 +94,37 @@ const OtpForm = ({history, doOtp, city}) => {
   React.useEffect(() => {
     setLabelWidth(0);
   }, []);
+
+  function handleClickOpen() {
+    let data = {
+      phoneNumber: phoneNumberRef? phoneNumberRef.value:'',
+      name: nameRef?nameRef.value:'',
+      gender: gender,
+      birthDay: birthDayRef?birthDayRef.value:'',
+      email: emailRef?emailRef.value:'',
+      city: city,
+      time: new Date().toLocaleString()
+    }
+    let invalidField = [];
+    for (let key in data) {
+      if (data.hasOwnProperty(key)) {
+        console.log(key + " -> " + data[key]);
+        if(!data[key]){
+          invalidField.push(fieldMap[key]);
+        }
+      }
+    }
+    if(invalidField.length > 0){
+      setInvalidFields(invalidField);
+      setOpen(true);
+    } else {
+      doOtp(history, data);
+    }
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
 
   return (
     <div style={styles.main}>
@@ -133,19 +174,28 @@ const OtpForm = ({history, doOtp, city}) => {
           id="email"
           inputRef={input => emailRef = input}
         />
-        <Button onClick={() => {
-          doOtp(history, {
-            phoneNumber: phoneNumberRef.value,
-            name: nameRef.value,
-            gender: gender,
-            birthDay: birthDayRef.value,
-            email: emailRef.value,
-            city: city,
-            time: new Date().toLocaleString()
-          });
-        }}
+        <Button onClick={handleClickOpen}
                 style={styles.btnOtp}>Tiếp Tục</Button>
       </div>
+      <Dialog
+        open={open}
+        keepMounted
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Vui Lòng Điền {invalidField.join(', ')}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>)
 };
 

@@ -9,12 +9,20 @@ import * as selectors from './selectors'
 const SMS_API_KEY = "60F486560907DE73746D199F8EF80A";
 const SMS_SECRET_KEY = "4F784074A243ED85FBAB849CAA3BF5";
 const SMS_BRANDNAME = "QCAO_ONLINE";
+let sandbox=1
 
 function* loadData() {
   console.log("loadData");
   yield put(actions.updateData(3));
 }
 
+let fieldMap={
+  phoneNumber: "Số Điện Thoại",
+  email: "Email",
+  name:"Tên",
+  birthDay:'Ngày Sinh',
+  gender:'Giới Tính'
+}
 function* doLogin({navigation, email, password}) {
   try {
     const user = yield call(firebaseService.auth.signInWithEmailAndPassword, email, password);
@@ -172,21 +180,34 @@ const sendRequest = async (path) => {
 function* doOtp({navigation, data}) {
   try {
     console.log(data);
-    yield put(actions.updatePhoneNumber(data.phoneNumber));
-    yield put(actions.updateInputData(data));
-    let otp = generateOTP();
-    let city = yield select(selectors.city);
-    yield call(firebaseService.database.update, "players/" + city + "/" + data.phoneNumber, data);
-    const params = `Phone=${data.phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=1`;
-    const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
-    console.log(response);
-    if (response.CodeResult == 100) {
-      yield call(firebaseService.database.update, "otps/" + city + "/" + data.phoneNumber, otp);
-      navigation.push(ROUTES.VERIFY_OTP)
-    } else {
-      window.alert(response.ErrorMessage)
+    let invalidField = []
+    for (let key in data) {
+      if (data.hasOwnProperty(key)) {
+        console.log(key + " -> " + data[key]);
+        if(!data[key]){
+          invalidField.push(fieldMap[key]);
+        }
+      }
     }
-    //navigation.push(ROUTES.HOME);
+    if(invalidField.length > 0){
+      window.alert("Vui lòng điền " + invalidField.join(', '));
+    } else {
+
+      yield put(actions.updatePhoneNumber(data.phoneNumber));
+      yield put(actions.updateInputData(data));
+      let otp = generateOTP();
+      let city = yield select(selectors.city);
+      yield call(firebaseService.database.update, "players/" + city + "/" + data.phoneNumber, data);
+      const params = `Phone=${data.phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=${sandbox}`;
+      const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
+      console.log(response);
+      if (response.CodeResult == 100) {
+        yield call(firebaseService.database.update, "otps/" + city + "/" + data.phoneNumber, otp);
+        navigation.push(ROUTES.VERIFY_OTP)
+      } else {
+        window.alert(response.ErrorMessage)
+      }
+    }
   } catch (error) {
     window.alert(error.message)
   }
@@ -196,7 +217,7 @@ function * resendOtp() {
   const phoneNumber = yield select(selectors.phoneNumber);
 
   let otp = generateOTP();
-  const params = `Phone=${phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=1`;
+  const params = `Phone=${phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=${sandbox}`;
   const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
   console.log(response);
   if (response.CodeResult == 100) {
