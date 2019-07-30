@@ -27,6 +27,8 @@ const { Types, Creators: actions } = createActions(
     getAllQuizResults:null,
     updateGiftResults:["giftResults"],
     getAllGiftResults:null,
+    checkIsPhoneNumberExist: ["phoneNumber", "data", "history"],
+    updateIsPhoneNumberExist:["isPhoneNumberExist"],
 
     //QUIZ
     updateSelectedTrashType:["selectedTrash"],

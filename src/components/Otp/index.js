@@ -80,14 +80,14 @@ const fieldMap = {
   birthDay:'Ngày Sinh',
   gender:'Giới Tính'
 }
-const OtpForm = ({history, doOtp, city}) => {
+const OtpForm = ({history, doOtp, city, checkIsPhoneNumberExist, isPhoneNumberExist, updateIsPhoneNumberExist}) => {
   let phoneNumberRef = null;
   let nameRef = null;
   let birthDayRef = null;
   let emailRef = null;
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [invalidField, setInvalidFields] = React.useState([]);
+  const [errorMessage, setErrorMessage] = React.useState([]);
 
   console.log(city);
 
@@ -123,15 +123,19 @@ const OtpForm = ({history, doOtp, city}) => {
       }
     }
     if(invalidField.length > 0){
-      setInvalidFields(invalidField);
+      setErrorMessage("Vui Lòng Nhập " + invalidField.join(', '));
       setOpen(true);
     } else {
-      doOtp(history, data);
+      checkIsPhoneNumberExist(phoneNumberRef.value, data, history);
     }
   }
 
   function handleClose() {
-    setOpen(false);
+    updateIsPhoneNumberExist(false)
+  }
+
+  function handlePopupClose() {
+    setOpen(false)
   }
 
   return (
@@ -186,20 +190,30 @@ const OtpForm = ({history, doOtp, city}) => {
                 style={{...commonStyles.bottomButton, marginTop: '20vh'}}>Tiếp Tục</Button>
       </div>
       <Dialog
-        open={open}
+        open={isPhoneNumberExist}
         keepMounted
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Vui Lòng Điền {invalidField.join(', ')}
-          </DialogContentText>
-        </DialogContent>
+        <DialogTitle id="alert-dialog-slide-title">Số Điện Thoại Đã Tồn Tại</DialogTitle>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={open}
+        keepMounted
+        onClose={handlePopupClose}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle id="alert-dialog-slide-title">{errorMessage}</DialogTitle>
+        <DialogActions>
+          <Button onClick={handlePopupClose} color="primary">
             Thoát
           </Button>
         </DialogActions>
@@ -213,7 +227,9 @@ const OtpContainer = compose(
   connect(
     selectors.root,
     {
-      doOtp: actions.doOtp
+      doOtp: actions.doOtp,
+      checkIsPhoneNumberExist: actions.checkIsPhoneNumberExist,
+      updateIsPhoneNumberExist: actions.updateIsPhoneNumberExist
     }
   ),
   lifecycle({

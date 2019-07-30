@@ -68,7 +68,7 @@ function shuffleArray(array) {
   }
 }
 
-function sleep(ms) {
+function* sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -382,6 +382,33 @@ function* getAllGiftResults() {
   }
 }
 
+function* checkIsPhoneNumberExist({phoneNumber, data, history}){
+  try {
+    let city = yield select(selectors.city);
+    const result = yield call(firebaseService.database.read, 'gifts/' + city + '/' + phoneNumber);
+
+    console.log("checkIsPhoneNumberExist: ", result);
+
+    if(!result) {
+      console.log("checkIsPhoneNumberExist history", history);
+      yield call(doOtp,{navigation: history, data: data});
+    }
+
+    yield put(actions.updateIsPhoneNumberExist(result? true: false));
+    // else{
+    //   setErrorMessage("Số Điện Thoại Đã Tồn Tại");
+    //   setOpen(true);
+    // }
+
+    // if(result) {
+    //   yield put(actions.updateIsPhoneNumberExist(true));
+    // } else{
+    //   yield put(actions.updateIsPhoneNumberExist(false));
+    // }
+  } catch (error) {
+    console.log(error.message)
+  }
+}
 function* rootSaga() {
   yield takeEvery(Types.DO_LOGIN, doLogin);
   yield takeEvery(Types.LOAD_DATA, loadData);
@@ -399,6 +426,7 @@ function* rootSaga() {
   yield takeEvery(Types.SAVE_GIFT_RESULT, saveGiftResult);
   yield takeEvery(Types.GET_ALL_QUIZ_RESULTS, getAllQuizResults);
   yield takeEvery(Types.GET_ALL_GIFT_RESULTS, getAllGiftResults);
+  yield takeEvery(Types.CHECK_IS_PHONE_NUMBER_EXIST, checkIsPhoneNumberExist);
 }
 
 export {rootSaga};
