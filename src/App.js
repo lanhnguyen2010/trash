@@ -21,6 +21,7 @@ import VerifyOtp from './components/VerifyOtp'
 import SubQuiz from './components/SubQuiz';
 import GiftSelect from './components/GiftSelect';
 import GiftResult from './components/GiftResult';
+import GiftOnly from './components/GiftOnly';
 
 
 
@@ -39,6 +40,7 @@ const AppStateLess = () => (
       <Route path={ROUTES.SUB_QUIZ} component={SubQuiz}/>
       <Route path={ROUTES.GIFT_SELECT} component={GiftSelect}/>
       <Route path={ROUTES.GIFT_RESULT} component={GiftResult}/>
+      <Route path={ROUTES.GIFT_ONLY} component={GiftOnly}/>
     </Router>
   </Provider>
 );

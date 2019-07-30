@@ -36,12 +36,12 @@ const styles = {
     marginTop: 30
   },
   text: {
-    fontSize: 33,
+    ...commonStyle.textNormal_bold,
+    fontSize: '3vh',
     color: 'white',
     width: '70%',
-    paddingTop: 70,
+    paddingTop: "10vh",
     textAlign: 'center',
-    marginBottom:40
   },
 };
 

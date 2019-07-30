@@ -12,7 +12,8 @@ const styles = {
   questionTitle: {
     ...commonStyles.textStyleBig_bold,
     width: '70%',
-    margin: 'auto'
+    margin: 'auto',
+    fontSize: '4vh'
   },
 
   activeAnswer: {

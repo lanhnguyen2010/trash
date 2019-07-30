@@ -23,7 +23,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    padding: 50
+    justifyContent: 'center',
   },
 
   textField: {
@@ -42,6 +42,18 @@ const styles = {
     textAlign: 'center',
     marginBottom: 40
   },
+  button : {
+    background: 'rgba(207, 0, 0, 0.5)',
+    borderColor: 'rgba(255, 255, 255, 0.5)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    width: '70%'
+  },
+  title: {
+    width: '80%',
+    fontSize: '4vh',
+    textTransform: 'uppercase'
+  }
 };
 
 
@@ -51,12 +63,13 @@ const GiftSelectView = ({history, updateSelectedGift}) => {
       backgroundImage: "url('./images/player_info_background.png')",
 
     }}>
-      <Button style={commonStyles.button}
+      <div style={{...commonStyles.textNormal_bold, ...styles.title}}>Bạn hãy chọn chương trình muốn tham gia</div>
+      <Button style={{...commonStyles.button, ...styles.button}}
               onClick={() => {
                 updateSelectedGift("binhthuytinh");
-                history.push(ROUTES.GIFT_RESULT)
+                history.push(ROUTES.GIFT_ONLY)
               }}>Nhận quà</Button>
-      <Button style={commonStyles.button} onClick={() => history.push(ROUTES.LUCKY_DRAW)}>Vòng xoay may mắn</Button>
+      <Button style={{...commonStyles.button, ...styles.button}} onClick={() => history.push(ROUTES.LUCKY_DRAW)}>Vòng xoay may mắn</Button>
     </div>)
 };
 

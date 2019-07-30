@@ -9,37 +9,31 @@ import connect from "react-redux/es/connect/connect";
 import * as selectors from "../../redux/selectors";
 import {actions} from "../../redux";
 import {lifecycle} from "recompose";
-import commonStyle from "../common"
+import commonStyle, {fonts} from "../common"
 
 
 const styles = {
   text: {
+    ...commonStyle.textNormal_bold,
     color: "#D20C08",
-    fontSize: 25,
-    fontWeight: 'bold',
-    lineHeight: 1.5,
-    letterSpacing: 1
+    fontSize: '2.5vh'
   },
   textBlack: {
+    ...commonStyle.textNormal_bold,
     color: "black",
-    fontSize: 25,
-    fontWeight: 'bold',
-    lineHeight: 1.5,
-    letterSpacing: 1
+    fontSize: '2.5vh',
   },
   textEnd: {
+    ...commonStyle.textNormal_bold,
     color: "#D20C08",
-    fontSize: 40,
-    lineHeight: 1.5,
-    letterSpacing: 0.5,
-    textAlign: 'center'
+    fontSize: '3vh',
   },
   textBlackEnd: {
+    ...commonStyle.textNormal_bold,
     color: "black",
-    fontSize: 30,
-    lineHeight: 1.5,
-    letterSpacing: 1,
-    textAlign: 'center'
+    fontSize: '2.5vh',
+    fontFamily: fonts.regular,
+    marginTop: 30
   },
 
   logo: {
@@ -48,12 +42,18 @@ const styles = {
     top: 30,
     left: 30
   },
-  pruImage : {
+  pruImage: {
     width: '33.3%'
   },
-  pruButton : {
-    width: '100%',
-    fontSize: 35
+  pruButton: {
+    fontSize: 35,
+    marginBottom: '4%'
+  },
+  image: {
+    width: '33.3%',
+    backgroundPosition: '50% 50%',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
   }
 };
 
@@ -79,7 +79,7 @@ const MoreInfo = ({history, endFlow}) => {
   return (
     <div className="container">
       <img src="./images/logo.svg" alt="prudential logo" style={styles.logo} ref={t => logoRef = t}/>
-      <AwesomeSlider style={{width: '100%', height: '100%', position:'absolute'}}
+      <AwesomeSlider style={{width: '100%', height: '100%', position: 'absolute'}}
                      bullets={false}
                      organicArrows={false}
                      ref={t => trackRef = t}>
@@ -89,24 +89,26 @@ const MoreInfo = ({history, endFlow}) => {
         <div data-src='./images/home3.png'/>
         <div data-src='./images/home4.png'/>
 
-        <div data-src='./images/home2.png'>
+        <div data-src='./images/moreInfo5.png'>
           <div style={{...commonStyle.footer, flexDirection: 'row', background: 'white'}}>
-            <div style={{display: 'flex', flexDirection: 'column', width:"70%", padding: 30}}>
+            <div style={{display: 'flex', flexDirection: 'column', width: "70%", padding: 30}}>
               <div style={styles.textBlack}>Chung Tay Cùng Prudential Cam Kết</div>
-              <div style={styles.text}>Chọn Giảm Dùng Nhựa Vì Sức Khoẻ Của Những Người Thân Yêu</div>
+              <div style={styles.text}>"Chọn Giảm Dùng Nhựa Vì Sức Khoẻ Của Những Người Thân Yêu"</div>
 
-              <Button style={{...commonStyle.bottomButton, ...styles.pruButton }} onClick={() => routeChange()}>Tiếp tục</Button>
+              <Button style={{...commonStyle.bottomButton, ...styles.pruButton}} onClick={() => routeChange()}>Tiếp
+                tục</Button>
             </div>
 
-            <img style={styles.pruImage} src="./images/logo.svg"/>
+            <div style={{...styles.image, backgroundImage: "url('./images/pru_logo.png')"}}/>
           </div>
         </div>
 
-        <div data-src='./images/home2.png'>
-          <div style={{...styles.footer, background: 'white'}}>
-            <div style={{display: 'flex', flexDirection: 'column', width:"70%", padding: 30}}>
+        <div data-src='./images/moreInfo5.png'>
+          <div style={{...commonStyle.footer, background: 'white'}}>
+            <div style={{display: 'flex', flexDirection: 'column', width: "75%", padding: 40}}>
               <div style={styles.textEnd}>Cảm Ơn Sự Ủng Hộ Và Tinh Thần Hành Động Của Bạn.</div>
-              <div style={styles.textBlackEnd}>Nhân viên của Prudential tại quầy sẽ hướng dẫn bạn các bước tiếp theo</div>
+              <div style={styles.textBlackEnd}>Nhân viên của Prudential tại quầy sẽ hướng dẫn bạn các bước tiếp theo
+              </div>
             </div>
           </div>
         </div>
@@ -114,7 +116,7 @@ const MoreInfo = ({history, endFlow}) => {
       </AwesomeSlider>
 
       <div style={commonStyle.footer}>
-        <Button style={commonStyle.bottomButton}
+        <Button style={{...commonStyle.bottomButton}}
                 onClick={() => routeChange()}
                 ref={t => btnRef = t}
         >
