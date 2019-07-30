@@ -32,12 +32,12 @@ const commonStyle = {
   button: {
     alignSelf: "center",
     backgroundColor: '#D20C08',
-    fontSize: 30,
+    fontSize: '3vh',
     paddingTop: 16,
     paddingBottom: 16,
     paddingLeft: 24,
     paddingRight: 24,
-    borderRadius: "50px",
+    borderRadius: 100,
     color: 'white',
     minWidth: 200,
     minHeight: 50,
@@ -60,12 +60,12 @@ const commonStyle = {
     marginBottom: '10%',
     alignSelf: "center",
     backgroundColor: '#D20C08',
-    fontSize: 30,
+    fontSize: '3vh',
     paddingTop: 16,
     paddingBottom: 16,
     paddingLeft: 24,
     paddingRight: 24,
-    borderRadius: "50px",
+    borderRadius: 100,
     color: 'white',
     minWidth: 200,
     minHeight: 50,
@@ -79,12 +79,12 @@ const commonStyle = {
   },
   textStyleBig_bold: {
     ...base.textInput,
-    fontSize: 37,
+    fontSize: '5vh',
     fontFamily: fonts.bold
   },
   textNormal_bold: {
     ...base.textInput,
-    fontSize: 20,
+    fontSize: '2vh',
     fontFamily: fonts.bold
   },
 };
