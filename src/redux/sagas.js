@@ -6,9 +6,9 @@ import * as ROUTES from "../constants/routes";
 import React from 'react';
 import * as selectors from './selectors'
 
-const SMS_API_KEY = "60F486560907DE73746D199F8EF80A";
-const SMS_SECRET_KEY = "4F784074A243ED85FBAB849CAA3BF5";
-const SMS_BRANDNAME = "QCAO_ONLINE";
+const SMS_API_KEY = "F4978B22B0F6EBC4C0270D5EFA2D0D";
+const SMS_SECRET_KEY = "7AA38C072D3822BEA821562A8A896D";
+const SMS_BRANDNAME = "Svoucher";
 let sandbox=1
 
 function* loadData() {
