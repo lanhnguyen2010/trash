@@ -85,6 +85,10 @@ html, body, #app, #app > div, body > #root {
     margin: 1vh !important;
 }
 
+.resultImg {
+    width: 25%;
+}
+
 .otp {
     margin-top: 5vh;
 }

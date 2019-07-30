@@ -9,6 +9,12 @@ const styles = {
     width: '70%',
     marginTop: 50
   },
+  imageSpinner: {
+    width: '8%',
+    marginTop: 60,
+    position: 'absolute',
+    left: '69%'
+  },
   backGroundLucky: {
     backgroundImage: "url('./images/player_info_background.png')",
   },
@@ -16,7 +22,7 @@ const styles = {
     backgroundImage: "url('./images/result_background.png')",
   },
   imageResult:{
-    width: '40%',
+    width: '25%',
     paddingTop: '10%'
   },
   container: {
@@ -34,6 +40,10 @@ const LoadingSpinner = ({isLoading, onClickSpinner}) => (
 
     <img className={isLoading ? "loading" : ""} style={styles.image}
          src="./images/loading.png"
+         onClick={onClickSpinner}
+    />
+    <img style={styles.imageSpinner}
+         src="./images/spinner.png"
          onClick={onClickSpinner}
     />
   </div>
