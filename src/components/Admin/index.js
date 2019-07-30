@@ -361,6 +361,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           columns={[
             { title: 'Số Điện Thoại', field: 'phoneNumber' },
             { title: 'Quà', field: 'gift' },
+            { title: 'Chỉ nhận quà', field: 'giftOnly' },
             { title: 'Thời Gian', field: 'date' }
           ]}
           data={giftResults}

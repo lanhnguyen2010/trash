@@ -77,7 +77,7 @@ const GiftOnlyContainer = compose(
   lifecycle({
     componentWillMount() {
       const {history, isLoggedIn, saveGiftResult} = this.props;
-      saveGiftResult();
+      saveGiftResult(true);
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }
