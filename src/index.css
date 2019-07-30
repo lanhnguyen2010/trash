@@ -12,6 +12,27 @@ code {
     monospace;
 }
 
+@font-face {
+    font-family: 'FSAlbertPro';
+    src: local('FSAlbertPro'),
+    local('FSAlbertPro-Regular'),
+    url('./font/FS_Albert_Pro.otf') format('opentype')
+}
+
+@font-face {
+    font-family: 'FSAlbertProBold';
+    src: local('FSAlbertPro'),
+    local('FSAlbertPro-Bold'),
+    url('./font/FS_Albert_Pro-Bold.otf') format('opentype')
+}
+
+@font-face {
+    font-family: 'FSAlbertProExtraBold';
+    src: local('FSAlbertPro'),
+    local('FSAlbertPro-Bold'),
+    url('./font/FS_Albert_Pro-ExtraBold.otf') format('opentype')
+}
+
 html, body, #app, #app > div, body > #root {
     height: 100%;
     width: 100%;
@@ -23,7 +44,7 @@ html, body, #app, #app > div, body > #root {
 }
 
 .grid2x2 {
-    min-height: 80%;
+    min-height: 75%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -42,21 +63,30 @@ html, body, #app, #app > div, body > #root {
 }
 
 .info input {
-    border-radius: 34px !important;
+    border-radius: 50px !important;
     background: rgba(207, 0, 0, 0.5) !important;
     border-color: rgba(207, 0, 0, 1) !important;
     color: white !important;
-    font-size: 22px !important;
+    font-size:2.5vh !important;
+    padding: 2vh;
+    font-family: "FSAlbertProBold";
 }
 
 .otp input {
-    border-radius: 15px !important;
+    border-radius: 20px !important;
     background: transparent !important;
     border-color: white !important;
     color: white !important;
-    font-size: 75px !important;
+    font-size: 7vh !important;
     text-align: center;
     border-width: 2px;
+    padding: 1.5vh;
+    font-family: "FSAlbertProBold" !important;
+    margin: 1vh !important;
+}
+
+.otp {
+    margin-top: 5vh;
 }
 
 fieldset {
@@ -75,10 +105,21 @@ fieldset {
 
 .info .MuiSelect-outlined {
     color: white !important;
-    font-size: 22px !important;
-    border-radius: 34px !important;
+    font-size: 2.5vh !important;
+    border-radius: 50px !important;
     background: rgba(207, 0, 0, 0.5) !important;
     border-color: rgba(207, 0, 0, 1) !important;
+    padding: 2vh;
+    font-family: "FSAlbertProBold";
+
+}
+
+.info .MuiSelect-icon {
+    top: calc(50% - 35px);
+}
+
+.info .MuiSvgIcon-root{
+    display: none;
 }
 
 .info .MuiOutlinedInput-input {
@@ -103,23 +144,3 @@ input[type="date"]:before {
     margin-right: 0.5em;
 }
 
-@font-face {
-    font-family: 'FSAlbertPro';
-    src: local('FSAlbertPro'),
-    local('FSAlbertPro-Regular'),
-    url('./font/FS_Albert_Pro.otf') format('opentype')
-}
-
-@font-face {
-    font-family: 'FSAlbertProBold';
-    src: local('FSAlbertPro'),
-    local('FSAlbertPro-Bold'),
-    url('./font/FS_Albert_Pro-Bold.otf') format('opentype')
-}
-
-@font-face {
-    font-family: 'FSAlbertProExtraBold';
-    src: local('FSAlbertPro'),
-    local('FSAlbertPro-Bold'),
-    url('./font/FS_Albert_Pro-ExtraBold.otf') format('opentype')
-}

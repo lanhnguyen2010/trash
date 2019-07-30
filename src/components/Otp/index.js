@@ -9,6 +9,7 @@ import {withRouter} from 'react-router-dom'
 
 import {Button, MenuItem, OutlinedInput, Select, TextField, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText} from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
+import commonStyles, {fonts} from "../common"
 
 
 const styles = {
@@ -27,16 +28,23 @@ const styles = {
   },
 
   textField: {
+    ...commonStyles.textNormal_bold,
+    textAlign: 'left',
     marginTop: 30,
-    minWidth: 350,
-    minHeight: 70
+    minWidth: '70%',
+    minHeight: 70,
+    borderColor: 'rgba(255, 255, 255, 0.5)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderRadius: 100
   },
 
   text: {
-    fontSize: 33,
+    ...commonStyles.textNormal_bold,
+    fontSize: '3vh',
     color: 'white',
     width: '70%',
-    paddingTop: 50,
+    paddingTop: "10vh",
     textAlign: 'center',
     paddingLeft: '15%'
   },
@@ -127,7 +135,7 @@ const OtpForm = ({history, doOtp, city}) => {
   }
 
   return (
-    <div style={styles.main}>
+    <div style={{...commonStyles.container, ...styles.main}}>
       <div style={styles.text}> Vui lòng nhập thông tin cá nhân để nhận thông tin về chương trình</div>
       <div style={styles.container}>
         <TextField
@@ -175,7 +183,7 @@ const OtpForm = ({history, doOtp, city}) => {
           inputRef={input => emailRef = input}
         />
         <Button onClick={handleClickOpen}
-                style={styles.btnOtp}>Tiếp Tục</Button>
+                style={{...commonStyles.bottomButton, marginTop: '20vh'}}>Tiếp Tục</Button>
       </div>
       <Dialog
         open={open}

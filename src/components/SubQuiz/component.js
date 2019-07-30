@@ -18,14 +18,16 @@ const styles = {
 
   questionLabel: {
     ...commonStyles.textStyleBig_bold,
-    fontSize: '6vh',
-    textAlign: 'left'
+    fontSize: '6.5vh',
+    textAlign: 'left',
+    marginTop: 10,
+    marginBottom: 10
   },
 
   questionContent: {
     ...commonStyles.textStyleBig_bold,
-    fontSize: '3vh',
-    textAlign: 'left'
+    fontSize: '3.5vh',
+    textAlign: 'left',
   },
 
   answer: {
@@ -38,13 +40,14 @@ const styles = {
     fontFamily: fonts.regular,
     borderRadius: 100,
     background: 'rgba(207, 0, 0, 0.5)',
-    borderColor: 'rgba(255, 255, 255, 0.5)',
+
     color: 'white',
     fontSize: '3vh',
     textAlign: 'left',
+    borderColor: 'rgba(255, 255, 255, 0.5)',
     borderWidth: 1,
     borderStyle: 'solid',
-    padding: 15,
+    padding: '2vh',
     marginTop: 20
   },
 
@@ -57,7 +60,7 @@ const styles = {
     textAlign: 'left',
     borderWidth: 2,
     borderStyle: 'solid',
-    padding: 15,
+    padding: '2vh',
     marginTop: 20
   },
 
@@ -70,7 +73,7 @@ const styles = {
     textAlign: 'left',
     borderWidth: 2,
     borderStyle: 'solid',
-    padding: 15,
+    padding: '2vh',
     marginTop: 20
   },
 
@@ -130,14 +133,17 @@ const Result = ({history, answerResult, question}) => (
   <div style={getStyle(question.label)}>\
     <div style={styles.questionTitle}>
       <div style={styles.questionLabel}>
-        {answerResult=="correct" ? "Bạn đã chọn chính xác" : "Câu trả lời chưa đúng"}
+        {answerResult == "correct" ? "Bạn đã chọn chính xác" : "Câu trả lời chưa đúng"}
       </div>
 
       <div style={styles.questionContent}>
         Cái giá thật sự phải trả cho việc sử dụng nhựa thật sự đắt hơn chúng ta biết đấy.
       </div>
     </div>
-    <Button style={commonStyles.bottomButton} onClick={() => history.push(Routes.MORE_INFO)}>Tìm hiểu thêm về cái giá thật sự của nhựa</Button>
+    <div style={commonStyles.footer}>
+      <Button style={commonStyles.bottomButton} onClick={() => history.push(Routes.MORE_INFO)}>Tìm hiểu thêm về cái giá
+        thật sự của nhựa</Button>
+    </div>
   </div>
 );
 
@@ -158,7 +164,7 @@ const Question = ({btnState, toogleState, selectedTrash, question}) => {
         <div style={styles.questionContent}>cái giá thực sự
           của {question.label == "món đồ nhựa" ? "các" : "một"}</div>
         <div style={styles.questionLabel}> {question.label}</div>
-        <div style={styles.questionContent}> này là bao nhiêu?</div>
+        <div style={styles.questionContent}>là bao nhiêu?</div>
       </div>
       <div style={styles.answer}>
         <div style={QuestionStyle[btnState[0]]}
