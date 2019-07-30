@@ -39,11 +39,10 @@ const styles = {
     ...commonStyles.textNormal_bold,
     fontFamily: fonts.regular,
     borderRadius: 100,
-    background: 'rgba(207, 0, 0, 0.5)',
-
     color: 'white',
     fontSize: '3vh',
     textAlign: 'left',
+    background: 'rgba(207, 0, 0, 0.5)',
     borderColor: 'rgba(255, 255, 255, 0.5)',
     borderWidth: 1,
     borderStyle: 'solid',

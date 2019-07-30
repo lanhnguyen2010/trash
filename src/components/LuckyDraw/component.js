@@ -23,14 +23,15 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    minHeight:'100%'
+    justifyContent: 'center',
   },
 };
 
 
 const LoadingSpinner = ({isLoading, onClickSpinner}) => (
-  <div className="container" style={{...commonStyles.container}}>
-    <div style={commonStyles.topText}>CẢM ƠN BẠN ĐÃ GIẢM DÙNG ĐỒ NHỰA VÌ SỨC KHỎE NGƯỜI THÂN YÊU</div>
+  <div className="container" >
+    <div style={{...commonStyles.textNormal_bold, fontSize:'3.5vh', width:'80%', margin: 'auto'}}>CẢM ƠN BẠN ĐÃ GIẢM DÙNG ĐỒ NHỰA VÌ SỨC KHỎE NGƯỜI THÂN YÊU</div>
+
     <img className={isLoading ? "loading" : ""} style={styles.image}
          src="./images/loading.png"
          onClick={onClickSpinner}
@@ -39,7 +40,7 @@ const LoadingSpinner = ({isLoading, onClickSpinner}) => (
 );
 
 const LuckyDraw = ({isLoading, onClickSpinner}) => (
-  <div className="container" style={{...commonStyles.container, ...styles.backGroundLucky}}>
+  <div className="container" style={{...commonStyles.container, ...styles.backGroundLucky, ...styles.container}}>
     <LoadingSpinner {...{isLoading, onClickSpinner}}/>
   </div>
 );
