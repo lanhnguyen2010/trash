@@ -22,7 +22,7 @@ const styles = {
     backgroundImage: "url('./images/result_background.png')",
   },
   imageResult:{
-    width: '40%',
+    width: '25%',
     paddingTop: '10%'
   },
   container: {
