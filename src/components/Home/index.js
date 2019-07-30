@@ -43,6 +43,13 @@ const styles = {
     zIndex: 100,
     top: 30,
     left: 30
+  },
+  label: {
+    position: "fixed",
+    zIndex: 100,
+    left: 0,
+    height: "22%",
+    width: "70%"
   }
 };
 
@@ -69,10 +76,18 @@ export default class Home extends Component {
                        infinite={true}
                        organicArrows={false}
                        ref={t => this.track = t}>
-          <div data-src='./images/home1.png'/>
-          <div data-src='./images/home2.png'/>
-          <div data-src='./images/home3.png'/>
-          <div data-src='./images/home4.png'/>
+          <div data-src='./images/home1.png'>
+            <img style={Object.assign({top: "25%"}, styles.label)} src="./images/cai_gia.png" alt="label"/>
+          </div>
+          <div data-src='./images/home2.png'>
+            <img style={Object.assign({top: "50%"}, styles.label)} src="./images/cai_gia.png" alt="label"/>
+          </div>
+          <div data-src='./images/home3.png'>
+            <img style={Object.assign({top: "25%"}, styles.label)} src="./images/cai_gia.png" alt="label"/>
+          </div>
+          <div data-src='./images/home4.png'>
+            <img style={Object.assign({top: "56%"}, styles.label)} src="./images/cai_gia.png" alt="label"/>
+          </div>
         </AwesomeSlider>
         <div style={commonStyles.footer}>
           <Button style={commonStyles.bottomButton}
