@@ -45,7 +45,8 @@ const commonStyle = {
     textTransform: "none",
     borderWidth: 1,
     borderColor: 'white',
-    borderStyle: 'solid'
+    borderStyle: 'solid',
+    fontFamily: fonts.bold
   },
   footer: {
     position: "fixed",

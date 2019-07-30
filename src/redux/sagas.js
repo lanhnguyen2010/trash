@@ -316,7 +316,7 @@ function* getAllQuizResults() {
   }
 }
 
-function* saveGiftResult() {
+function* saveGiftResult({isGiftOnly}) {
   console.log("saveGiftResu;t");
   const phoneNumber = yield select(selectors.phoneNumber);
   const selectedGift = yield select(selectors.selectedGift);
@@ -325,6 +325,7 @@ function* saveGiftResult() {
   console.log("selectedGid", selectedGift);
   yield call(firebaseService.database.create, "gifts/" + city + "/" + phoneNumber,
     {gift: selectedGift,
+      giftOnly: isGiftOnly,
     date: new Date().toLocaleString()});
 }
 
