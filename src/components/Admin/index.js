@@ -87,7 +87,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBalance, smsBalance, getAllOtps, otpList,
-                     city, updateOtpList, getAllPlayers, players, getAllQuizResults, quizResults, getAllGiftResults, giftResults}) => {
+                     city, updateOtpList, getAllPlayers, players, getAllQuizResults, quizResults, getAllGiftResults, giftResults,
+                     updateIsLoggedIn}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -136,6 +137,10 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
     if (newValue === 6){
       getAllGiftResults();
     }
+    if (newValue === 7){
+      updateIsLoggedIn(false);
+      history.push(ROUTES.LOG_IN);
+    }
   }
 
   return (
@@ -149,6 +154,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           <Tab label="OTP" {...a11yProps(4)} />
           <Tab label="Quiz Results" {...a11yProps(5)} />
           <Tab label="Gift Results" {...a11yProps(6)} />
+          <Tab label="Log Out" {...a11yProps(7)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -386,7 +392,9 @@ const AdminContainer = compose(
       updateOtpList: actions.updateOtpList,
       getAllPlayers: actions.getAllPlayers,
       getAllQuizResults: actions.getAllQuizResults,
-      getAllGiftResults: actions.getAllGiftResults
+      getAllGiftResults: actions.getAllGiftResults,
+      updateIsLoggedIn: actions.updateIsLoggedIn
+
     }
   ),
   lifecycle({
