@@ -38,13 +38,15 @@ const styles = {
   },
   textTitle: {
     fontSize: '3vh',
-    marginBottom: '5vh'
+    marginBottom: '5vh',
+    width: '80%'
 
   },
   textThankYou: {
     fontSize: '3vh',
     fontFamily: fonts.regular,
-    marginTop: '5vh'
+    marginTop: '5vh',
+    width: '80%'
   }
 };
 
@@ -58,7 +60,7 @@ const GiftOnlyView = ({selectedGift, history, endFlow}) => (
        style={{...commonStyles.container, ...styles.container}}>
     <div style={{...commonStyles.textNormal_bold,...styles.textTitle}}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC MÓN QUÀ MAY MẮN TỪ PRUDENTIAL</div>
 
-    <img src={Const.GiftResource[selectedGift].image} style={styles.imageResult}/>
+    <img className="resultImg" src={"./images/binhnuoc.png"} style={styles.imageResult}/>
 
     <div style={{...commonStyles.textNormal_bold,...styles.textThankYou}}>CẢM ƠN BẠN ĐÃ THAM GIA CHƯƠNG TRÌNH</div>
     <Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
