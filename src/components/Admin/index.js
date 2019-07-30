@@ -46,7 +46,9 @@ const styles = {
   },
 
   btnLogin: {
-    marginTop: 30
+    marginTop: 30,
+    color:'white',
+    backgroundColor: '#5b9344'
   }
 };
 
@@ -285,7 +287,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
       </TabPanel>
 
       <TabPanel index={3} value={value}>
-        <Button onClick={()=> getAllPlayers()}>Refresh</Button>
+        <Button onClick={()=> getAllPlayers()}><u>Làm mới</u></Button>
         {players &&
         <MaterialTable
           title="Người chơi"
@@ -315,7 +317,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
         <Button onClick={() => {
           getAllOtps(searchPhoneNumberRef.value);
         }}
-                style={styles.btnOtp}>Tìm Kiếm</Button>
+                style={styles.btnLogin}>Tìm Kiếm</Button>
         </div>
         <Table className={classes.table}>
           <TableHead>
@@ -336,7 +338,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
         </Table>
       </TabPanel>
       <TabPanel index={5} value={value}>
-        <Button onClick={()=> getAllQuizResults()}>Refresh</Button>
+        <Button onClick={()=> getAllQuizResults()}><u>Làm mới</u></Button>
         {quizResults?
         <MaterialTable
           title="Người chơi"
@@ -354,7 +356,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
         /> :''}
       </TabPanel>
       <TabPanel index={6} value={value}>
-        <Button onClick={()=> getAllGiftResults()}>Refresh</Button>
+        <Button onClick={()=> getAllGiftResults()}><u>Làm mới</u></Button>
         {giftResults &&
         <MaterialTable
           title="Quà Đã Trao"
