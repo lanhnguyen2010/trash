@@ -57,7 +57,7 @@ const styles = {
   }
 };
 
-const MoreInfo = ({history}) => {
+const MoreInfo = ({history, endFlow}) => {
   let trackRef;
   let btnRef;
   let logoRef;
@@ -70,6 +70,7 @@ const MoreInfo = ({history}) => {
 
     if (trackRef.index == 4) {
       setTimeout(function () {
+        endFlow();
         history.push(ROUTES.HOME)
       }.bind(this), 3000)
     }
@@ -127,7 +128,9 @@ const MoreInfo = ({history}) => {
 const MoreInfoContainer = compose(
   connect(
     selectors.root,
-    {}
+    {
+      endFlow: actions.endFlow
+    }
   ),
   lifecycle({
     componentWillMount() {

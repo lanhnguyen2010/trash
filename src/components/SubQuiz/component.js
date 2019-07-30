@@ -137,7 +137,7 @@ const Result = ({history, answerResult, question}) => (
         Cái giá thật sự phải trả cho việc sử dụng nhựa thật sự đắt hơn chúng ta biết đấy.
       </div>
     </div>
-    <Button style={commonStyles.button} onClick={() => history.push(Routes.MORE_INFO)}>Tìm hiểu thêm về cái giá thật sự của nhựa</Button>
+    <Button style={commonStyles.bottomButton} onClick={() => history.push(Routes.MORE_INFO)}>Tìm hiểu thêm về cái giá thật sự của nhựa</Button>
   </div>
 );
 
