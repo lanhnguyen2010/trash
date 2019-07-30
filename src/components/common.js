@@ -41,7 +41,7 @@ const commonStyle = {
     color: 'white',
     minWidth: 200,
     minHeight: 50,
-    marginTop: 30,
+    marginTop: '5vh',
     textTransform: "none",
     borderWidth: 1,
     borderColor: 'white',
