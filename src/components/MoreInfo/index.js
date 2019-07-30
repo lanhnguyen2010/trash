@@ -13,15 +13,6 @@ import commonStyle from "../common"
 
 
 const styles = {
-  footer: {
-    position: "fixed",
-    bottom: 0,
-    right: 0,
-    zIndex: 100,
-    display: "flex",
-    justifyContent: "center",
-    width: "100%",
-  },
   text: {
     color: "#D20C08",
     fontSize: 25,
@@ -50,18 +41,7 @@ const styles = {
     letterSpacing: 1,
     textAlign: 'center'
   },
-  button: {
-    position: 'fixed',
-    zIndex: 100,
-    bottom: 0,
-    display: 'flex',
-    alignSelf: "center",
-    backgroundColor: '#D20C08',
-    fontSize: 25,
-    borderRadius: 50,
-    marginBottom: '5%',
-    width: '70%',
-  },
+
   logo: {
     position: "fixed",
     zIndex: 100,
@@ -109,12 +89,12 @@ const MoreInfo = ({history}) => {
         <div data-src='./images/home4.png'/>
 
         <div data-src='./images/home2.png'>
-          <div style={{...styles.footer, flexDirection: 'row', background: 'white'}}>
+          <div style={{...commonStyle.footer, flexDirection: 'row', background: 'white'}}>
             <div style={{display: 'flex', flexDirection: 'column', width:"70%", padding: 30}}>
               <div style={styles.textBlack}>Chung Tay Cùng Prudential Cam Kết</div>
               <div style={styles.text}>Chọn Giảm Dùng Nhựa Vì Sức Khoẻ Của Những Người Thân Yêu</div>
 
-              <Button style={{...commonStyle.button, ...styles.pruButton }} onClick={() => routeChange()}>Tiếp tục</Button>
+              <Button style={{...commonStyle.bottomButton, ...styles.pruButton }} onClick={() => routeChange()}>Tiếp tục</Button>
             </div>
 
             <img style={styles.pruImage} src="./images/logo.svg"/>
@@ -132,15 +112,12 @@ const MoreInfo = ({history}) => {
 
       </AwesomeSlider>
 
-      <div style={styles.footer}>
-        <Button style={{...styles.button}}
-                variant="contained"
-                color="primary"
-                size="large"
+      <div style={commonStyle.footer}>
+        <Button style={commonStyle.bottomButton}
                 onClick={() => routeChange()}
                 ref={t => btnRef = t}
         >
-          Tìm hiểu thêm</Button>
+          Tiếp tục</Button>
       </div>
 
     </div>

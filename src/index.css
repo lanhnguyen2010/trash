@@ -23,75 +23,68 @@ html, body, #app, #app > div, body > #root {
 }
 
 .grid2x2 {
-    position: relative;
-    height: 70%;
+    min-height: 80%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-}
-.grid2x2 > div {
-    display: flex;
-    flex-basis: calc(50% - 40px);
-    justify-content: center;
-    flex-direction: column;
-    padding-top: 30px;
-}
-.grid2x2 > div > div {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
+    padding: 20px;
 }
 
 .box {
-    position: relative;
-    height: 40%;
-    padding-left: 25px;
-    align-items: center;
- }
+    margin: 20px;
+    display: flex;
+    flex-basis: calc(50% - 84px);
+    flex-direction: column;
+}
 
 .loading {
     animation: spin 1200ms infinite linear;
 }
 
-.info input{
+.info input {
     border-radius: 34px !important;
     background: rgba(207, 0, 0, 0.5) !important;
-    border-color:  rgba(207, 0, 0, 1) !important;
+    border-color: rgba(207, 0, 0, 1) !important;
     color: white !important;
     font-size: 22px !important;
 }
 
-.otp input{
+.otp input {
     border-radius: 15px !important;
     background: transparent !important;
-    border-color:  white !important;
+    border-color: white !important;
     color: white !important;
     font-size: 75px !important;
     text-align: center;
     border-width: 2px;
 }
 
-fieldset{
+fieldset {
     border-radius: 34px !important;
-    border-color:  rgba(207, 0, 0, 0) !important;
+    border-color: rgba(207, 0, 0, 0) !important;
 }
 
 @keyframes spin {
-    from {transform:rotate(0deg);}
-    to {transform:rotate(360deg);}
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-.info .MuiSelect-outlined{
+.info .MuiSelect-outlined {
     color: white !important;
     font-size: 22px !important;
     border-radius: 34px !important;
     background: rgba(207, 0, 0, 0.5) !important;
-    border-color:  rgba(207, 0, 0, 1) !important;
+    border-color: rgba(207, 0, 0, 1) !important;
 }
 
-.info .MuiOutlinedInput-input{
+.info .MuiOutlinedInput-input {
     color: white !important;
 }
+
 .info ::placeholder {
     color: white !important;
     opacity: 1 !important;
@@ -108,4 +101,25 @@ fieldset{
 input[type="date"]:before {
     content: attr(placeholder) !important;
     margin-right: 0.5em;
+}
+
+@font-face {
+    font-family: 'FSAlbertPro';
+    src: local('FSAlbertPro'),
+    local('FSAlbertPro-Regular'),
+    url('./font/FS_Albert_Pro.otf') format('opentype')
+}
+
+@font-face {
+    font-family: 'FSAlbertProBold';
+    src: local('FSAlbertPro'),
+    local('FSAlbertPro-Bold'),
+    url('./font/FS_Albert_Pro-Bold.otf') format('opentype')
+}
+
+@font-face {
+    font-family: 'FSAlbertProExtraBold';
+    src: local('FSAlbertPro'),
+    local('FSAlbertPro-Bold'),
+    url('./font/FS_Albert_Pro-ExtraBold.otf') format('opentype')
 }

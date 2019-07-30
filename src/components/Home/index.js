@@ -4,6 +4,7 @@ import * as ROUTES from "../../constants/routes";
 import {Button} from '@material-ui/core';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
+import commonStyles from "../common"
 
 
 const styles = {
@@ -16,7 +17,6 @@ const styles = {
     width: "100%",
     minHeight:'30%',
     maxHeight:'40%',
-    backgroundColor: "white",
     textAlign:"center"
   },
   text: {
@@ -74,13 +74,8 @@ export default class Home extends Component {
           <div data-src='./images/home3.png'/>
           <div data-src='./images/home4.png'/>
         </AwesomeSlider>
-        <div style={styles.footer}>
-          <div style={styles.text}>Cái giá thật sự <b>CỦA NHỰA</b> bạn chưa biết</div>
-
-          <Button style={styles.button}
-                  variant="contained"
-                  color="primary"
-                  size="large"
+        <div style={commonStyles.footer}>
+          <Button style={commonStyles.bottomButton}
                   onClick={() => this.routeChange()}>
             Tìm hiểu thêm</Button>
         </div>

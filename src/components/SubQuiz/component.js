@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 
 import * as Routes from "../../constants/routes"
-import commonStyles from "../common"
+import commonStyles, {fonts} from "../common"
 
 const styles = {
   questionTitle: {
@@ -17,12 +17,15 @@ const styles = {
   },
 
   questionLabel: {
+    ...commonStyles.textStyleBig_bold,
     fontSize: '6vh',
+    textAlign: 'left'
   },
 
   questionContent: {
+    ...commonStyles.textStyleBig_bold,
     fontSize: '3vh',
-    textAlign:'justify'
+    textAlign: 'left'
   },
 
   answer: {
@@ -31,6 +34,8 @@ const styles = {
   },
 
   baseAnswer: {
+    ...commonStyles.textNormal_bold,
+    fontFamily: fonts.regular,
     borderRadius: 100,
     background: 'rgba(207, 0, 0, 0.5)',
     borderColor: 'rgba(255, 255, 255, 0.5)',

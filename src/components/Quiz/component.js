@@ -10,26 +10,32 @@ import commonStyles from '../common'
 
 const styles = {
   questionTitle: {
-    fontSize: 34,
-    justifyContent: "center",
-    color: 'white',
-    width: '80%',
+    ...commonStyles.textStyleBig_bold,
+    width: '70%',
     margin: 'auto'
   },
 
   activeAnswer: {
-    border: 1,
+    borderWidth: 1,
+    borderStyle: "solid",
     borderColor: 'white',
-    borderRadius: 15
+    borderRadius: 15,
+    padding: 20
   },
 
-  passiveAnswer: {},
+  passiveAnswer: {
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: 'white',
+    borderRadius: 15,
+    padding: 20
+  },
 
   questionSection: {
     textAlign: 'center',
     backgroundSize: "cover",
-    margin:'auto',
-    paddingTop: 100
+    display: 'flex',
+    flexDirection: 'column'
   },
   container: {
     backgroundRepeat: 'no-repeat',
@@ -41,16 +47,17 @@ const styles = {
     textAlign: 'center'
   },
 
-  background:{
-    backgroundImage: "url('./images/luuH.png')"
+  background: {
+    backgroundImage: "url('./images/quiz/quiz_background.png')"
   },
 
   image: {
-    position: "relative",
-    width: "50%",
-    height: "50%",
+    backgroundPosition: '50% 50%',
+    backgroundSize: 'contain',
+    height: '70%',
+    backgroundRepeat: 'no-repeat',
   },
-  reminder:{
+  reminder: {
     position: "absolute",
     left: 25,
     bottom: 25,
@@ -58,14 +65,14 @@ const styles = {
     fontWeight: "bold",
   },
 
-  label:{
+  label: {
+    ...commonStyles.textNormal_bold,
     bottom: 0,
-    fontWeight: "bold",
-    fontSize: 20,
-    color: "white"
+    marginTop: 20,
+    textTransform: "uppercase"
   },
 
-  label4:{
+  label4: {
     bottom: 0,
     fontWeight: "bold",
     fontSize: 17,
@@ -74,12 +81,11 @@ const styles = {
     height: '100%'
   },
   intro: {
+    ...commonStyles.textStyleBig_bold,
     width: '70%',
-    textAlign: 'center',
-    fontSize: 25,
-    color:'white',
-    margin:'auto',
-    paddingTop: '30%'
+    color: 'white',
+    margin: 'auto',
+    paddingTop: '30%',
   },
   footer: {
     bottom: 0,
@@ -89,36 +95,25 @@ const styles = {
     justifyContent: "center",
     width: "100%",
     height: "30vh",
-  },
-  button: {
-    position:'fixed',
-    bottom:'5%',
-    alignSelf: "center",
-    backgroundColor: '#D20C08',
-    fontSize: 20,
-    width: "70%",
-    borderRadius: "50px",
-    left: '15%'
   }
 };
 
 const Quiz = ({render, btnState, toogleState, updateRender}) => (
-    <div className="container-fuild" style={{...commonStyles.container, ... styles.background}}>
+    <div className="container" style={{...commonStyles.container, ...styles.background, display: 'flex'}}>
       {render ? <Question {...{btnState, toogleState}}/> : <Intro {...{updateRender}}/>}
     </div>
   )
 ;
 
 const Intro = ({updateRender}) => (
-    <div style={styles.container}>
-      <div style={styles.intro}>NÀO CÙNG BỎ VÀO MÁY ĐỒ DÙNG NHỰA BẠN ĐANG CÓ</div>
-      <Button style={styles.button}
-                                          variant="contained"
-                                          color="primary"
-                                          size="large"
-      onClick={()=> updateRender(true)}>
+  <div style={styles.container}>
+    <div style={styles.intro}>NÀO CÙNG BỎ VÀO MÁY ĐỒ DÙNG NHỰA BẠN ĐANG CÓ</div>
+    <div style={commonStyles.footer}>
+      <Button style={commonStyles.bottomButton}
+              onClick={() => updateRender(true)}>
         Bạn đã sẵn sàng</Button>
     </div>
+  </div>
 
 );
 
@@ -128,21 +123,25 @@ const Question = ({btnState, toogleState}) => (
     <div style={styles.questionTitle}>Đồ nhựa mà bạn vừa bỏ vào máy là gì trong những vật sau</div>
 
     <div className="grid2x2">
-      <div className="box" style={btnState[0] ? styles.activeAnswer : styles.passiveAnswer} onClick={() => toogleState(0)}>
-        <img src="./images/chai.svg" alt="chai nhua" style={styles.image}/>
+      <div className="box" style={btnState[0] ? styles.activeAnswer : styles.passiveAnswer}
+           onClick={() => toogleState(0)}>
+        <div style={{...styles.image, backgroundImage: "url('./images/quiz/chainhua.png')"}}/>
         <div style={styles.label}>Chai nhựa</div>
       </div>
-      <div className="box" style={btnState[1] ? styles.activeAnswer : styles.passiveAnswer} onClick={() => toogleState(1)}>
-        <img src="./images/ly.svg" alt="ly nhua" style={styles.image}/>
+      <div className="box" style={btnState[1] ? styles.activeAnswer : styles.passiveAnswer}
+           onClick={() => toogleState(1)}>
+        <div style={{...styles.image, backgroundImage: "url('./images/quiz/lynhua.png')"}}/>
         <div style={styles.label}>Ly nhựa</div>
       </div>
-      <div className="box" style={btnState[2] ? styles.activeAnswer : styles.passiveAnswer} onClick={() => toogleState(2)}>
-        <img src="./images/hop.svg" alt="hop nhua" style={styles.image}/>
+      <div className="box" style={btnState[2] ? styles.activeAnswer : styles.passiveAnswer}
+           onClick={() => toogleState(2)}>
+        <div style={{...styles.image, backgroundImage: "url('./images/quiz/hopnhua.png')"}}/>
         <div style={styles.label}>Hộp nhựa</div>
       </div>
-      <div className="box" style={btnState[3] ? styles.activeAnswer : styles.passiveAnswer} onClick={() => toogleState(3)}>
-        <img src="./images/muong_nia.svg" alt="muong nia" style={styles.image}/>
-        <div style={styles.label4}>Các đồ nhựa khác (Muỗng nĩa, ống hút, túi ni lông,...)</div>
+      <div className="box" style={btnState[3] ? styles.activeAnswer : styles.passiveAnswer}
+           onClick={() => toogleState(3)}>
+        <div style={{...styles.image, backgroundImage: "url('./images/quiz/other.png')"}}/>
+        <div style={styles.label}>Các đồ nhựa khác (Muỗng nĩa, ống hút, túi ni lông,...)</div>
       </div>
     </div>
   </div>
