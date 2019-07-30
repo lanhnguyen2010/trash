@@ -59,7 +59,41 @@ html, body, #app, #app > div, body > #root {
 }
 
 .loading {
-    animation: spin 1200ms infinite linear;
+    transition: transform 4s;
+    transition-timing-function: ease-out;
+}
+/*0+360*/
+.loading-1 {
+    transform: rotate(720deg);
+}
+
+.loading-2 {
+    transform: rotate(756deg);
+}
+
+.loading-3 {
+    transform: rotate(792deg);
+}
+.loading-4 {
+    transform: rotate(828deg);
+}
+.loading-5 {
+    transform: rotate(864deg);
+}
+.loading-6 {
+    transform: rotate(900deg);
+}
+.loading-7 {
+    transform: rotate(936deg);
+}
+.loading-8 {
+    transform: rotate(972deg);
+}
+.loading-9 {
+    transform: rotate(1008deg);
+}
+.loading-10 {
+    transform: rotate(1044deg);
 }
 
 .info input {

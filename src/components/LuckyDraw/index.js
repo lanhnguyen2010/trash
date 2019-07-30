@@ -5,6 +5,8 @@ import {selectors, actions} from "../../redux";
 import {lifecycle} from "recompose";
 import LuckyDraw from "./component"
 import * as ROUTES from "../../constants/routes";
+import * as Const from "../../constants/Const";
+import {selectedGift} from "../../redux/selectors";
 
 
 const LuckyDrawContainer = compose(
@@ -17,7 +19,7 @@ const LuckyDrawContainer = compose(
   ),
   lifecycle({
     componentWillMount() {
-      const {history, isLoggedIn} = this.props;
+      const {history, isLoggedIn, selectedGift} = this.props;
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }
@@ -26,19 +28,17 @@ const LuckyDrawContainer = compose(
 
       const { getRandomGift, history } = this.props;
 
+      getRandomGift();
+
       const initState = {
         isLoading: false, onClickSpinner: () => {
           this.setState({
-            isLoading: true, onClickSpinner: () => {
-            }
+            ...this.props.state,isLoading: true
           });
 
           setTimeout(function () {
-            this.setState({isLoading: false});
-            getRandomGift();
             history.push(ROUTES.GIFT_RESULT)
-
-          }.bind(this), 3000)
+          }.bind(this), 7000)
 
         }
       };
