@@ -13,12 +13,6 @@ import commonStyle, {fonts} from "../common"
 
 
 const styles = {
-  logo: {
-    position: "fixed",
-    zIndex: 100,
-    top: 30,
-    left: 30
-  },
   pruImage: {
     width: '33.3%'
   },
@@ -68,7 +62,6 @@ const MoreInfo = ({history, endFlow}) => {
     }
     if (trackRef.index >= 3) {
       btnDoneRef.style.display = 'none';
-      logoRef.style.display = 'none'
     }
 
     if (trackRef.index == 4) {
@@ -81,7 +74,6 @@ const MoreInfo = ({history, endFlow}) => {
 
   return (
     <div className="container">
-      <img src="./images/logo.svg" alt="prudential logo" style={styles.logo} ref={t => logoRef = t}/>
       <AwesomeSlider style={{width: '100%', height: '100%', position: 'absolute'}}
                      bullets={false}
                      organicArrows={false}
@@ -89,19 +81,19 @@ const MoreInfo = ({history, endFlow}) => {
        
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/home1.png')",
+          backgroundImage: "url('./images/moreInfo1.jpg')",
         }}/>
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/home2.png')",
+          backgroundImage: "url('./images/moreInfo2.jpg')",
         }}/>
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/home3.png')",
+          backgroundImage: "url('./images/moreInfo3.jpg')",
         }}/>
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/home4.png')",
+          backgroundImage: "url('./images/moreInfo4.png')",
         }}/>
 
         <div style={{

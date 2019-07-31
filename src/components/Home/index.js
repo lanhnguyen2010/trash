@@ -21,7 +21,6 @@ const styles = {
   },
   text: {
     position:"relative",
-    color: "#BA0000",
     fontSize: 35,
     textAlign:"center",
     width: "74%",
@@ -92,7 +91,7 @@ export default class Home extends Component {
         <div style={commonStyles.footer}>
           <Button style={commonStyles.bottomButton}
                   onClick={() => this.routeChange()}>
-            Tìm hiểu thêm</Button>
+            Tìm hiểu tại đây</Button>
         </div>
       </div>
     );

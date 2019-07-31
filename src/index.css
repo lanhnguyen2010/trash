@@ -98,9 +98,8 @@ html, body, #app, #app > div, body > #root {
 
 .info input {
     border-radius: 50px !important;
-    background: rgba(207, 0, 0, 0.5) !important;
-    border-color: rgba(207, 0, 0, 1) !important;
-    color: white !important;
+    border-color: #2b2b2b !important;
+    color: #2b2b2b !important;
     font-size:2.5vh !important;
     padding: 2vh;
     font-family: "FSAlbertProBold";
@@ -109,8 +108,8 @@ html, body, #app, #app > div, body > #root {
 .otp input {
     border-radius: 20px !important;
     background: transparent !important;
-    border-color: white !important;
-    color: white !important;
+    border-color: #2b2b2b !important;
+    color:  #2b2b2b !important;
     font-size: 7vh !important;
     text-align: center;
     border-width: 2px;
@@ -145,8 +144,7 @@ fieldset {
     color: white !important;
     font-size: 2.5vh !important;
     border-radius: 50px !important;
-    background: rgba(207, 0, 0, 0.5) !important;
-    border-color: rgba(207, 0, 0, 1) !important;
+    border-color: #2b2b2b !important;
     padding: 2vh;
     font-family: "FSAlbertProBold";
 
@@ -161,20 +159,20 @@ fieldset {
 }
 
 .info .MuiOutlinedInput-input {
-    color: white !important;
+    color: #2b2b2b !important;
 }
 
 .info ::placeholder {
-    color: white !important;
+    color: #2b2b2b!important;
     opacity: 1 !important;
 }
 
 ::-webkit-input-placeholder { /* Edge */
-    color: white;
+    color: #2b2b2b;
 }
 
 :-ms-input-placeholder { /* Internet Explorer */
-    color: white;
+    color: #2b2b2b;
 }
 
 input[type="date"]:before {

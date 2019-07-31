@@ -17,4 +17,5 @@ export const VERIFY_OTP = '/VerifyOtp';
 export const GIFT_RESULT = '/giftResult';
 export const GIFT_ONLY = '/giftOnly';
 export const GIFT_SELECT = '/giftSelect';
-export const GIFT_KATOOTH = '/giftKatooth';
+export const GIFT_KAHOOT = '/giftKahoot';
+export const THANK_YOU = '/thank-you'

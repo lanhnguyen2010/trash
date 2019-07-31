@@ -7,25 +7,19 @@ import {withStyles} from '@material-ui/styles';
 import ReactCodeInput from 'react-code-input';
 import {Button} from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
-import commonStyles, {fonts} from "../common"
+import commonStyles, {fonts, colors} from "../common"
 import * as Const from "../../constants/Const";
 
 
 const styles = {
-  main: {
-    backgroundImage: "url('./images/player_info_background.png')",
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    width: '100%',
-    height: '100%'
-  },
-
   container: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundImage: "url('./images/result_background.png')"
+    backgroundImage: "url('./images/result_background.jpg')",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
   },
 
   textField: {
@@ -49,29 +43,20 @@ const styles = {
     fontSize: '3vh',
     marginBottom: '5vh',
     width:'70%',
-    margin: 'auto'
-
+    margin: 'auto',
+    color: colors.pruRed
   },
-  textThankYou: {
-    ...commonStyles.textNormal_bold,
-    fontSize: '3vh',
-    fontFamily: fonts.regular,
-    marginTop: '5vh',
-    width:'70%',
-    margin: '10vh auto'
-  }
 };
 
 const finish = ({history, endFlow}) => {
   endFlow();
-  history.push(ROUTES.OTP);
+  history.push(ROUTES.THANK_YOU);
 };
 
 const GiftResultView = ({selectedGift, history, endFlow}) => (
   <div className="container"  style={{...commonStyles.container, ...styles.container}}>
     <div>
     <div style={styles.textTitle}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC MÓN QUÀ MAY MẮN TỪ PRUDENTIAL</div>
-    <div style={styles.textThankYou}>CẢM ƠN BẠN ĐÃ THAM GIA CHƯƠNG TRÌNH</div>
     <Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
     </div>
   </div>

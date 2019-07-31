@@ -13,6 +13,7 @@ const styles = {
     ...commonStyles.textStyleBig_bold,
     width: '70%',
     margin: 'auto',
+    color: "#BA0000",
     fontSize: '4vh'
   },
 
@@ -49,7 +50,7 @@ const styles = {
   },
 
   background: {
-    backgroundImage: "url('./images/quiz/quiz_background.png')"
+    backgroundImage: "url('./images/background_global.png')"
   },
 
   image: {
@@ -70,6 +71,7 @@ const styles = {
     ...commonStyles.textNormal_bold,
     bottom: 0,
     marginTop: 20,
+    color: "#2b2b2b",
     textTransform: "uppercase"
   },
 
@@ -83,20 +85,11 @@ const styles = {
   },
   intro: {
     ...commonStyles.textStyleBig_bold,
-    width: '70%',
-    color: 'white',
+    width: '75%',
+    color: "#BA0000",
     margin: 'auto',
     paddingTop: '30%',
   },
-  footer: {
-    bottom: 0,
-    right: 0,
-    zIndex: 100,
-    display: "flex",
-    justifyContent: "center",
-    width: "100%",
-    height: "30vh",
-  }
 };
 
 const Quiz = ({render, btnState, toogleState, updateRender}) => (
@@ -108,11 +101,11 @@ const Quiz = ({render, btnState, toogleState, updateRender}) => (
 
 const Intro = ({updateRender}) => (
   <div style={styles.container}>
-    <div style={styles.intro}>NÀO CÙNG BỎ VÀO MÁY ĐỒ DÙNG NHỰA BẠN ĐANG CÓ</div>
+    <div style={styles.intro}>HÃY BỎ ĐỒ NHỰA BẠN ĐANG CÓ VÀO MÁY</div>
     <div style={commonStyles.footer}>
       <Button style={commonStyles.bottomButton}
               onClick={() => updateRender(true)}>
-        Bạn đã sẵn sàng</Button>
+        Tiếp tục nào</Button>
     </div>
   </div>
 
@@ -121,7 +114,7 @@ const Intro = ({updateRender}) => (
 
 const Question = ({btnState, toogleState}) => (
   <div style={styles.questionSection}>
-    <div style={styles.questionTitle}>Đồ nhựa mà bạn vừa bỏ vào máy là gì trong những vật sau</div>
+    <div style={styles.questionTitle}>Hãy chọn loại đồ nhựa mà bạn vừa bỏ vào máy </div>
 
     <div className="grid2x2">
       <div className="box" style={btnState[0] ? styles.activeAnswer : styles.passiveAnswer}

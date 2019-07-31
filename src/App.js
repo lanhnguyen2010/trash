@@ -22,7 +22,8 @@ import SubQuiz from './components/SubQuiz';
 import GiftSelect from './components/GiftSelect';
 import GiftResult from './components/GiftResult';
 import GiftOnly from './components/GiftOnly';
-
+import GiftKahoot from './components/GiftKahoot';
+import ThankYou from './components/ThankYou';
 
 
 const AppStateLess = () => (
@@ -41,6 +42,8 @@ const AppStateLess = () => (
       <Route path={ROUTES.GIFT_SELECT} component={GiftSelect}/>
       <Route path={ROUTES.GIFT_RESULT} component={GiftResult}/>
       <Route path={ROUTES.GIFT_ONLY} component={GiftOnly}/>
+      <Route path={ROUTES.GIFT_KAHOOT} component={GiftKahoot}/>
+      <Route path={ROUTES.THANK_YOU} component={ThankYou}/>
     </Router>
   </Provider>
 );

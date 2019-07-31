@@ -7,18 +7,10 @@ import {withStyles} from '@material-ui/styles';
 import ReactCodeInput from 'react-code-input';
 import {Button} from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
-import commonStyles from "../common"
+import commonStyles, {colors} from "../common"
 
 
 const styles = {
-  main: {
-    backgroundImage: "url('./images/player_info_background.png')",
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    width: '100%',
-    height: '100%'
-  },
-
   container: {
     display: 'flex',
     alignItems: 'center',
@@ -34,17 +26,9 @@ const styles = {
   btnVerifyOtp: {
     marginTop: 30
   },
-  text: {
-    fontSize: 33,
-    color: 'white',
-    width: '70%',
-    paddingTop: 70,
-    textAlign: 'center',
-    marginBottom: 40
-  },
+
   button : {
-    background: 'rgba(207, 0, 0, 0.5)',
-    borderColor: 'rgba(255, 255, 255, 0.5)',
+    borderColor: "white",
     borderWidth: 1,
     borderStyle: 'solid',
     width: '70%'
@@ -52,6 +36,7 @@ const styles = {
   title: {
     width: '80%',
     fontSize: '4vh',
+    color: colors.pruRed,
     textTransform: 'uppercase'
   }
 };
@@ -60,7 +45,7 @@ const styles = {
 const GiftSelectView = ({history, updateSelectedGift}) => {
   return (
     <div className="container"  style={{...commonStyles.container,...styles.container,
-      backgroundImage: "url('./images/player_info_background.png')",
+      backgroundImage: "url('./images/background_global.png')",
 
     }}>
       <div style={{...commonStyles.textNormal_bold, ...styles.title}}>Bạn hãy chọn chương trình muốn tham gia</div>

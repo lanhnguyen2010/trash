@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Const from "../../constants/Const"
 import * as Routes from "../../constants/routes"
-import commonStyles from "../common"
+import commonStyles, {colors} from "../common"
 import {Button} from '@material-ui/core';
 import {selectedGift} from "../../redux/selectors";
 
@@ -17,11 +17,9 @@ const styles = {
     left: '69%'
   },
   backGroundLucky: {
-    backgroundImage: "url('./images/player_info_background.png')",
+    backgroundImage: "url('./images/background_global.png')",
   },
-  backGroundResult: {
-    backgroundImage: "url('./images/result_background.png')",
-  },
+
   imageResult: {
     width: '25%',
     paddingTop: '10%'
@@ -30,6 +28,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
+    textAlign: 'center',
     justifyContent: 'center',
   },
 
@@ -37,6 +36,13 @@ const styles = {
     transform: "rotate(864deg)",
     transition: 'transform 4s',
     transitionTimingFunction: 'ease-out'
+  },
+
+  text: {
+    fontSize: '3.5vh', 
+    width: '80%',
+    color: colors.pruRed,
+    margin: 'auto'
   }
 };
 
@@ -51,10 +57,10 @@ const calculateDegree = (selectedGift) => {
 
 const LoadingSpinner = ({isLoading, onClickSpinner, selectedGift}) => (
   <div className="container">
-    <div style={{...commonStyles.textNormal_bold, fontSize: '3.5vh', width: '80%', margin: 'auto'}}>CẢM ƠN BẠN ĐÃ GIẢM
-      DÙNG ĐỒ NHỰA VÌ SỨC KHỎE NGƯỜI THÂN YÊU
+    <div style={{...commonStyles.textNormal_bold, ...styles.text}}>Cùng Prudential sử dụng vật dụng thân thiện với môi trường nhé!
     </div>
-
+    <div style={{...commonStyles.textNormal_bold, ...styles.text, fontSize: '2.5vh', paddingTop: '4vh', color: colors.pruGrey}}>Nhấp vào vòng quay để nhận 01 món quà thay thế đồ nhựa hàng ngày
+    </div>
     <img className={isLoading? `loading loading-${calculateDegree(selectedGift)}` : ""} style={styles.image}
          src="./images/loading.png"
          onClick={onClickSpinner}

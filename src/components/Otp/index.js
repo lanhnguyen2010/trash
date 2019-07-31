@@ -9,12 +9,12 @@ import {withRouter} from 'react-router-dom'
 
 import {Button, MenuItem, OutlinedInput, Select, TextField, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText} from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
-import commonStyles, {fonts} from "../common"
+import commonStyles, {fonts, colors} from "../common"
 
 
 const styles = {
   main: {
-    backgroundImage: "url('./images/player_info_background.png')",
+    backgroundImage: "url('./images/background_global.png')",
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     width: '100%',
@@ -33,7 +33,7 @@ const styles = {
     marginTop: 30,
     minWidth: '70%',
     minHeight: 70,
-    borderColor: 'rgba(255, 255, 255, 0.5)',
+    borderColor: colors.pruGrey,
     borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 100
@@ -42,7 +42,7 @@ const styles = {
   text: {
     ...commonStyles.textNormal_bold,
     fontSize: '3vh',
-    color: 'white',
+    color: colors.pruRed,
     width: '70%',
     paddingTop: "10vh",
     textAlign: 'center',
@@ -52,7 +52,6 @@ const styles = {
   btnOtp: {
     position:"relative",
     alignSelf: "center",
-    backgroundColor: '#D20C08',
     fontSize: 18,
     borderRadius: "50px",
     color: 'white',
