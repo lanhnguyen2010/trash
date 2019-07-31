@@ -12,6 +12,7 @@ import {selectors, actions} from "../../redux";
 import {lifecycle} from "recompose";
 import {withStyles} from '@material-ui/styles';
 import MaterialTable from 'material-table'
+import * as CONST from '../../constants/Const'
 
 import {
   withRouter
@@ -149,7 +150,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           <Tab label="Gifts" {...a11yProps(0)} />
           <Tab label="Report" {...a11yProps(1)} />
           <Tab label="SMS" {...a11yProps(2)} />
-          <Tab label="Players" {...a11yProps(3)} />
+          <Tab label="Players(All)" {...a11yProps(3)} />
           <Tab label="OTP" {...a11yProps(4)} />
           <Tab label="Quiz Results" {...a11yProps(5)} />
           <Tab label="Gift Results" {...a11yProps(6)} />
@@ -285,16 +286,24 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
         <MaterialTable
           title="Người chơi"
           columns={[
+            { title: 'Giờ', field: 'timeOnly'},
+            { title: 'Ngày', field: 'dateOnly'},
             { title: 'Tên', field: 'name' },
             { title: 'Giới Tính', field: 'gender' },
             { title: 'Ngày Sinh', field: 'birthDay'},
-            { title: 'Email', field: 'email'},
             { title: 'Số Điện Thoại', field: 'phoneNumber'},
-            { title: 'Thời Gian', field: 'time'}
+            { title: 'Email', field: 'email'},
+            { title: 'OTP', field: 'otp'},
+            { title: 'Hoạt Động', field: 'giftTypeLabel'},
+            { title: CONST.GiftResource.onghutinox.label, field: CONST.ONG_HUT_INOX},
+            { title: CONST.GiftResource.lysu.label, field: CONST.LY_SU},
+            { title: CONST.GiftResource.binhthuytinh.label, field: CONST.BINH_THUY_TINH},
+            { title: CONST.GiftResource.tuivai.label, field: CONST.TUI_VAI}
           ]}
           data={players}
           options={{
-            exportButton: true
+            exportButton: true,
+            sorting: true
           }}
         />}
     </TabPanel>
