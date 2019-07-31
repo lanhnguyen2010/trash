@@ -3,6 +3,7 @@ import {call, put, takeEvery, takeLatest, select} from "redux-saga/effects";
 import {actions, Types} from "./actions";
 import firebaseService from "../components/Firebase";
 import * as ROUTES from "../constants/routes";
+import * as CONST from "../constants/Const";
 import React from 'react';
 import * as selectors from './selectors'
 
@@ -22,6 +23,12 @@ let fieldMap = {
   name: "Tên",
   birthDay: 'Ngày Sinh',
   gender: 'Giới Tính'
+}
+
+const giftType = {
+  kahoot: 'Game Kahoot',
+  giftOnly: 'Nhận Quà',
+  luckyDraw: 'Lucky Draw'
 }
 
 function* doLogin({navigation, email, password}) {
@@ -67,10 +74,6 @@ function shuffleArray(array) {
     array[i] = array[j];
     array[j] = temp;
   }
-}
-
-function* sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function* getRandomGift() {
@@ -289,17 +292,35 @@ function* getAllPlayers() {
   try {
     let city = yield select(selectors.city);
     const result = yield call(firebaseService.database.read, "players/" + city);
-
-    console.log("Get Players", result);
     let players = [];
-    for (let key in result) {
-      if (result.hasOwnProperty(key)) {
-        console.log(key + " -> " + result[key]);
-        let player = result[key];
-        players.push(player)
-      }
-    }
+
     console.log("date gifts: ", players);
+    yield call(getAllGiftResults);
+    let otps = yield call(firebaseService.database.read, "otps/" + city);
+
+    let giftResults = yield select(selectors.giftResults);
+    console.log("giftResults: ", players);
+
+    if(giftResults.length > 0){
+      giftResults.forEach(function(gift) {
+        let player = {...gift, ...result[gift.phoneNumber], otp: otps[gift.phoneNumber]};
+        let nameArr = player.date.split(', ');
+
+        player.dateOnly =  nameArr[0];
+        player.timeOnly =  nameArr[1];
+        player.giftTypeLabel = giftType[player.giftType];
+        player[CONST.ONG_HUT_INOX] = player.gift? (player.gift.includes(CONST.ONG_HUT_INOX)? 1 :'') :'';
+        player[CONST.BINH_THUY_TINH] = player.gift? (player.gift.includes(CONST.BINH_THUY_TINH)? 1 :'') :'';
+        player[CONST.LY_SU] = player.gift? (player.gift.includes(CONST.LY_SU)? 1 :'') :'';
+        player[CONST.TUI_VAI] = player.gift? (player.gift.includes(CONST.TUI_VAI)? 1 :'') :'';
+
+        players.push(player);
+      })
+    }
+
+    console.log("players: ", players)
+
+
     yield put(actions.updatePlayers(players));
   } catch (error) {
     console.log(error.message)

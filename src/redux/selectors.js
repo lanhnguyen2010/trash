@@ -37,4 +37,4 @@ const root = createStructuredSelector({
   isPhoneNumberExist
 });
 
-export {root, city, phoneNumber, inputData, selectedGift, isPhoneNumberExist};
+export {root, city, phoneNumber, inputData, selectedGift, isPhoneNumberExist, giftResults};

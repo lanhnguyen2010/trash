@@ -79,7 +79,7 @@ const GiftKatoothContainer = compose(
   lifecycle({
     componentWillMount() {
       const {history, isLoggedIn, saveGiftResult} = this.props;
-      saveGiftResult("katooth");
+      saveGiftResult("kahoot");
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }
