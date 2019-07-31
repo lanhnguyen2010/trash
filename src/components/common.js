@@ -11,6 +11,10 @@ const fonts = {
   bold: "FSAlbertProBold",
   extraBold: "FSAlbertProExtraBold"
 };
+const colors = {
+  pruRed: '#ED1B2E',
+  textGray: '#2b2b2b',
+};
 
 const commonStyle = {
   container : {
@@ -94,4 +98,4 @@ const commonStyle = {
 
 export default commonStyle;
 
-export {fonts}
+export {fonts,colors}
