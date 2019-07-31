@@ -19,16 +19,16 @@ const LuckyDrawContainer = compose(
   ),
   lifecycle({
     componentWillMount() {
-      const {history, isLoggedIn, selectedGift} = this.props;
+      const {history, isLoggedIn, selectedGift, getRandomGift} = this.props;
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
+      } else {
+        getRandomGift();
       }
     },
     componentDidMount() {
 
-      const { getRandomGift, history } = this.props;
-
-      getRandomGift();
+      const { history } = this.props;
 
       const initState = {
         isLoading: false, onClickSpinner: () => {

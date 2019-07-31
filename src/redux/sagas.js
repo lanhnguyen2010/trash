@@ -9,20 +9,21 @@ import * as selectors from './selectors'
 const SMS_API_KEY = "60F486560907DE73746D199F8EF80A";
 const SMS_SECRET_KEY = "4F784074A243ED85FBAB849CAA3BF5";
 const SMS_BRANDNAME = "QCAO_ONLINE";
-let sandbox=1
+let sandbox = 1
 
 function* loadData() {
   console.log("loadData");
   yield put(actions.updateData(3));
 }
 
-let fieldMap={
+let fieldMap = {
   phoneNumber: "Số Điện Thoại",
   email: "Email",
-  name:"Tên",
-  birthDay:'Ngày Sinh',
-  gender:'Giới Tính'
+  name: "Tên",
+  birthDay: 'Ngày Sinh',
+  gender: 'Giới Tính'
 }
+
 function* doLogin({navigation, email, password}) {
   try {
     const user = yield call(firebaseService.auth.signInWithEmailAndPassword, email, password);
@@ -77,7 +78,7 @@ function* getRandomGift() {
   console.log("city: ", city);
 
   let today = new Date();
-  let formattedDate = today.getDate() + "-" + (today.getMonth() + 1) +"-"+ today.getFullYear();
+  let formattedDate = today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
   console.log("date: ", formattedDate);
 
   const result = yield call(firebaseService.database.read, "booths/" + city + '/' + formattedDate);
@@ -91,9 +92,9 @@ function* getRandomGift() {
     binhthuytinh: 0,
   };
 
-  if(result){
+  if (result) {
     for (let key in result) {
-      if(result.hasOwnProperty(key)) {
+      if (result.hasOwnProperty(key)) {
         giftsQuantity = result[key];
       }
     }
@@ -110,7 +111,7 @@ function* getRandomGift() {
   console.log("shuffle buildGiftArray", buildGiftsArray);
   const randomIndex = Math.floor(Math.random() * (buildGiftsArray.length));
   const selectedGift = buildGiftsArray[randomIndex];
-  if(giftsQuantity[selectedGift] > 0){
+  if (giftsQuantity[selectedGift] > 0) {
     giftsQuantity[selectedGift]--;
   }
   yield call(firebaseService.database.create, "booths/" + city + '/' + formattedDate, giftsQuantity);
@@ -208,12 +209,12 @@ function* doOtp({navigation, data}) {
     for (let key in data) {
       if (data.hasOwnProperty(key)) {
         console.log(key + " -> " + data[key]);
-        if(!data[key]){
+        if (!data[key]) {
           invalidField.push(fieldMap[key]);
         }
       }
     }
-    if(invalidField.length > 0){
+    if (invalidField.length > 0) {
       window.alert("Vui lòng điền " + invalidField.join(', '));
     } else {
 
@@ -237,7 +238,7 @@ function* doOtp({navigation, data}) {
   }
 }
 
-function * resendOtp() {
+function* resendOtp() {
   const phoneNumber = yield select(selectors.phoneNumber);
 
   let otp = generateOTP();
@@ -326,11 +327,13 @@ function* getAllQuizResults() {
       if (result.hasOwnProperty(key)) {
         console.log(key + " -> " + result[key]);
 
-        quizes.push({label: result[key].label,
+        quizes.push({
+          label: result[key].label,
           answer1: result[key].answers['0'],
           answer2: result[key].answers['1'],
           answer3: result[key].answers['2'],
-          result: result[key].result})
+          result: result[key].result
+        })
       }
     }
     console.log("date quizes: ", quizes);
@@ -340,22 +343,24 @@ function* getAllQuizResults() {
   }
 }
 
-function* saveGiftResult({isGiftOnly}) {
-  console.log("saveGiftResu;t");
+function* saveGiftResult({giftType}) {
+  console.log("saveGiftResut");
   const phoneNumber = yield select(selectors.phoneNumber);
   const selectedGift = yield select(selectors.selectedGift);
   let city = yield select(selectors.city);
 
   console.log("selectedGid", selectedGift);
   yield call(firebaseService.database.create, "gifts/" + city + "/" + phoneNumber,
-    {gift: selectedGift,
-      giftOnly: isGiftOnly,
-    date: new Date().toLocaleString()});
+    {
+      gift: selectedGift,
+      giftType: giftType,
+      date: new Date().toLocaleString()
+    });
 }
 
 function* getAllGiftResults() {
   try {
-    let city = yield select(selectors.city)
+    let city = yield select(selectors.city);
     const result = yield call(firebaseService.database.read, "gifts/" + city);
 
     console.log("Get GiftsResults", result);
@@ -382,19 +387,19 @@ function* getAllGiftResults() {
   }
 }
 
-function* checkIsPhoneNumberExist({phoneNumber, data, history}){
+function* checkIsPhoneNumberExist({phoneNumber, data, history}) {
   try {
     let city = yield select(selectors.city);
     const result = yield call(firebaseService.database.read, 'gifts/' + city + '/' + phoneNumber);
 
     console.log("checkIsPhoneNumberExist: ", result);
 
-    if(!result) {
+    if (!result) {
       console.log("checkIsPhoneNumberExist history", history);
-      yield call(doOtp,{navigation: history, data: data});
+      yield call(doOtp, {navigation: history, data: data});
     }
 
-    yield put(actions.updateIsPhoneNumberExist(result? true: false));
+    yield put(actions.updateIsPhoneNumberExist(result ? true : false));
     // else{
     //   setErrorMessage("Số Điện Thoại Đã Tồn Tại");
     //   setOpen(true);
@@ -409,6 +414,7 @@ function* checkIsPhoneNumberExist({phoneNumber, data, history}){
     console.log(error.message)
   }
 }
+
 function* rootSaga() {
   yield takeEvery(Types.DO_LOGIN, doLogin);
   yield takeEvery(Types.LOAD_DATA, loadData);

@@ -37,7 +37,7 @@ const { Types, Creators: actions } = createActions(
     saveQuizResult: ["question", "answerIndex"],
 
     updateInputData: ["inputData"],
-    saveGiftResult: ["isGiftOnly"],
+    saveGiftResult: ["giftType"],
 
     endFlow: null
   },

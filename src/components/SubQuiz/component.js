@@ -160,7 +160,7 @@ const Question = ({btnState, toogleState, selectedTrash, question}) => {
     <div style={getStyle(question.label)}>
       <div style={styles.questionTitle}>
         <div style={styles.questionContent}>Theo bạn,</div>
-        <div style={styles.questionContent}>cái giá thực sự
+        <div style={styles.questionContent}>cái giá thật sự
           của {question.label == "món đồ nhựa" ? "các" : "một"}</div>
         <div style={styles.questionLabel}> {question.label}</div>
         <div style={styles.questionContent}>là bao nhiêu?</div>

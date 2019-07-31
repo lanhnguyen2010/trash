@@ -93,9 +93,8 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
   const [value, setValue] = React.useState(0);
 
   let onghutinoxRef = null;
-  let onghutgaoRef = null;
   let tuivaiRef = null;
-  let daoniaRef = null;
+  let lysuRef = null;
   let binhthuytinhRef = null;
   let dateRef = null;
   let searchPhoneNumberRef = null;
@@ -195,21 +194,14 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
             type="number"
             inputRef={input => tuivaiRef = input}
           />
+
           <TextField
             style={styles.textField}
             required={true}
-            label="Dao Nĩa, Muỗng Gỗ"
-            id="daonia"
+            label="Ly sứ"
+            id="lysu"
             type="number"
-            inputRef={input => daoniaRef = input}
-          />
-          <TextField
-            style={styles.textField}
-            required={true}
-            label="Ống Hút Gạo"
-            id="onghutgao"
-            type="number"
-            inputRef={input => onghutgaoRef = input}
+            inputRef={input => lysuRef = input}
           />
           <TextField
             style={styles.textField}
@@ -224,8 +216,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
               city: citySelector,
               onghutinox: onghutinoxRef.value,
               tuivai: tuivaiRef.value,
-              daonia: daoniaRef.value,
-              onghutgao: onghutgaoRef.value,
+              lysu: lysuRef.value,
               binhthuytinh: binhthuytinhRef.value,
               date: dateRef.value
             });
@@ -250,8 +241,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
               <TableCell align="right">Ngày</TableCell>
               <TableCell align="right">Ống Hút Inox&nbsp;(cái)</TableCell>
               <TableCell align="right">Túi Vải&nbsp;(cái)</TableCell>
-              <TableCell align="right">Bộ Dao, Nĩa Gỗ&nbsp;(cái)</TableCell>
-              <TableCell align="right">Ống Hút Gạo&nbsp;(cái)</TableCell>
+              <TableCell align="right">Ly sứ&nbsp;(cái)</TableCell>
               <TableCell align="right">Bình Thủy Tinh&nbsp;(cái)</TableCell>
             </TableRow>
           </TableHead>
@@ -262,8 +252,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
                 <TableCell align="right">{row.date}</TableCell>
                 <TableCell align="right">{row.onghutinox}</TableCell>
                 <TableCell align="right">{row.tuivai}</TableCell>
-                <TableCell align="right">{row.daonia}</TableCell>
-                <TableCell align="right">{row.onghutgao}</TableCell>
+                <TableCell align="right">{row.lysu}</TableCell>
                 <TableCell align="right">{row.binhthuytinh}</TableCell>
               </TableRow>
             )))}

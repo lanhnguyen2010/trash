@@ -33,7 +33,7 @@ export const GiftOutDegree = {
   onghutinox: [2,5,7,9],
   binhthuytinh: [4, 8]
 }
-export const TrashType = ["chai", "lynhua", "hopnhua", "others"];
+export const TrashType = ["chai", "lynhua", "hopnhua", "others", "nylon"];
 
 export const Questions = {
   chai: {
@@ -59,7 +59,30 @@ export const Questions = {
       "50000đ/lốc",
       "5000đ"
     ]
-
+  },
+  nylon: {
+    label: "túi nylon",
+    correctAnswers: [
+      "92.5% xác của loài hải âu có chứa nhựa",
+      "1000 sinh mạng loài rùa biển mỗi năm",
+      "13. 2000 hạt vi nhựa trong 1 lít nước uống đóng chai",
+      "817 loài sinh vật biển bị tác động bởi ô nhiễm rác nhựa",
+      "Ăn vào 50.000 hạt vi nhựa mỗi năm"
+    ],
+    wrongAnswers1:[
+      "50 năm ô nhiễm đại dương",
+      "Sự nhanh chóng",
+      "1% loài Hải Âu ở đại Dương có chứa rác nhựa",
+      "Gọn nhẹ, dễ dùng",
+      "20 năm ô nhiễm môi trường"
+    ],
+    wrongAnswers2: [
+      "Rác nhựa trên biển chỉ chiếm 10%",
+      "Đa năng",
+      "Sự tiện lợi",
+      "50000đ/lốc",
+      "5000đ"
+    ]
   },
   lynhua: {
     label: "ly nhựa",

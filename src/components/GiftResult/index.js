@@ -89,7 +89,7 @@ const GiftResultContainer = compose(
   lifecycle({
     componentWillMount() {
       const {history, isLoggedIn, saveGiftResult} = this.props;
-      saveGiftResult(false);
+      saveGiftResult("luckyDraw");
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }

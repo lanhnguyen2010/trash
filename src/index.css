@@ -182,3 +182,7 @@ input[type="date"]:before {
     margin-right: 0.5em;
 }
 
+.aws-sld__content {
+    align-items: start;
+}
+

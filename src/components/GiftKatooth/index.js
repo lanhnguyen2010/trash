@@ -55,7 +55,7 @@ const finish = ({history, endFlow}) => {
   history.push(ROUTES.OTP);
 };
 
-const GiftOnlyView = ({selectedGift, history, endFlow}) => (
+const GiftKatoothView = ({selectedGift, history, endFlow}) => (
   <div className="container"
        style={{...commonStyles.container, ...styles.container}}>
     <div style={{...commonStyles.textNormal_bold,...styles.textTitle}}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC MÓN QUÀ MAY MẮN TỪ PRUDENTIAL</div>
@@ -66,9 +66,9 @@ const GiftOnlyView = ({selectedGift, history, endFlow}) => (
     <Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
   </div>
 );
-const GiftOnly = withStyles(styles)(GiftOnlyView);
+const GiftKatooth = withStyles(styles)(GiftKatoothView);
 
-const GiftOnlyContainer = compose(
+const GiftKatoothContainer = compose(
   connect(
     selectors.root,
     {
@@ -79,12 +79,12 @@ const GiftOnlyContainer = compose(
   lifecycle({
     componentWillMount() {
       const {history, isLoggedIn, saveGiftResult} = this.props;
-      saveGiftResult("giftOnly");
+      saveGiftResult("katooth");
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }
     }
   })
-)(GiftOnly);
+)(GiftKatooth);
 
-export default GiftOnlyContainer;
+export default GiftKatoothContainer;

@@ -68,8 +68,13 @@ const GiftSelectView = ({history, updateSelectedGift}) => {
               onClick={() => {
                 updateSelectedGift("binhthuytinh");
                 history.push(ROUTES.GIFT_ONLY)
-              }}>Nhận quà</Button>
+              }}>Chụp hình</Button>
       <Button style={{...commonStyles.button, ...styles.button}} onClick={() => history.push(ROUTES.LUCKY_DRAW)}>Vòng xoay may mắn</Button>
+      <Button style={{...commonStyles.button, ...styles.button}}
+              onClick={() => {
+                updateSelectedGift("binhthuytinh");
+                history.push(ROUTES.GIFT_ONLY)
+              }}>Trò chơi Katooth</Button>
     </div>)
 };
 
