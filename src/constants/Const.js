@@ -61,7 +61,7 @@ export const Questions = {
     ]
   },
   nylon: {
-    label: "túi nylon",
+    label: "túi ni lông",
     correctAnswers: [
       "92.5% xác của loài hải âu có chứa nhựa",
       "1000 sinh mạng loài rùa biển mỗi năm",
