@@ -41,7 +41,7 @@ const LuckyDrawContainer = compose(
         });
 
         setTimeout(function () {
-          // if (giftFound) history.push(ROUTES.GIFT_RESULT)
+          if (giftFound) history.push(ROUTES.GIFT_RESULT)
         }.bind(this), 7000)
 
       };
