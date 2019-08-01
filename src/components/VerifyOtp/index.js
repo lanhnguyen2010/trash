@@ -65,7 +65,6 @@ const props = {
     borderRadius: '3px',
     fontSize: '14px',
     height: '30px',
-    color: 'red',
     border: '1px solid red'
   }
 };

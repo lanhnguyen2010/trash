@@ -105,7 +105,6 @@ const styles = {
   questionSection: {
     paddingTop: '48%',
     textAlign: 'center',
-    backgroundColor: 'red',
     display: 'flex',
     flexDirection: 'column',
     width: "100%"

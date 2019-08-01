@@ -50,19 +50,16 @@ const styles = {
 const MoreInfo = ({history, endFlow}) => {
   let trackRef;
   let btnRef;
-  let logoRef;
   let btnDoneRef;
   const routeChange = () => {
-    trackRef.clickNext();
-    if (trackRef.index == 2) {
+    if (trackRef.index >= 2) {
       setTimeout(function () {
         btnRef.style.display = 'none';
-        btnDoneRef.style.display = '';
-      }.bind(this), 1000)
+      }.bind(this), 300)
     }
-    if (trackRef.index >= 3) {
-      btnDoneRef.style.display = 'none';
-    }
+
+    trackRef.clickNext();
+
 
     if (trackRef.index == 4) {
       setTimeout(function () {
@@ -93,17 +90,21 @@ const MoreInfo = ({history, endFlow}) => {
         }}/>
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo4.png')",
-        }}/>
+          backgroundImage: "url('./images/moreInfo4.jpg')",
+        }}>
+          <div style={commonStyle.footer}>
+            <Button style={{...commonStyle.bottomButton, ...styles.pruButton}}
+                    onClick={() => routeChange()}
+                    ref={t => btnDoneRef = t}
+            >
+              Hoàn thành</Button>
+          </div>
+        </div>
 
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo5.png')"
+          backgroundImage: "url('./images/moreInfo5.jpg')"
         }}>
-          <div style={styles.textTitleSmall}>Cùng Prudential hành động</div>
-          <div style={styles.textTitle}>Chọn giảm dùng nhựa</div>
-          <div style={styles.textTitleSmall}>Vì sức khoẻ người thân yêu</div>
-
           <div style={commonStyle.footer}>
             <Button style={{...commonStyle.bottomButton, ...styles.pruButton}} onClick={() => routeChange()}>
               Tôi chọn giảm dùng nhựa
@@ -113,11 +114,8 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo5.png')",
+          backgroundImage: "url('./images/moreInfo6.jpg')",
         }}>
-          <div style={styles.textTitle}>Cảm Ơn Sự Ủng Hộ Và Tinh Thần Hành Động Của Bạn.</div>
-          <div style={styles.textTitleSmall}>Nhân viên của Prudential tại quầy sẽ hướng dẫn bạn các bước tiếp theo
-          </div>
         </div>
 
       </AwesomeSlider>
@@ -129,11 +127,7 @@ const MoreInfo = ({history, endFlow}) => {
         >
           Cùng tiếp tục hành trình nhé</Button>
 
-        <Button style={{...commonStyle.bottomButton, display: 'none'}}
-                onClick={() => routeChange()}
-                ref={t => btnDoneRef = t}
-        >
-          Hoàn thành</Button>
+
       </div>
 
     </div>
