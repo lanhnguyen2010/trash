@@ -7,7 +7,11 @@ import {makeStyles, withStyles} from '@material-ui/styles';
 
 import {withRouter} from 'react-router-dom'
 
-import {Button, MenuItem, OutlinedInput, Select, TextField, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText} from '@material-ui/core';
+import {
+  Button, MenuItem, OutlinedInput, Select, TextField,
+  Dialog, DialogTitle, DialogActions, Checkbox,
+  FormControlLabel
+} from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
 import commonStyles, {fonts, colors} from "../common"
 
@@ -30,7 +34,7 @@ const styles = {
   textField: {
     ...commonStyles.textNormal_bold,
     textAlign: 'left',
-    marginTop: 30,
+    marginTop: '3vh',
     minWidth: '70%',
     minHeight: 70,
     borderColor: colors.pruGrey,
@@ -41,7 +45,7 @@ const styles = {
 
   text: {
     ...commonStyles.textNormal_bold,
-    fontSize: '3vh',
+    fontSize: '3.5vh',
     color: colors.pruRed,
     width: '70%',
     paddingTop: "10vh",
@@ -50,7 +54,7 @@ const styles = {
   },
 
   btnOtp: {
-    position:"relative",
+    position: "relative",
     alignSelf: "center",
     fontSize: 18,
     borderRadius: "50px",
@@ -75,11 +79,14 @@ const useStyles = makeStyles(theme => ({
 const fieldMap = {
   phoneNumber: "Số Điện Thoại",
   email: "Email",
-  name:"Tên",
-  birthDay:'Ngày Sinh',
-  gender:'Giới Tính'
+  name: "Tên",
+  birthDay: 'Ngày Sinh',
+  gender: 'Giới Tính'
 }
-const OtpForm = ({history, doOtp, city, checkIsPhoneNumberExist, isPhoneNumberExist, updateIsPhoneNumberExist}) => {
+const OtpForm = ({
+                   history, doOtp, city, checkIsPhoneNumberExist, isPhoneNumberExist, updateIsPhoneNumberExist,
+                   updateBtn, bntDisable
+                 }) => {
   let phoneNumberRef = null;
   let nameRef = null;
   let birthDayRef = null;
@@ -104,24 +111,24 @@ const OtpForm = ({history, doOtp, city, checkIsPhoneNumberExist, isPhoneNumberEx
 
   function handleClickOpen() {
     let data = {
-      phoneNumber: phoneNumberRef? phoneNumberRef.value:'',
-      name: nameRef?nameRef.value:'',
+      phoneNumber: phoneNumberRef ? phoneNumberRef.value : '',
+      name: nameRef ? nameRef.value : '',
       gender: gender,
-      birthDay: birthDayRef?birthDayRef.value:'',
-      email: emailRef?emailRef.value:'',
+      birthDay: birthDayRef ? birthDayRef.value : '',
+      email: emailRef ? emailRef.value : '',
       city: city,
       time: new Date().toLocaleString()
-    }
+    };
     let invalidField = [];
     for (let key in data) {
       if (data.hasOwnProperty(key)) {
         console.log(key + " -> " + data[key]);
-        if(!data[key]){
+        if (!data[key]) {
           invalidField.push(fieldMap[key]);
         }
       }
     }
-    if(invalidField.length > 0){
+    if (invalidField.length > 0) {
       setErrorMessage("Vui Lòng Nhập " + invalidField.join(', '));
       setOpen(true);
     } else {
@@ -185,8 +192,25 @@ const OtpForm = ({history, doOtp, city, checkIsPhoneNumberExist, isPhoneNumberEx
           id="email"
           inputRef={input => emailRef = input}
         />
+
+        <div style={{flexDirection:'row', display:'flex', justifyContent: 'center', alignItems:'center', marginTop: '3vh'}}>
+          <Checkbox
+            onChange={(event, checked) => {
+              updateBtn(!checked)
+            }}
+          >Tôi đồng ý với Chính sách bảo mật của Prudential Việt Nam</Checkbox>
+          <div style={{fontSize: '2vh'}}>Tôi đồng ý với <a style={{color: colors.pruRed}} href={"https://www.prudential.com.vn/vi/footer/privacy-policy/"}>Chính sách bảo mật của Prudential Việt Nam</a></div>
+        </div>
+
         <Button onClick={handleClickOpen}
-                style={{...commonStyles.bottomButton, marginTop: '20vh'}}>Tiếp Tục</Button>
+                disabled={bntDisable}
+                style={{
+                  ...commonStyles.bottomButton, marginTop: '10vh',
+                  background: bntDisable ? 'rgba(237, 27, 46, 0.5)' : colors.pruRed
+                }}>
+          Tiếp Tục
+        </Button>
+
       </div>
       <Dialog
         open={isPhoneNumberExist}
@@ -237,6 +261,12 @@ const OtpContainer = compose(
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }
+
+      this.setState({
+        bntDisable: true, updateBtn: (value) => {
+          this.setState({...this.props.state, bntDisable: value})
+        }
+      });
     }
   })
 )(Otp);
