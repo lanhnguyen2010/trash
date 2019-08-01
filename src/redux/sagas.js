@@ -452,12 +452,14 @@ function* checkIsPhoneNumberExist({phoneNumber, data, history}) {
 
     console.log("checkIsPhoneNumberExist: ", result);
 
-    if (Object.keys(result).length < numberGiftForOnePhoneNumber) {
+    if (!result || Object.keys(result).length < numberGiftForOnePhoneNumber) {
       console.log("checkIsPhoneNumberExist history", history);
+      yield put(actions.updateIsPhoneNumberExist(false));
       yield call(doOtp, {navigation: history, data: data});
+    } else{
+      yield put(actions.updateIsPhoneNumberExist(true));
     }
 
-    yield put(actions.updateIsPhoneNumberExist(result ? true : false));
     // else{
     //   setErrorMessage("Số Điện Thoại Đã Tồn Tại");
     //   setOpen(true);
