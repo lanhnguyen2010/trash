@@ -137,7 +137,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
     if (newValue === 6){
       getAllGiftResults();
     }
-    if (newValue === 7){
+    if (newValue === 6){
       updateIsLoggedIn(false);
       history.push(ROUTES.LOG_IN);
     }
@@ -153,8 +153,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           <Tab label="Players(All)" {...a11yProps(3)} />
           <Tab label="OTP" {...a11yProps(4)} />
           <Tab label="Quiz Results" {...a11yProps(5)} />
-          <Tab label="Gift Results" {...a11yProps(6)} />
-          <Tab label="Log Out" {...a11yProps(7)} />
+          <Tab label="Log Out" {...a11yProps(6)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -356,23 +355,6 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
             exportButton: true
           }}
         /> :''}
-      </TabPanel>
-      <TabPanel index={6} value={value}>
-        <Button onClick={()=> getAllGiftResults()}>Refresh</Button>
-        {giftResults &&
-        <MaterialTable
-          title="Quà Đã Trao"
-          columns={[
-            { title: 'Số Điện Thoại', field: 'phoneNumber' },
-            { title: 'Quà', field: 'gift' },
-            { title: 'Chỉ nhận quà', field: 'giftOnly' },
-            { title: 'Thời Gian', field: 'date' }
-          ]}
-          data={giftResults}
-          options={{
-            exportButton: true
-          }}
-        />}
       </TabPanel>
     </div>
   );
