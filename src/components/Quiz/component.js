@@ -5,7 +5,7 @@ import {
   Button
 } from '@material-ui/core';
 
-import commonStyles from '../common'
+import commonStyles , {colors} from '../common'
 
 
 const styles = {
@@ -14,22 +14,25 @@ const styles = {
     width: '70%',
     margin: 'auto',
     color: "#BA0000",
-    fontSize: '4vh'
+    fontSize: '4vh',
+    marginTop: '5vh'
   },
 
   activeAnswer: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderStyle: "solid",
     borderColor: 'white',
     borderRadius: 15,
+    background: colors.pruRed,
     padding: 20
   },
 
   passiveAnswer: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderStyle: "solid",
-    borderColor: 'white',
+    borderColor: 'rgba(0,0,0,0.3)',
     borderRadius: 15,
+    background: 'rgba(0,0,0,0.1)',
     padding: 20
   },
 
@@ -54,9 +57,9 @@ const styles = {
   },
 
   image: {
-    backgroundPosition: '50% 50%',
+    backgroundPosition: 'center',
     backgroundSize: 'contain',
-    height: '70%',
+    height: '80%',
     backgroundRepeat: 'no-repeat',
   },
   reminder: {
@@ -71,7 +74,7 @@ const styles = {
     ...commonStyles.textNormal_bold,
     bottom: 0,
     marginTop: 20,
-    color: "#2b2b2b",
+    color: colors.pruGrey,
     textTransform: "uppercase"
   },
 
@@ -120,23 +123,33 @@ const Question = ({btnState, toogleState}) => (
       <div className="box" style={btnState[0] ? styles.activeAnswer : styles.passiveAnswer}
            onClick={() => toogleState(0)}>
         <div style={{...styles.image, backgroundImage: "url('./images/quiz/chainhua.png')"}}/>
-        <div style={styles.label}>Chai nhựa</div>
+        <div style={{...styles.label, color:btnState[0]? 'white' : colors.pruGrey}}>Chai nhựa</div>
       </div>
       <div className="box" style={btnState[1] ? styles.activeAnswer : styles.passiveAnswer}
            onClick={() => toogleState(1)}>
         <div style={{...styles.image, backgroundImage: "url('./images/quiz/lynhua.png')"}}/>
-        <div style={styles.label}>Ly nhựa</div>
+        <div style={{...styles.label, color:btnState[1]? 'white' : colors.pruGrey}}>Ly nhựa</div>
       </div>
       <div className="box" style={btnState[2] ? styles.activeAnswer : styles.passiveAnswer}
            onClick={() => toogleState(2)}>
         <div style={{...styles.image, backgroundImage: "url('./images/quiz/hopnhua.png')"}}/>
-        <div style={styles.label}>Hộp nhựa</div>
+        <div style={{...styles.label, color:btnState[2]? 'white' : colors.pruGrey}}>Hộp nhựa</div>
       </div>
       <div className="box" style={btnState[3] ? styles.activeAnswer : styles.passiveAnswer}
            onClick={() => toogleState(3)}>
-        <div style={{...styles.image, backgroundImage: "url('./images/quiz/other.png')"}}/>
-        <div style={styles.label}>Các đồ nhựa khác (Muỗng nĩa, ống hút, túi ni lông,...)</div>
+        <div style={{...styles.image, backgroundImage: "url('./images/quiz/nilon.png')"}}/>
+        <div style={{...styles.label, color:btnState[3]? 'white' : colors.pruGrey}}>Túi nylon các loại</div>
       </div>
+    </div>
+
+    <div className="box" style={{...(btnState[4] ? styles.activeAnswer : styles.passiveAnswer),
+      marginLeft: 44, marginRight: 44,
+      marginTop: 0, display: 'flex', flexDirection: 'row',
+    justifyContent: 'center', alignItems: 'center',
+    marginBottom: '5vh'}}
+         onClick={() => toogleState(4)}>
+      <div style={{...styles.image, backgroundImage: "url('./images/quiz/other.png')", width: '30%'}}/>
+      <div style={{...styles.label, color:btnState[4]? 'white' : colors.pruGrey}}>Đồ nhựa khác (Muỗng nĩa, ống hút,...)</div>
     </div>
   </div>
 );

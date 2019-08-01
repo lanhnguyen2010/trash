@@ -40,11 +40,19 @@ const styles = {
   },
   textTitle: {
     ...commonStyles.textNormal_bold,
-    fontSize: '3vh',
+    fontSize: '2.5vh',
     marginBottom: '5vh',
-    width:'70%',
     margin: 'auto',
     color: colors.pruRed
+  },
+
+  textGift: {
+    ...commonStyles.textNormal_bold,
+    fontSize: '5vh',
+    marginBottom: '5vh',
+    margin: 'auto',
+    color: colors.pruRed,
+    textTransform: 'uppercase'
   },
 };
 
@@ -56,7 +64,8 @@ const finish = ({history, endFlow}) => {
 const GiftResultView = ({selectedGift, history, endFlow}) => (
   <div className="container"  style={{...commonStyles.container, ...styles.container}}>
     <div>
-    <div style={styles.textTitle}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC MÓN QUÀ MAY MẮN TỪ PRUDENTIAL</div>
+    <div style={styles.textTitle}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC</div>
+    <div style={styles.textGift}>{Const.GiftResource[selectedGift].label}</div>
     <Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
     </div>
   </div>
@@ -73,7 +82,8 @@ const GiftResultContainer = compose(
   ),
   lifecycle({
     componentWillMount() {
-      const {history, isLoggedIn, saveGiftResult} = this.props;
+      const {history, isLoggedIn, saveGiftResult, selectedGift} = this.props;
+      console.log("selectedGift", selectedGift);
       saveGiftResult("luckyDraw");
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)

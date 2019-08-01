@@ -29,7 +29,7 @@ export const GiftOutDegree = {
   onghutinox: [2,5,7,9],
   binhthuytinh: [4, 8]
 }
-export const TrashType = ["chai", "lynhua", "hopnhua", "others", "nylon"];
+export const TrashType = ["chai", "lynhua", "hopnhua", "nylon", "others"];
 
 export const Questions = {
   chai: {

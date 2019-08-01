@@ -28,16 +28,22 @@ const LuckyDrawContainer = compose(
     },
     componentDidMount() {
 
-      const { history } = this.props;
+      const { history, selectedGift } = this.props;
 
       const initState = {
         isLoading: false, onClickSpinner: () => {
+          console.log("click", selectedGift);
+          if (!selectedGift) {
+            window.alert("Hết quà!");
+            return;
+          }
           this.setState({
             ...this.props.state,isLoading: true
           });
 
           setTimeout(function () {
-            history.push(ROUTES.GIFT_RESULT)
+
+            if (selectedGift) history.push(ROUTES.GIFT_RESULT)
           }.bind(this), 7000)
 
         }

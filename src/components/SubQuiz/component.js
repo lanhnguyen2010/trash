@@ -40,7 +40,7 @@ const styles = {
   },
 
   answer: {
-    margin: 'auto',
+    margin: '0 auto',
     width: '70%'
   },
 
@@ -163,7 +163,8 @@ const Result = ({history, answerResult, question}) => (
 const QuestionStyle = {
   normal: styles.baseAnswer,
   correct: styles.correctAnswer,
-  wrong: styles.wrongAnswer
+  wrong: styles.wrongAnswer,
+  hidden: {display: 'none'}
 };
 
 
@@ -176,7 +177,7 @@ const Question = ({btnState, toogleState, selectedTrash, question}) => {
         <div style={styles.questionContent}>cái giá thật sự
           của {question.label == "món đồ nhựa" ? "các" : "một"}</div>
         <div style={styles.questionLabel}> {question.label}</div>
-        <div style={styles.questionContent}>là bao nhiêu?</div>
+        <div style={styles.questionContent}>{question.label == "món đồ nhựa" ? "này" : ""} là bao nhiêu?</div>
       </div>
       <div style={styles.answer}>
         <div style={QuestionStyle[btnState[0]]}

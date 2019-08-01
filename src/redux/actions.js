@@ -38,6 +38,7 @@ const { Types, Creators: actions } = createActions(
 
     updateInputData: ["inputData"],
     saveGiftResult: ["giftType"],
+    updateGiftCount: ["selectedGift"],
 
     endFlow: null
   },

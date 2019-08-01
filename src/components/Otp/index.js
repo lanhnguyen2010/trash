@@ -139,7 +139,7 @@ const OtpForm = ({history, doOtp, city, checkIsPhoneNumberExist, isPhoneNumberEx
 
   return (
     <div style={{...commonStyles.container, ...styles.main}}>
-      <div style={styles.text}> Vui lòng nhập thông tin cá nhân để nhận thông tin về chương trình</div>
+      <div style={styles.text}> Vui lòng nhập thông tin cá nhân của bạn</div>
       <div style={styles.container}>
         <TextField
           style={styles.textField}

@@ -9,7 +9,7 @@ import connect from "react-redux/es/connect/connect";
 import * as selectors from "../../redux/selectors";
 import {actions} from "../../redux";
 import {lifecycle} from "recompose";
-import commonStyle, {fonts} from "../common"
+import commonStyle, {fonts, colors} from "../common"
 
 
 const styles = {
@@ -27,23 +27,37 @@ const styles = {
     backgroundImage: "url('./images/moreInfo5.png')",
     backgroundSize: 'cover',
     alignItems: 'unset',
-    paddingTop: '7%',
+    paddingTop: '5%',
     paddingBottom: '7%',
   },
   textTitleSmall: {
     fontSize: '3vh',
-    color: 'black',
+    color: colors.pruGrey,
     fontFamily: fonts.bold,
-    maxWidth: '80%',
     margin: 'auto'
   },
   textTitle: {
     fontSize: '4vh',
     padding: '0.5vh',
-    color: '#D20C08',
+    color: colors.pruRed,
     fontFamily: fonts.bold,
-    maxWidth: '80%',
     margin: 'auto'
+  },
+  textTitleSmallEnd: {
+    fontSize: '2.5vh',
+    color: colors.pruGrey,
+    fontFamily: fonts.bold,
+    padding: '1vh',
+    marginLeft: 'auto',
+    maxWidth: '75%'
+  },
+  textTitleEnd: {
+    fontSize: '3.5vh',
+    padding: '1vh',
+    color: colors.pruRed,
+    fontFamily: fonts.bold,
+    marginLeft: 'auto',
+    maxWidth: '75%'
   }
 };
 
@@ -75,7 +89,7 @@ const MoreInfo = ({history, endFlow}) => {
                      bullets={false}
                      organicArrows={false}
                      ref={t => trackRef = t}>
-       
+
         <div style={{
           ...styles.image,
           backgroundImage: "url('./images/moreInfo1.jpg')",
@@ -93,7 +107,7 @@ const MoreInfo = ({history, endFlow}) => {
           backgroundImage: "url('./images/moreInfo4.jpg')",
         }}>
           <div style={commonStyle.footer}>
-            <Button style={{...commonStyle.bottomButton, ...styles.pruButton}}
+            <Button style={commonStyle.bottomButton}
                     onClick={() => routeChange()}
                     ref={t => btnDoneRef = t}
             >
@@ -103,8 +117,12 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo5.jpg')"
+          backgroundImage: "url('./images/thanks.png')"
         }}>
+          <div style={styles.textTitleSmall}>Cùng Prudential hành động</div>
+          <div style={styles.textTitle}>Chọn giảm dùng nhựa</div>
+          <div style={styles.textTitleSmall}>Vì sức khoẻ người thân yêu</div>
+
           <div style={commonStyle.footer}>
             <Button style={{...commonStyle.bottomButton, ...styles.pruButton}} onClick={() => routeChange()}>
               Tôi chọn giảm dùng nhựa
@@ -114,9 +132,14 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo6.jpg')",
+          backgroundImage: "url('./images/thanks.png')",
         }}>
+          <div style={styles.textTitleEnd}>Cảm ơn bạn đã hành động cùng Prudential.</div>
+          <div style={styles.textTitleSmallEnd}>
+            Liên hệ nhân viên của Prudential để được hướng dẫn các bước tiếp theo.
+          </div>
         </div>
+
 
       </AwesomeSlider>
 

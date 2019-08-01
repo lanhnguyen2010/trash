@@ -44,7 +44,7 @@ html, body, #app, #app > div, body > #root {
 }
 
 .grid2x2 {
-    min-height: 75%;
+    min-height: 60%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;

@@ -117,8 +117,43 @@ function* getRandomGift() {
   if (giftsQuantity[selectedGift] > 0) {
     giftsQuantity[selectedGift]--;
   }
-  yield call(firebaseService.database.create, "booths/" + city + '/' + formattedDate, giftsQuantity);
   yield put(actions.updateSelectedGift(selectedGift));
+  yield call(firebaseService.database.create, "booths/" + city + '/' + formattedDate, giftsQuantity);
+
+}
+
+function* updateGiftCount({selectedGift}) {
+  const city = yield select(selectors.city);
+  console.log("city: ", city);
+
+  let today = new Date();
+  let formattedDate = today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+  console.log("date: ", formattedDate);
+
+  const result = yield call(firebaseService.database.read, "booths/" + city + '/' + formattedDate);
+
+  console.log("getRandomGif: ", result);
+  let giftsQuantity = {
+    onghutinox: 0,
+    tuivai: 0,
+    daonia: 0,
+    onghutga: 0,
+    binhthuytinh: 0,
+  };
+
+  if (result) {
+    for (let key in result) {
+      if (result.hasOwnProperty(key)) {
+        giftsQuantity = result[key];
+      }
+    }
+  }
+
+  if (giftsQuantity[selectedGift] > 0) {
+    giftsQuantity[selectedGift]--;
+  }
+  yield call(firebaseService.database.create, "booths/" + city + '/' + formattedDate, giftsQuantity);
+
 }
 
 function* updateGift({navigation, data}) {

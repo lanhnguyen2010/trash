@@ -58,7 +58,7 @@ const finish = ({history, endFlow}) => {
 const GiftOnlyView = ({selectedGift, history, endFlow}) => (
   <div className="container"
        style={{...commonStyles.container, ...styles.container}}>
-    <div style={{...commonStyles.textNormal_bold,...styles.textTitle}}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC MÓN QUÀ MAY MẮN TỪ PRUDENTIAL</div>
+    <div style={{...commonStyles.textNormal_bold,...styles.textTitle}}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC</div>
 
     <img className="resultImg" src={"./images/binhnuoc.png"} style={styles.imageResult}/>
 
@@ -73,13 +73,15 @@ const GiftOnlyContainer = compose(
     selectors.root,
     {
       endFlow: actions.endFlow,
-      saveGiftResult: actions.saveGiftResult
+      saveGiftResult: actions.saveGiftResult,
+      updateGiftCount: actions.updateGiftCount
     }
   ),
   lifecycle({
     componentWillMount() {
-      const {history, isLoggedIn, saveGiftResult} = this.props;
+      const {history, isLoggedIn, saveGiftResult, updateGiftCount,selectedGift} = this.props;
       saveGiftResult("giftOnly");
+      updateGiftCount(selectedGift);
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }

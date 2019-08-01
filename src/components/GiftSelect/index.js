@@ -37,7 +37,6 @@ const styles = {
     width: '80%',
     fontSize: '4vh',
     color: colors.pruRed,
-    textTransform: 'uppercase'
   }
 };
 
@@ -48,13 +47,19 @@ const GiftSelectView = ({history, updateSelectedGift}) => {
       backgroundImage: "url('./images/background_global.png')",
 
     }}>
-      <div style={{...commonStyles.textNormal_bold, ...styles.title}}>Bạn hãy chọn chương trình muốn tham gia</div>
+      <div style={{...commonStyles.textNormal_bold, ...styles.title}}>Hãy chọn hoạt động bạn vừa tham gia nhé</div>
       <Button style={{...commonStyles.button, ...styles.button}}
               onClick={() => {
+                console.log("onclick select", this);
+                history.push(ROUTES.LUCKY_DRAW);
+              }}>Quyên góp nhựa</Button>
+
+      <Button style={{...commonStyles.button, ...styles.button}}
+              onClick={() => {
+                console.log("onclick select", this);
                 updateSelectedGift("binhthuytinh");
                 history.push(ROUTES.GIFT_ONLY)
-              }}>Chụp hình</Button>
-      <Button style={{...commonStyles.button, ...styles.button}} onClick={() => history.push(ROUTES.LUCKY_DRAW)}>Vòng xoay may mắn</Button>
+              }}>Hoạt động chụp hình</Button>
       <Button style={{...commonStyles.button, ...styles.button}}
               onClick={() => {
                 updateSelectedGift("binhthuytinh");
