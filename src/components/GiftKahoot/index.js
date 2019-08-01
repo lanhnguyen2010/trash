@@ -52,7 +52,8 @@ const styles = {
     textTransform: 'uppercase'
   },
   imageResult : {
-    marginBottom: '3vh'
+    marginBottom: '3vh',
+    width: '50%'
   }
 };
 
@@ -65,11 +66,11 @@ const GiftKahootView = ({selectedGift, history, endFlow}) => (
   <div className="container"
        style={{...commonStyles.container, ...styles.container}}>
 
-    <img className="resultImg" src={"./images/binhnuoc.png"} style={styles.imageResult}/>
+    <img src={"./images/kahooth.png"} style={styles.imageResult}/>
 
     <div style={{...commonStyles.textNormal_bold,...styles.textTitle}}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC</div>
 
-    <div style={{...commonStyles.textNormal_bold,...styles.textThankYou}}>{Const.GiftResource[selectedGift].label}</div>
+    <div style={{...commonStyles.textNormal_bold,...styles.textThankYou}}>{Const.GiftResource[Const.BINH_THUY_TINH].label} và {Const.GiftResource[Const.ONG_HUT_INOX].label}</div>
     <div style={commonStyles.footer}>
       <Button style={commonStyles.bottomButton} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
     </div>

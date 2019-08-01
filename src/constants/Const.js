@@ -6,19 +6,23 @@ export const BINH_THUY_TINH = "binhthuytinh";
 export const GiftResource = {
   onghutinox: {
     image: "./images/onghutinox.png", //TODO image url
-    label: "Ống hút inox"
+    label: "Ống hút inox",
+    width: "50%"
   },
   tuivai : {
     image: "./images/tuivai.png",
-    label: "Balo vải canvas"
+    label: "Balo vải canvas",
+    width: "40%"
   },
   lysu : {
     image: "./images/lysu.png",
-    label: "Ly Sứ"
+    label: "Ly Sứ",
+    width: "70%",
   },
   binhthuytinh : {
     image: "./images/binhnuoc.png",
-    label: "Bình nước thủy tinh"
+    label: "Bình nước thủy tinh",
+    width: "25%"
   }
 };
 
