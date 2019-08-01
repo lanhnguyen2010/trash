@@ -31,17 +31,20 @@ const styles = {
     paddingBottom: '7%',
   },
   textTitleSmall: {
-    fontSize: '3vh',
+    fontSize: '2.5vh',
     color: colors.pruGrey,
     fontFamily: fonts.bold,
-    margin: 'auto'
+    padding: '1vh',
+    marginLeft: 'auto',
+    maxWidth: '100%'
   },
   textTitle: {
-    fontSize: '4vh',
-    padding: '0.5vh',
+    fontSize: '3.5vh',
+    padding: '1vh',
     color: colors.pruRed,
     fontFamily: fonts.bold,
-    margin: 'auto'
+    marginLeft: 'auto',
+    maxWidth: '100%'
   },
   textTitleSmallEnd: {
     fontSize: '2.5vh',
@@ -98,7 +101,7 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          backgroundPosition: 'bottom',
+          backgroundPosition:'bottom',
           backgroundImage: "url('./images/moreInfo1.jpg')",
         }}>
           <img src="./images/logo.jpg" alt="prudential logo" style={styles.logo}/>

@@ -25,10 +25,11 @@ const reducer = createReducer(initialState, {
     _.assign({}, state, {
       count: count
     }),
-  [Types.UPDATE_SELECTED_GIFT]: (state, {selectedGift}) =>
-    _.assign({}, state, {
+  [Types.UPDATE_SELECTED_GIFT]: (state, {selectedGift}) => {
+    console.log("UPDATE_SELECTED_GIFT ", selectedGift);
+    return _.assign({}, state, {
       selectedGift: selectedGift
-    }),
+    })},
   [Types.UPDATE_BOOTHS_DATA]: (state, {boothsData}) =>
     _.assign({}, state, {
       boothsData: boothsData

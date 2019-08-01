@@ -28,28 +28,28 @@ const LuckyDrawContainer = compose(
     },
     componentDidMount() {
 
-      const { history, selectedGift } = this.props;
+      const {history, selectedGift} = this.props;
 
-      setTimeout(function () {
-        const initState = {
-          isLoading: false, onClickSpinner: () => {
-            console.log("click props", this.props.state);
-            if (!selectedGift) {
-              window.alert("Hết quà!");
-              return;
-            }
-            this.setState({
-              ...this.props.state,isLoading: true
-            });
+      const clickSpinner = () => {
+        const giftFound = this.props.selectedGift;
+        if (!giftFound) {
+          window.alert("Hết quà!");
+          return;
+        }
+        this.setState({
+          ...this.props.state, isLoading: true
+        });
 
-            setTimeout(function () {
-              if (selectedGift) history.push(ROUTES.GIFT_RESULT)
-            }.bind(this), 7000)
+        setTimeout(function () {
+          // if (giftFound) history.push(ROUTES.GIFT_RESULT)
+        }.bind(this), 7000)
 
-          }
-        };
-        this.setState(initState);
-      }.bind(this), 1000)
+      };
+
+      const initState = {
+        isLoading: false, onClickSpinner: clickSpinner
+      };
+      this.setState(initState);
 
     }
   })

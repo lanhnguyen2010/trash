@@ -27,9 +27,9 @@ export const GiftResource = {
 };
 
 export const GiftOutDegree = {
-  lysu: [3,10],
+  lysu: [2,9],
   tuivai: [1,6],
-  onghutinox: [2,5,7,9],
+  onghutinox: [3,5,7,10],
   binhthuytinh: [4, 8]
 };
 
