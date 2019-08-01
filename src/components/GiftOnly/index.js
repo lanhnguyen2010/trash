@@ -7,7 +7,7 @@ import {withStyles} from '@material-ui/styles';
 import ReactCodeInput from 'react-code-input';
 import {Button} from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
-import commonStyles, {fonts} from "../common"
+import commonStyles, {fonts, colors} from "../common"
 import * as Const from "../../constants/Const";
 
 
@@ -24,46 +24,46 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundImage: "url('./images/result_background.png')"
-  },
-
-  textField: {
-    marginTop: 20,
-    minWidth: 300
-  },
-
-  btnVerifyOtp: {
-    marginTop: 30
+    paddingTop: '20%',
+    backgroundImage: "url('./images/result_background.jpg')",
   },
   textTitle: {
+    color: colors.pruRed,
     fontSize: '3vh',
-    marginBottom: '5vh',
-    width: '80%'
+    width: '80%',
+    fontFamily: fonts.bold,
+    textTransform: 'uppercase'
 
   },
   textThankYou: {
-    fontSize: '3vh',
-    fontFamily: fonts.regular,
-    marginTop: '5vh',
-    width: '80%'
+    color: colors.pruRed,
+    fontSize: '5vh',
+    marginTop: '3vh',
+    width: '80%',
+    fontFamily: fonts.bold,
+    textTransform: 'uppercase'
+  },
+  imageResult : {
+    marginBottom: '3vh'
   }
 };
 
-const finish = ({history, endFlow}) => {
-  endFlow();
-  history.push(ROUTES.OTP);
+const finish = ({history}) => {
+  history.push(ROUTES.THANK_YOU);
 };
 
 const GiftOnlyView = ({selectedGift, history, endFlow}) => (
   <div className="container"
        style={{...commonStyles.container, ...styles.container}}>
-    <div style={{...commonStyles.textNormal_bold,...styles.textTitle}}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC</div>
 
     <img className="resultImg" src={"./images/binhnuoc.png"} style={styles.imageResult}/>
 
-    <div style={{...commonStyles.textNormal_bold,...styles.textThankYou}}>CẢM ƠN BẠN ĐÃ THAM GIA CHƯƠNG TRÌNH</div>
-    <Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
+    <div style={{...commonStyles.textNormal_bold,...styles.textTitle}}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC</div>
+
+    <div style={{...commonStyles.textNormal_bold,...styles.textThankYou}}>{Const.GiftResource[selectedGift].label}</div>
+    <div style={commonStyles.footer}>
+    <Button style={commonStyles.bottomButton} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
+    </div>
   </div>
 );
 const GiftOnly = withStyles(styles)(GiftOnlyView);

@@ -52,7 +52,7 @@ const styles = {
     fontSize: '3vh',
     textAlign: 'left',
     borderColor: colors.pruGrey,
-    borderWidth: 1,
+    borderWidth: 2,
     borderStyle: 'solid',
     padding: '2vh',
     marginTop: 20

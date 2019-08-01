@@ -29,8 +29,8 @@ const styles = {
   logo: {
     position:"fixed",
     zIndex: 100,
-    top: 30,
-    left: 30
+    top: '2.5vh',
+    left: '2.5vh'
   },
   label: {
     position: "fixed",
@@ -73,29 +73,31 @@ export default class Home extends Component {
                        infinite={true}
                        organicArrows={false}
                        ref={t => this.track = t}>
+
           <div style={{
             ...styles.image,
-            backgroundImage: "url('./images/moreInfo1.jpg')",
+            backgroundImage: "url('./images/home1.jpg')",
           }}>
-            <img style={Object.assign({top: "25%"}, styles.label)} src="./images/cai_gia.png" alt="label"/>
+
           </div>
           <div style={{
             ...styles.image,
-            backgroundImage: "url('./images/moreInfo2.jpg')",
+            backgroundImage: "url('./images/home2.jpg')",
+            backgroundPosition: 'bottom'
           }}>
-            <img style={Object.assign({top: "50%"}, styles.label)} src="./images/cai_gia.png" alt="label"/>
+            <img src="./images/logo.jpg" alt="prudential logo" style={styles.logo}/>
           </div>
           <div style={{
             ...styles.image,
-            backgroundImage: "url('./images/moreInfo3.jpg')",
+            backgroundImage: "url('./images/home3.jpg')",
           }}>
-            <img style={Object.assign({top: "25%"}, styles.label)} src="./images/cai_gia.png" alt="label"/>
           </div>
           <div style={{
             ...styles.image,
-            backgroundImage: "url('./images/moreInfo4.jpg')",
+            backgroundImage: "url('./images/home4.jpg')",
+            backgroundPosition: 'bottom'
           }}>
-            <img style={Object.assign({top: "56%"}, styles.label)} src="./images/cai_gia.png" alt="label"/>
+            <img src="./images/logo.jpg" alt="prudential logo" style={styles.logo}/>
           </div>
         </AwesomeSlider>
         <div style={commonStyles.footer}>

@@ -12,48 +12,40 @@ import * as Const from "../../constants/Const";
 
 
 const styles = {
+  main: {
+    backgroundImage: "url('./images/player_info_background.png')",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    width: '100%',
+    height: '100%'
+  },
+
   container: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'center',
+    paddingTop: '20%',
     backgroundImage: "url('./images/result_background.jpg')",
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
-  },
-
-  textField: {
-    marginTop: 20,
-    minWidth: 300
-  },
-
-  btnVerifyOtp: {
-    marginTop: 30
-  },
-  text: {
-    fontSize: 33,
-    color: 'white',
-    width: '70%',
-    paddingTop: 70,
-    textAlign: 'center',
-    marginBottom:40
   },
   textTitle: {
-    ...commonStyles.textNormal_bold,
-    fontSize: '2.5vh',
-    marginBottom: '5vh',
-    margin: 'auto',
-    color: colors.pruRed
-  },
-
-  textGift: {
-    ...commonStyles.textNormal_bold,
-    fontSize: '5vh',
-    marginBottom: '5vh',
-    margin: 'auto',
     color: colors.pruRed,
+    fontSize: '3vh',
+    width: '80%',
+    fontFamily: fonts.bold,
+    textTransform: 'uppercase'
+
+  },
+  textThankYou: {
+    color: colors.pruRed,
+    fontSize: '5vh',
+    marginTop: '3vh',
+    width: '80%',
+    fontFamily: fonts.bold,
     textTransform: 'uppercase'
   },
+  imageResult : {
+    marginBottom: '3vh'
+  }
 };
 
 const finish = ({history, endFlow}) => {
@@ -62,14 +54,20 @@ const finish = ({history, endFlow}) => {
 };
 
 const GiftResultView = ({selectedGift, history, endFlow}) => (
-  <div className="container"  style={{...commonStyles.container, ...styles.container}}>
-    <div>
-    <div style={styles.textTitle}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC</div>
-    <div style={styles.textGift}>{Const.GiftResource[selectedGift].label}</div>
-    <Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
+  <div className="container"
+       style={{...commonStyles.container, ...styles.container}}>
+
+    <img className="resultImg" src={"./images/binhnuoc.png"} style={styles.imageResult}/>
+
+    <div style={{...commonStyles.textNormal_bold,...styles.textTitle}}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC</div>
+
+    <div style={{...commonStyles.textNormal_bold,...styles.textThankYou}}>{Const.GiftResource[selectedGift].label}</div>
+    <div style={commonStyles.footer}>
+      <Button style={commonStyles.bottomButton} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
     </div>
   </div>
 );
+
 const GiftResult = withStyles(styles)(GiftResultView);
 
 const GiftResultContainer = compose(

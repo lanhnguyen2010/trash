@@ -44,14 +44,16 @@ const styles = {
     marginBottom: '5vh',
     width:'65%',
     margin: 'auto',
-    color: colors.pruRed
+    color: colors.pruRed,
+    lineHeight: '5vh'
   },
   textThankYou: {
     ...commonStyles.textNormal_bold,
     fontSize: '3vh',
     width:'70%',
     margin: 'auto',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    lineHeight: '5vh'
   }
 };
 
@@ -67,7 +69,7 @@ const ThankYouView = ({selectedGift, history, endFlow}) => (
     <div style={{...styles.textTitle, color: colors.pruGrey, paddingTop: '5vh'}}>Cùng Prudential hành động</div>
     <div style={{...styles.textThankYou, color: colors.pruRed}}> chọn giảm dùng nhựa</div>
     <div style={{...styles.textThankYou, color: colors.pruGrey}}> vì sức khoẻ của những người thân yêu</div>
-    <Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
+    {/*<Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>*/}
     </div>
   </div>
 );
@@ -86,6 +88,12 @@ const ThankYouContainer = compose(
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }
+    },
+    componentDidMount() {
+      const {history} = this.props;
+      setTimeout(function () {
+        history.push(ROUTES.OTP)
+      }.bind(this), 3000)
     }
   })
 )(ThankYou);

@@ -90,8 +90,7 @@ function* getRandomGift() {
   let giftsQuantity = {
     onghutinox: 0,
     tuivai: 0,
-    daonia: 0,
-    onghutga: 0,
+    lysu: 0,
     binhthuytinh: 0,
   };
 
@@ -136,8 +135,7 @@ function* updateGiftCount({selectedGift}) {
   let giftsQuantity = {
     onghutinox: 0,
     tuivai: 0,
-    daonia: 0,
-    onghutga: 0,
+    lysu: 0,
     binhthuytinh: 0,
   };
 
@@ -157,14 +155,13 @@ function* updateGiftCount({selectedGift}) {
 }
 
 function* updateGift({navigation, data}) {
-  console.log(data)
+  console.log(data);
   try {
     const booth =
       {
         onghutinox: data.onghutinox > 0 ? data.onghutinox : 0,
         tuivai: data.tuivai > 0 ? data.tuivai : 0,
-        daonia: data.daonia > 0 ? data.daonia : 0,
-        onghutgao: data.onghutgao > 0 ? data.onghutgao : 0,
+        lysu: data.lysu > 0 ? data.lysu : 0,
         binhthuytinh: data.binhthuytinh > 0 ? data.binhthuytinh : 0,
       };
     const result = yield call(firebaseService.database.create, "booths/" + data.city + '/' + data.date, booth);

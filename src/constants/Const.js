@@ -1,17 +1,16 @@
 export const LY_SU = "lysu";
 export const ONG_HUT_INOX = "onghutinox";
 export const TUI_VAI = "tuivai";
-export const DAO_NIA = "daonia";
 export const BINH_THUY_TINH = "binhthuytinh";
 
 export const GiftResource = {
   onghutinox: {
     image: "./images/onghutinox.png", //TODO image url
-    label: "Ống Hút Inox"
+    label: "Ống hút inox"
   },
   tuivai : {
     image: "./images/tuivai.png",
-    label: "Túi Vải"
+    label: "Balo vải canvas"
   },
   lysu : {
     image: "./images/lysu.png",
@@ -19,7 +18,7 @@ export const GiftResource = {
   },
   binhthuytinh : {
     image: "./images/binhnuoc.png",
-    label: "Bình Thủy Tinh"
+    label: "Bình nước thủy tinh"
   }
 };
 
@@ -28,7 +27,8 @@ export const GiftOutDegree = {
   tuivai: [1,6],
   onghutinox: [2,5,7,9],
   binhthuytinh: [4, 8]
-}
+};
+
 export const TrashType = ["chai", "lynhua", "hopnhua", "nylon", "others"];
 
 export const Questions = {

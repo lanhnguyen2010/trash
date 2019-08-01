@@ -24,7 +24,6 @@ const styles = {
     borderColor: 'white',
     borderRadius: 15,
     background: colors.pruRed,
-    padding: 20
   },
 
   passiveAnswer: {
@@ -33,7 +32,6 @@ const styles = {
     borderColor: 'rgba(0,0,0,0.3)',
     borderRadius: 15,
     background: 'rgba(0,0,0,0.1)',
-    padding: 20
   },
 
   questionSection: {
@@ -57,10 +55,11 @@ const styles = {
   },
 
   image: {
-    backgroundPosition: 'center',
+    backgroundPosition: 'bottom',
     backgroundSize: 'contain',
-    height: '80%',
+    height: '100%',
     backgroundRepeat: 'no-repeat',
+    marginTop: 20
   },
   reminder: {
     position: "absolute",
@@ -73,7 +72,7 @@ const styles = {
   label: {
     ...commonStyles.textNormal_bold,
     bottom: 0,
-    marginTop: 20,
+    marginBottom: 20,
     color: colors.pruGrey,
     textTransform: "uppercase"
   },

@@ -62,7 +62,7 @@ const commonStyle = {
     width: "100%",
   },
   bottomButton: {
-    marginBottom: '10%',
+    marginBottom: '5%',
     alignSelf: "center",
     backgroundColor: colors.pruRed,
     fontSize: '3vh',

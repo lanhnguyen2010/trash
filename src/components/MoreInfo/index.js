@@ -58,7 +58,13 @@ const styles = {
     fontFamily: fonts.bold,
     marginLeft: 'auto',
     maxWidth: '75%'
-  }
+  },
+  logo: {
+    position:"fixed",
+    zIndex: 100,
+    top: '5vh',
+    left: '5vh'
+  },
 };
 
 const MoreInfo = ({history, endFlow}) => {
@@ -105,7 +111,10 @@ const MoreInfo = ({history, endFlow}) => {
         <div style={{
           ...styles.image,
           backgroundImage: "url('./images/moreInfo4.jpg')",
+          backgroundPosition: 'bottom'
         }}>
+          <img src="./images/logo.jpg" alt="prudential logo" style={styles.logo}/>
+
           <div style={commonStyle.footer}>
             <Button style={commonStyle.bottomButton}
                     onClick={() => routeChange()}
@@ -121,7 +130,7 @@ const MoreInfo = ({history, endFlow}) => {
         }}>
           <div style={styles.textTitleSmall}>Cùng Prudential hành động</div>
           <div style={styles.textTitle}>Chọn giảm dùng nhựa</div>
-          <div style={styles.textTitleSmall}>Vì sức khoẻ người thân yêu</div>
+          <div style={styles.textTitleSmall}>Vì sức khoẻ của những người thân yêu</div>
 
           <div style={commonStyle.footer}>
             <Button style={{...commonStyle.bottomButton, ...styles.pruButton}} onClick={() => routeChange()}>
