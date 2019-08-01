@@ -6,11 +6,10 @@ import {
 } from '@material-ui/core';
 
 import * as Routes from "../../constants/routes"
-import commonStyles, {fonts,colors} from "../common"
+import commonStyles, {fonts, colors} from "../common"
 
 const styles = {
   questionTitle: {
-    color: 'white',
     textAlign: 'left',
     width: '70%',
     paddingLeft: '5%',
@@ -22,7 +21,7 @@ const styles = {
     textAlign: 'left',
     marginTop: 10,
     marginBottom: 10,
-    color: colors.pruRed
+    color: colors.pruRed,
   },
 
   questionContent: {
@@ -36,7 +35,7 @@ const styles = {
     ...commonStyles.textStyleBig_bold,
     fontSize: '3.5vh',
     textAlign: 'left',
-    color: colors.textGray,
+    color: colors.pruGrey,
     lineHeight: '5vh'
   },
 
@@ -49,10 +48,10 @@ const styles = {
     ...commonStyles.textNormal_bold,
     fontFamily: fonts.regular,
     borderRadius: 100,
-    color: colors.textGray,
+    color: colors.pruGrey,
     fontSize: '3vh',
     textAlign: 'left',
-    borderColor: colors.textGray,
+    borderColor: colors.pruGrey,
     borderWidth: 1,
     borderStyle: 'solid',
     padding: '2vh',
@@ -75,7 +74,7 @@ const styles = {
   wrongAnswer: {
     borderRadius: 100,
     background: 'rgba(43, 43, 43, 0.5)',
-    borderColor: colors.textGray,
+    borderColor: colors.pruGrey,
     color: 'white',
     fontSize: '3vh',
     textAlign: 'left',
