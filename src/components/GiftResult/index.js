@@ -57,7 +57,9 @@ const GiftResultView = ({selectedGift, history, endFlow}) => (
   <div className="container"
        style={{...commonStyles.container, ...styles.container}}>
 
-    <img className="resultImg" src={"./images/binhnuoc.png"} style={styles.imageResult}/>
+    <img className="resultImg" src={Const.GiftResource[selectedGift].image}
+         style={{...styles.imageResult,  width: Const.GiftResource[selectedGift].width}}/>
+
 
     <div style={{...commonStyles.textNormal_bold,...styles.textTitle}}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC</div>
 

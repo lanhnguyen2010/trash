@@ -95,7 +95,7 @@ const GiftSelectView = ({history, updateSelectedGift, btnState, onSelected}) => 
               }}>Hoạt động chụp hình</Button>
       <Button style={btnState[2]? styles.selectedOption : styles.normalOption}
               onClick={() => {
-                updateSelectedGift("binhthuytinh");
+                updateSelectedGift("binhthuytinh,onghutinox");
                 onSelected(2);
               }}>Trò chơi Katooth</Button>
     </div>)

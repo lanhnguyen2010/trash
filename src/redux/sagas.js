@@ -112,10 +112,14 @@ function* getRandomGift() {
   shuffleArray(buildGiftsArray);
   console.log("shuffle buildGiftArray", buildGiftsArray);
   const randomIndex = Math.floor(Math.random() * (buildGiftsArray.length));
+  console.log("getRandomGift Index", randomIndex);
   const selectedGift = buildGiftsArray[randomIndex];
   if (giftsQuantity[selectedGift] > 0) {
     giftsQuantity[selectedGift]--;
   }
+
+  console.log("getRandomGift selectedGift", selectedGift);
+
   yield put(actions.updateSelectedGift(selectedGift));
   yield call(firebaseService.database.create, "booths/" + city + '/' + formattedDate, giftsQuantity);
 
