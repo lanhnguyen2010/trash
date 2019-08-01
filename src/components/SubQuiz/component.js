@@ -6,11 +6,10 @@ import {
 } from '@material-ui/core';
 
 import * as Routes from "../../constants/routes"
-import commonStyles, {fonts,colors} from "../common"
+import commonStyles, {fonts, colors} from "../common"
 
 const styles = {
   questionTitle: {
-    color: 'white',
     textAlign: 'left',
     width: '70%',
     paddingLeft: '5%',
@@ -22,7 +21,7 @@ const styles = {
     textAlign: 'left',
     marginTop: 10,
     marginBottom: 10,
-    color: colors.pruRed
+    color: colors.pruRed,
   },
 
   questionContent: {
@@ -36,12 +35,12 @@ const styles = {
     ...commonStyles.textStyleBig_bold,
     fontSize: '3.5vh',
     textAlign: 'left',
-    color: colors.textGray,
+    color: colors.pruGrey,
     lineHeight: '5vh'
   },
 
   answer: {
-    margin: 'auto',
+    margin: '0 auto',
     width: '70%'
   },
 
@@ -49,11 +48,11 @@ const styles = {
     ...commonStyles.textNormal_bold,
     fontFamily: fonts.regular,
     borderRadius: 100,
-    color: colors.textGray,
+    color: colors.pruGrey,
     fontSize: '3vh',
     textAlign: 'left',
-    borderColor: colors.textGray,
-    borderWidth: 1,
+    borderColor: colors.pruGrey,
+    borderWidth: 2,
     borderStyle: 'solid',
     padding: '2vh',
     marginTop: 20
@@ -75,7 +74,7 @@ const styles = {
   wrongAnswer: {
     borderRadius: 100,
     background: 'rgba(43, 43, 43, 0.5)',
-    borderColor: colors.textGray,
+    borderColor: colors.pruGrey,
     color: 'white',
     fontSize: '3vh',
     textAlign: 'left',
@@ -106,7 +105,6 @@ const styles = {
   questionSection: {
     paddingTop: '48%',
     textAlign: 'center',
-    backgroundColor: 'red',
     display: 'flex',
     flexDirection: 'column',
     width: "100%"
@@ -165,7 +163,8 @@ const Result = ({history, answerResult, question}) => (
 const QuestionStyle = {
   normal: styles.baseAnswer,
   correct: styles.correctAnswer,
-  wrong: styles.wrongAnswer
+  wrong: styles.wrongAnswer,
+  hidden: {display: 'none'}
 };
 
 
@@ -178,7 +177,7 @@ const Question = ({btnState, toogleState, selectedTrash, question}) => {
         <div style={styles.questionContent}>cái giá thật sự
           của {question.label == "món đồ nhựa" ? "các" : "một"}</div>
         <div style={styles.questionLabel}> {question.label}</div>
-        <div style={styles.questionContent}>là bao nhiêu?</div>
+        <div style={styles.questionContent}>{question.label == "món đồ nhựa" ? "này" : ""} là bao nhiêu?</div>
       </div>
       <div style={styles.answer}>
         <div style={QuestionStyle[btnState[0]]}

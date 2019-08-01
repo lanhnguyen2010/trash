@@ -5,7 +5,7 @@ import {
   Button
 } from '@material-ui/core';
 
-import commonStyles from '../common'
+import commonStyles , {colors} from '../common'
 
 
 const styles = {
@@ -13,23 +13,25 @@ const styles = {
     ...commonStyles.textStyleBig_bold,
     width: '70%',
     margin: 'auto',
-    fontSize: '4vh'
+    color: "#BA0000",
+    fontSize: '4vh',
+    marginTop: '5vh'
   },
 
   activeAnswer: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderStyle: "solid",
     borderColor: 'white',
     borderRadius: 15,
-    padding: 20
+    background: colors.pruRed,
   },
 
   passiveAnswer: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderStyle: "solid",
-    borderColor: 'white',
+    borderColor: 'rgba(0,0,0,0.3)',
     borderRadius: 15,
-    padding: 20
+    background: 'rgba(0,0,0,0.1)',
   },
 
   questionSection: {
@@ -49,14 +51,15 @@ const styles = {
   },
 
   background: {
-    backgroundImage: "url('./images/quiz/quiz_background.png')"
+    backgroundImage: "url('./images/background_global.png')"
   },
 
   image: {
-    backgroundPosition: '50% 50%',
+    backgroundPosition: 'bottom',
     backgroundSize: 'contain',
-    height: '70%',
+    height: '100%',
     backgroundRepeat: 'no-repeat',
+    marginTop: 20
   },
   reminder: {
     position: "absolute",
@@ -69,7 +72,8 @@ const styles = {
   label: {
     ...commonStyles.textNormal_bold,
     bottom: 0,
-    marginTop: 20,
+    marginBottom: 20,
+    color: colors.pruGrey,
     textTransform: "uppercase"
   },
 
@@ -83,20 +87,11 @@ const styles = {
   },
   intro: {
     ...commonStyles.textStyleBig_bold,
-    width: '70%',
-    color: 'white',
+    width: '75%',
+    color: "#BA0000",
     margin: 'auto',
     paddingTop: '30%',
   },
-  footer: {
-    bottom: 0,
-    right: 0,
-    zIndex: 100,
-    display: "flex",
-    justifyContent: "center",
-    width: "100%",
-    height: "30vh",
-  }
 };
 
 const Quiz = ({render, btnState, toogleState, updateRender}) => (
@@ -108,11 +103,11 @@ const Quiz = ({render, btnState, toogleState, updateRender}) => (
 
 const Intro = ({updateRender}) => (
   <div style={styles.container}>
-    <div style={styles.intro}>NÀO CÙNG BỎ VÀO MÁY ĐỒ DÙNG NHỰA BẠN ĐANG CÓ</div>
+    <div style={styles.intro}>HÃY BỎ ĐỒ NHỰA BẠN ĐANG CÓ VÀO MÁY</div>
     <div style={commonStyles.footer}>
       <Button style={commonStyles.bottomButton}
               onClick={() => updateRender(true)}>
-        Bạn đã sẵn sàng</Button>
+        Tiếp tục nào</Button>
     </div>
   </div>
 
@@ -121,29 +116,39 @@ const Intro = ({updateRender}) => (
 
 const Question = ({btnState, toogleState}) => (
   <div style={styles.questionSection}>
-    <div style={styles.questionTitle}>Đồ nhựa mà bạn vừa bỏ vào máy là gì trong những vật sau</div>
+    <div style={styles.questionTitle}>Hãy chọn loại đồ nhựa mà bạn vừa bỏ vào máy </div>
 
     <div className="grid2x2">
       <div className="box" style={btnState[0] ? styles.activeAnswer : styles.passiveAnswer}
            onClick={() => toogleState(0)}>
         <div style={{...styles.image, backgroundImage: "url('./images/quiz/chainhua.png')"}}/>
-        <div style={styles.label}>Chai nhựa</div>
+        <div style={{...styles.label, color:btnState[0]? 'white' : colors.pruGrey}}>Chai nhựa</div>
       </div>
       <div className="box" style={btnState[1] ? styles.activeAnswer : styles.passiveAnswer}
            onClick={() => toogleState(1)}>
         <div style={{...styles.image, backgroundImage: "url('./images/quiz/lynhua.png')"}}/>
-        <div style={styles.label}>Ly nhựa</div>
+        <div style={{...styles.label, color:btnState[1]? 'white' : colors.pruGrey}}>Ly nhựa</div>
       </div>
       <div className="box" style={btnState[2] ? styles.activeAnswer : styles.passiveAnswer}
            onClick={() => toogleState(2)}>
         <div style={{...styles.image, backgroundImage: "url('./images/quiz/hopnhua.png')"}}/>
-        <div style={styles.label}>Hộp nhựa</div>
+        <div style={{...styles.label, color:btnState[2]? 'white' : colors.pruGrey}}>Hộp nhựa</div>
       </div>
       <div className="box" style={btnState[3] ? styles.activeAnswer : styles.passiveAnswer}
            onClick={() => toogleState(3)}>
-        <div style={{...styles.image, backgroundImage: "url('./images/quiz/other.png')"}}/>
-        <div style={styles.label}>Các đồ nhựa khác (Muỗng nĩa, ống hút, túi ni lông,...)</div>
+        <div style={{...styles.image, backgroundImage: "url('./images/quiz/nilon.png')"}}/>
+        <div style={{...styles.label, color:btnState[3]? 'white' : colors.pruGrey}}>Túi nylon các loại</div>
       </div>
+    </div>
+
+    <div className="box" style={{...(btnState[4] ? styles.activeAnswer : styles.passiveAnswer),
+      marginLeft: 44, marginRight: 44,
+      marginTop: 0, display: 'flex', flexDirection: 'row',
+    justifyContent: 'center', alignItems: 'center',
+    marginBottom: '5vh'}}
+         onClick={() => toogleState(4)}>
+      <div style={{...styles.image, backgroundImage: "url('./images/quiz/other.png')", width: '30%'}}/>
+      <div style={{...styles.label, color:btnState[4]? 'white' : colors.pruGrey}}>Đồ nhựa khác (Muỗng nĩa, ống hút,...)</div>
     </div>
   </div>
 );

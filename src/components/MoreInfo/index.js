@@ -9,16 +9,10 @@ import connect from "react-redux/es/connect/connect";
 import * as selectors from "../../redux/selectors";
 import {actions} from "../../redux";
 import {lifecycle} from "recompose";
-import commonStyle, {fonts} from "../common"
+import commonStyle, {fonts, colors} from "../common"
 
 
 const styles = {
-  logo: {
-    position: "fixed",
-    zIndex: 100,
-    top: 30,
-    left: 30
-  },
   pruImage: {
     width: '33.3%'
   },
@@ -33,43 +27,59 @@ const styles = {
     backgroundImage: "url('./images/moreInfo5.png')",
     backgroundSize: 'cover',
     alignItems: 'unset',
-    paddingTop: '7%',
+    paddingTop: '5%',
     paddingBottom: '7%',
   },
   textTitleSmall: {
     fontSize: '3vh',
-    color: 'black',
+    color: colors.pruGrey,
     fontFamily: fonts.bold,
-    maxWidth: '80%',
     margin: 'auto'
   },
   textTitle: {
     fontSize: '4vh',
     padding: '0.5vh',
-    color: '#D20C08',
+    color: colors.pruRed,
     fontFamily: fonts.bold,
-    maxWidth: '80%',
     margin: 'auto'
-  }
+  },
+  textTitleSmallEnd: {
+    fontSize: '2.5vh',
+    color: colors.pruGrey,
+    fontFamily: fonts.bold,
+    padding: '1vh',
+    marginLeft: 'auto',
+    maxWidth: '75%'
+  },
+  textTitleEnd: {
+    fontSize: '3.5vh',
+    padding: '1vh',
+    color: colors.pruRed,
+    fontFamily: fonts.bold,
+    marginLeft: 'auto',
+    maxWidth: '75%'
+  },
+  logo: {
+    position:"fixed",
+    zIndex: 100,
+    top: '5vh',
+    left: '5vh'
+  },
 };
 
 const MoreInfo = ({history, endFlow}) => {
   let trackRef;
   let btnRef;
-  let logoRef;
   let btnDoneRef;
   const routeChange = () => {
-    trackRef.clickNext();
-    if (trackRef.index == 2) {
+    if (trackRef.index >= 2) {
       setTimeout(function () {
         btnRef.style.display = 'none';
-        btnDoneRef.style.display = '';
-      }.bind(this), 1000)
+      }.bind(this), 300)
     }
-    if (trackRef.index >= 3) {
-      btnDoneRef.style.display = 'none';
-      logoRef.style.display = 'none'
-    }
+
+    trackRef.clickNext();
+
 
     if (trackRef.index == 4) {
       setTimeout(function () {
@@ -81,36 +91,46 @@ const MoreInfo = ({history, endFlow}) => {
 
   return (
     <div className="container">
-      <img src="./images/logo.svg" alt="prudential logo" style={styles.logo} ref={t => logoRef = t}/>
       <AwesomeSlider style={{width: '100%', height: '100%', position: 'absolute'}}
                      bullets={false}
                      organicArrows={false}
                      ref={t => trackRef = t}>
-       
-        <div style={{
-          ...styles.image,
-          backgroundImage: "url('./images/home1.png')",
-        }}/>
-        <div style={{
-          ...styles.image,
-          backgroundImage: "url('./images/home2.png')",
-        }}/>
-        <div style={{
-          ...styles.image,
-          backgroundImage: "url('./images/home3.png')",
-        }}/>
-        <div style={{
-          ...styles.image,
-          backgroundImage: "url('./images/home4.png')",
-        }}/>
 
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo5.png')"
+          backgroundImage: "url('./images/moreInfo1.jpg')",
+        }}/>
+        <div style={{
+          ...styles.image,
+          backgroundImage: "url('./images/moreInfo2.jpg')",
+        }}/>
+        <div style={{
+          ...styles.image,
+          backgroundImage: "url('./images/moreInfo3.jpg')",
+        }}/>
+        <div style={{
+          ...styles.image,
+          backgroundImage: "url('./images/moreInfo4.jpg')",
+          backgroundPosition: 'bottom'
+        }}>
+          <img src="./images/logo.jpg" alt="prudential logo" style={styles.logo}/>
+
+          <div style={commonStyle.footer}>
+            <Button style={commonStyle.bottomButton}
+                    onClick={() => routeChange()}
+                    ref={t => btnDoneRef = t}
+            >
+              Hoàn thành</Button>
+          </div>
+        </div>
+
+        <div style={{
+          ...styles.image,
+          backgroundImage: "url('./images/thanks.png')"
         }}>
           <div style={styles.textTitleSmall}>Cùng Prudential hành động</div>
           <div style={styles.textTitle}>Chọn giảm dùng nhựa</div>
-          <div style={styles.textTitleSmall}>Vì sức khoẻ người thân yêu</div>
+          <div style={styles.textTitleSmall}>Vì sức khoẻ của những người thân yêu</div>
 
           <div style={commonStyle.footer}>
             <Button style={{...commonStyle.bottomButton, ...styles.pruButton}} onClick={() => routeChange()}>
@@ -121,12 +141,14 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo5.png')",
+          backgroundImage: "url('./images/thanks.png')",
         }}>
-          <div style={styles.textTitle}>Cảm Ơn Sự Ủng Hộ Và Tinh Thần Hành Động Của Bạn.</div>
-          <div style={styles.textTitleSmall}>Nhân viên của Prudential tại quầy sẽ hướng dẫn bạn các bước tiếp theo
+          <div style={styles.textTitleEnd}>Cảm ơn bạn đã hành động cùng Prudential.</div>
+          <div style={styles.textTitleSmallEnd}>
+            Liên hệ nhân viên của Prudential để được hướng dẫn các bước tiếp theo.
           </div>
         </div>
+
 
       </AwesomeSlider>
 
@@ -137,11 +159,7 @@ const MoreInfo = ({history, endFlow}) => {
         >
           Cùng tiếp tục hành trình nhé</Button>
 
-        <Button style={{...commonStyle.bottomButton, display: 'none'}}
-                onClick={() => routeChange()}
-                ref={t => btnDoneRef = t}
-        >
-          Hoàn thành</Button>
+
       </div>
 
     </div>
