@@ -47,8 +47,6 @@ const styles = {
     backgroundImage: "url('./images/moreInfo5.png')",
     backgroundSize: 'cover',
     alignItems: 'unset',
-    paddingTop: '7%',
-    paddingBottom: '7%',
   }
 };
 
@@ -96,7 +94,7 @@ export default class Home extends Component {
           <div style={{
             ...styles.image,
             backgroundImage: "url('./images/home4.jpg')",
-            backgroundPosition: 'bottom'
+            backgroundPosition: 'bottom',
           }}>
             <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
           </div>
