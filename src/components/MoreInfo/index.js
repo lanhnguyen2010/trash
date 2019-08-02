@@ -27,8 +27,6 @@ const styles = {
     backgroundImage: "url('./images/moreInfo5.png')",
     backgroundSize: 'cover',
     alignItems: 'unset',
-    paddingTop: '5%',
-    paddingBottom: '7%',
   },
   textTitleSmall: {
     fontSize: '2.5vh',
