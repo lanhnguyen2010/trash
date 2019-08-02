@@ -86,7 +86,7 @@ export default class Home extends Component {
             backgroundImage: "url('./images/home2.jpg')",
             backgroundPosition: 'bottom'
           }}>
-            <img src="./images/logo.jpg" alt="prudential logo" style={styles.logo}/>
+            <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
           </div>
           <div style={{
             ...styles.image,
@@ -98,7 +98,7 @@ export default class Home extends Component {
             backgroundImage: "url('./images/home4.jpg')",
             backgroundPosition: 'bottom'
           }}>
-            <img src="./images/logo.jpg" alt="prudential logo" style={styles.logo}/>
+            <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
           </div>
         </AwesomeSlider>
         <div style={commonStyles.footer}>

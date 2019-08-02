@@ -105,7 +105,7 @@ const MoreInfo = ({history, endFlow}) => {
           backgroundPosition:'bottom',
           backgroundImage: "url('./images/moreInfo1.jpg')",
         }}>
-          <img src="./images/logo.jpg" alt="prudential logo" style={styles.logo}/>
+          <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
         </div>
         <div style={{
           ...styles.image,
@@ -120,7 +120,7 @@ const MoreInfo = ({history, endFlow}) => {
           backgroundImage: "url('./images/moreInfo4.jpg')",
           backgroundPosition: 'bottom'
         }}>
-          <img src="./images/logo.jpg" alt="prudential logo" style={styles.logo}/>
+          <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
 
           <div style={commonStyle.footer}>
             <Button style={commonStyle.bottomButton}
@@ -133,11 +133,11 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/thanks.png')"
+          backgroundImage: "url('./images/moreInfo5.png')"
         }}>
-          <div style={styles.textTitleSmall}>Cùng Prudential hành động</div>
-          <div style={styles.textTitle}>Chọn giảm dùng nhựa</div>
-          <div style={styles.textTitleSmall}>Vì sức khoẻ của những người thân yêu</div>
+          {/*<div style={styles.textTitleSmall}>Cùng Prudential hành động</div>*/}
+          {/*<div style={styles.textTitle}>Chọn giảm dùng nhựa</div>*/}
+          {/*<div style={styles.textTitleSmall}>Vì sức khoẻ của những người thân yêu</div>*/}
 
           <div style={commonStyle.footer}>
             <Button style={{...commonStyle.bottomButton, ...styles.pruButton}} onClick={() => routeChange()}>
@@ -148,12 +148,8 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/thanks.png')",
+          backgroundImage: "url('./images/moreInfo6.jpg')",
         }}>
-          <div style={styles.textTitleEnd}>Cảm ơn bạn đã hành động cùng Prudential.</div>
-          <div style={styles.textTitleSmallEnd}>
-            Liên hệ nhân viên của Prudential để được hướng dẫn các bước tiếp theo.
-          </div>
         </div>
 
 
