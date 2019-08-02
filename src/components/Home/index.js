@@ -30,7 +30,8 @@ const styles = {
     position:"fixed",
     zIndex: 100,
     top: '2.5vh',
-    left: '2.5vh'
+    left: '2.5vh',
+    height: '7vh'
   },
   label: {
     position: "fixed",

@@ -115,7 +115,7 @@ const OtpForm = ({
       name: nameRef ? nameRef.value : '',
       gender: gender,
       birthDay: birthDayRef ? birthDayRef.value : '',
-      email: emailRef ? emailRef.value : '',
+      // email: emailRef ? emailRef.value : '',
       city: city,
       time: new Date().toLocaleString()
     };
@@ -150,7 +150,7 @@ const OtpForm = ({
       <div style={styles.container}>
         <TextField
           style={styles.textField}
-          placeholder="Tên"
+          placeholder="Tên*"
           id="name"
           variant="outlined"
           className='info'
@@ -164,14 +164,14 @@ const OtpForm = ({
           variant="outlined"
           input={<OutlinedInput labelWidth={labelWidth} name="gender" id="gender"/>}
         >
-          <MenuItem value={"GioiTinh"} disabled>Giới Tính</MenuItem>
+          <MenuItem value={"GioiTinh"} disabled>Giới Tính*</MenuItem>
           <MenuItem value={"Nam"}>Nam</MenuItem>
           <MenuItem value={"Nu"}>Nữ</MenuItem>
         </Select>
         <TextField
           className='info'
           style={styles.textField}
-          placeholder="Ngày Sinh"
+          placeholder="Ngày Sinh*"
           variant="outlined"
           helperText=""
           inputRef={input => birthDayRef = input}
@@ -179,7 +179,7 @@ const OtpForm = ({
         <TextField
           className='info'
           style={styles.textField}
-          placeholder="Số Điện Thoại"
+          placeholder="Số Điện Thoại*"
           variant="outlined"
           id="phoneNumber"
           inputRef={input => phoneNumberRef = input}

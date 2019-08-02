@@ -66,7 +66,8 @@ const styles = {
     position:"fixed",
     zIndex: 100,
     top: '5vh',
-    left: '5vh'
+    left: '5vh',
+    height: '7vh'
   },
 };
 
