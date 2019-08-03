@@ -261,9 +261,10 @@ function* doOtp({navigation, data}) {
       yield put(actions.updatePhoneNumber(data.phoneNumber));
       yield put(actions.updateInputData(data));
       let otp = generateOTP();
+      let otpMsg = `Ma OTP cua ban la ${otp}`;
       let city = yield select(selectors.city);
       yield call(firebaseService.database.update, "players/" + city + "/" + data.phoneNumber, data);
-      const params = `Phone=${data.phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=${sandbox}`;
+      const params = `Phone=${data.phoneNumber}&Content=${otpMsg}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=${sandbox}`;
       const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
       console.log(response);
       if (response.CodeResult == 100) {
@@ -281,8 +282,9 @@ function* doOtp({navigation, data}) {
 function* resendOtp() {
   const phoneNumber = yield select(selectors.phoneNumber);
 
-  let otp = `Ma OTP cua ban la ${generateOTP()}`;
-  const params = `Phone=${phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=${sandbox}`;
+  let otp = generateOTP();
+  let otpMsg = `Ma OTP cua ban la ${otp}`;
+  const params = `Phone=${phoneNumber}&Content=${otpMsg}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=${sandbox}`;
   const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
   console.log(response);
   if (response.CodeResult == 100) {
