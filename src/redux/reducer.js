@@ -97,6 +97,10 @@ const reducer = createReducer(initialState, {
     _.assign({}, state, {
       correctAnswerText: correctAnswerText
     }),
+  [Types.UPDATE_OTP_SUBMIT_BTN]: (state, {otpSubmitBtnDisable}) =>
+    _.assign({}, state, {
+      otpSubmitBtnDisable: otpSubmitBtnDisable
+    }),
   [Types.END_FLOW]:  (state) =>
   _.assign({}, state, {
     count: 0,
@@ -109,7 +113,8 @@ const reducer = createReducer(initialState, {
     answerResult: "",
     inputDate: "",
     isPhoneNumberExist: false,
-    correctAnswerText: ""
+    correctAnswerText: "",
+    otpSubmitBtnDisable: true
   })
 });
 
