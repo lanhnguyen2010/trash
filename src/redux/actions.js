@@ -35,6 +35,7 @@ const { Types, Creators: actions } = createActions(
     updateSelectedAnswer:["seletedAnswer"],
     updateAnswerResult: ["answerResult"],
     saveQuizResult: ["question", "answerIndex"],
+    updateCorrectAnswerText: ["correctAnswerText"],
 
     updateInputData: ["inputData"],
     saveGiftResult: ["giftType"],

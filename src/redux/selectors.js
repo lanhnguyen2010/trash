@@ -17,6 +17,7 @@ const inputData = createSelector(localState, state => state.inputData);
 const quizResults = createSelector(localState, state => state.quizResults);
 const giftResults = createSelector(localState, state => state.giftResults);
 const isPhoneNumberExist = createSelector(localState, state => state.isPhoneNumberExist);
+const correctAnswerText = createSelector(localState, state => state.correctAnswerText);
 
 
 const root = createStructuredSelector({
@@ -34,7 +35,8 @@ const root = createStructuredSelector({
   inputData,
   quizResults,
   giftResults,
-  isPhoneNumberExist
+  isPhoneNumberExist,
+  correctAnswerText
 });
 
 export {root, city, phoneNumber, inputData, selectedGift, isPhoneNumberExist, giftResults};

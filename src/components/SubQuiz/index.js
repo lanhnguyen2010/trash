@@ -13,12 +13,13 @@ const SubQuizContainer = compose(
     selectors.root,
     {
       updateAnswerResult: actions.updateAnswerResult,
-      saveQuizResult: actions.saveQuizResult
+      saveQuizResult: actions.saveQuizResult,
+      updateCorrectAnswerText: actions.updateCorrectAnswerText
     },
   ),
   lifecycle({
     componentWillMount() {
-      const {history, selectedTrash, updateAnswerResult,saveQuizResult} = this.props;
+      const {history, selectedTrash, updateAnswerResult,saveQuizResult, updateCorrectAnswerText} = this.props;
 
       const question = Const.Questions[selectedTrash];
 
@@ -29,11 +30,12 @@ const SubQuizContainer = compose(
         const result = buildQuestion.answers[index] == correctAnswer ? "correct" : "wrong";
         btnStateInit[index] = result;
         if (result == "wrong") {
-          for (let i = 0; i < buildQuestion.answers.length; i++) {
-            if (buildQuestion.answers[i] == correctAnswer) {
-              btnStateInit[i] = "correct";
-            }
-          }
+          // for (let i = 0; i < buildQuestion.answers.length; i++) {
+          //   if (buildQuestion.answers[i] == correctAnswer) {
+          //     btnStateInit[i] = "correct";
+          //   }
+          // }
+          updateCorrectAnswerText(correctAnswer);
         } else {
 
           for (let i = 0; i < buildQuestion.answers.length; i++) {

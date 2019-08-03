@@ -35,7 +35,7 @@ const styles = {
 
   questionResultTitle: {
     ...commonStyles.textStyleBig_bold,
-    fontFamily: fonts.extraBold,
+    fontFamily: fonts.regular,
     fontSize: '3.5vh',
     textAlign: 'left',
     color: colors.pruGrey,
@@ -136,17 +136,17 @@ function getStyle(selectedTrash) {
   }
 }
 
-const SubQuiz = ({history, answerResult, btnState, toogleState, selectedTrash, question}) => {
+const SubQuiz = ({history, answerResult, btnState, toogleState, selectedTrash, question, correctAnswerText}) => {
     return (
       <div className="container" style={{display: 'flex', alignItems: 'stretch', alignContent: 'stretch'}}>
-        {answerResult ? <Result {...{history, answerResult, question, selectedTrash}}/> :
+        {answerResult ? <Result {...{history, answerResult, question, selectedTrash, correctAnswerText}}/> :
           <Question {...{btnState, toogleState, selectedTrash, question}}/>}
       </div>
     )
   }
 ;
 
-const Result = ({history, answerResult, question, selectedTrash}) => (
+const Result = ({history, answerResult, question, selectedTrash, correctAnswerText}) => (
   <div style={getStyle(selectedTrash)}>
     <div style={styles.questionTitle}>
       <div style={styles.questionLabel}>
@@ -154,7 +154,8 @@ const Result = ({history, answerResult, question, selectedTrash}) => (
       </div>
 
       <div style={styles.questionResultTitle}>
-        Cái giá thật sự phải trả cho việc sử dụng nhựa thật sự đắt hơn chúng ta biết đấy.
+        {answerResult == "correct"? "Cái giá thật sự phải trả cho việc sử dụng nhựa thật sự đắt hơn chúng ta biết đấy."
+        : correctAnswerText}
       </div>
     </div>
     <div style={commonStyles.footer}>

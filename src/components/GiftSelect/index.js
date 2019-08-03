@@ -97,7 +97,7 @@ const GiftSelectView = ({history, updateSelectedGift, btnState, onSelected}) => 
               onClick={() => {
                 updateSelectedGift("binhthuytinh,onghutinox");
                 onSelected(2);
-              }}>Trò chơi Katooth</Button>
+              }}>Trò chơi Kahoot</Button>
     </div>)
 };
 

@@ -17,7 +17,8 @@ const initialState = {
   inputData: '',
   quizResults:'',
   giftResults:'',
-  isPhoneNumberExist:false
+  isPhoneNumberExist:false,
+  correctAnswerText: ''
 };
 
 const reducer = createReducer(initialState, {
@@ -92,7 +93,10 @@ const reducer = createReducer(initialState, {
     _.assign({}, state, {
       isPhoneNumberExist: isPhoneNumberExist
     }),
-
+  [Types.UPDATE_CORRECT_ANSWER_TEXT]: (state, {correctAnswerText}) =>
+    _.assign({}, state, {
+      correctAnswerText: correctAnswerText
+    }),
   [Types.END_FLOW]:  (state) =>
   _.assign({}, state, {
     count: 0,
@@ -104,7 +108,8 @@ const reducer = createReducer(initialState, {
     selectedTrash: "",
     answerResult: "",
     inputDate: "",
-    isPhoneNumberExist: false
+    isPhoneNumberExist: false,
+    correctAnswerText: ""
   })
 });
 
