@@ -281,7 +281,7 @@ function* doOtp({navigation, data}) {
 function* resendOtp() {
   const phoneNumber = yield select(selectors.phoneNumber);
 
-  let otp = generateOTP();
+  let otp = `Ma OTP cua ban la ${generateOTP()}`;
   const params = `Phone=${phoneNumber}&Content=${otp}&ApiKey=${SMS_API_KEY}&SecretKey=${SMS_SECRET_KEY}&IsUnicode=false&Brandname=${SMS_BRANDNAME}&SmsType=2&Sandbox=${sandbox}`;
   const response = yield call(sendRequest, `https://restapi.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get?${params}`);
   console.log(response);
