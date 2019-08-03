@@ -13,7 +13,7 @@ const styles = {
     ...commonStyles.textStyleBig_bold,
     width: '70%',
     margin: 'auto',
-    color: "#BA0000",
+    color: colors.pruRed,
     fontSize: '4vh',
     marginTop: '5vh'
   },
@@ -88,7 +88,7 @@ const styles = {
   intro: {
     ...commonStyles.textStyleBig_bold,
     width: '75%',
-    color: "#BA0000",
+    color: colors.pruRed,
     margin: 'auto',
     paddingTop: '30%',
   },

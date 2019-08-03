@@ -34,6 +34,11 @@ export const GiftOutDegree = {
 };
 
 export const TrashType = ["chai", "lynhua", "hopnhua", "nylon", "others"];
+export const CHAI = "chai";
+export const LY_NHUA = "lynhua";
+export const HOP_NHUA = "hopnhua";
+export const NYLON = "nylon";
+
 
 export const Questions = {
   chai: {

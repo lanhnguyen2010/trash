@@ -138,7 +138,7 @@ const MoreInfo = ({history, endFlow}) => {
           {/*<div style={styles.textTitleSmall}>Vì sức khoẻ của những người thân yêu</div>*/}
 
           <div style={commonStyle.footer}>
-            <Button style={{...commonStyle.bottomButton, ...styles.pruButton}} onClick={() => routeChange()}>
+            <Button style={{...commonStyle.bottomButton}} onClick={() => routeChange()}>
               Tôi chọn giảm dùng nhựa
             </Button>
           </div>

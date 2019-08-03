@@ -6,6 +6,7 @@ import {
 } from '@material-ui/core';
 
 import * as Routes from "../../constants/routes"
+import * as Const from "../../constants/Const"
 import commonStyles, {fonts, colors} from "../common"
 
 const styles = {
@@ -16,7 +17,7 @@ const styles = {
   },
 
   questionLabel: {
-    ...commonStyles.textStyleBig_bold,
+    fontFamily: fonts.extraBold,
     fontSize: '6.5vh',
     textAlign: 'left',
     marginTop: 10,
@@ -26,6 +27,7 @@ const styles = {
 
   questionContent: {
     ...commonStyles.textStyleBig_bold,
+    fontFamily: fonts.extraBold,
     fontSize: '3.5vh',
     textAlign: 'left',
     color: colors.pruRed
@@ -33,6 +35,7 @@ const styles = {
 
   questionResultTitle: {
     ...commonStyles.textStyleBig_bold,
+    fontFamily: fonts.extraBold,
     fontSize: '3.5vh',
     textAlign: 'left',
     color: colors.pruGrey,
@@ -41,7 +44,8 @@ const styles = {
 
   answer: {
     margin: '0 auto',
-    width: '70%'
+    width: '75%',
+    marginTop: '4vh'
   },
 
   baseAnswer: {
@@ -103,7 +107,7 @@ const styles = {
     backgroundImage: "url('./images/backgroundTuiNilon.jpg')"
   },
   questionSection: {
-    paddingTop: '48%',
+    paddingTop: '44%',
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
@@ -111,19 +115,19 @@ const styles = {
   },
 };
 
-function getStyle(label) {
-  if (label == "hộp nhựa") {
+function getStyle(selectedTrash) {
+  if (selectedTrash == Const.HOP_NHUA) {
     return {...styles.questionSection, ...styles.backgroundHop, ...commonStyles.container}
   }
-  else if (label == "chai nhựa") {
+  else if (selectedTrash == Const.CHAI) {
     return {...styles.questionSection, ...styles.backgroundChaiNhua, ...commonStyles.container}
 
   }
-  else if (label == "ly nhựa") {
+  else if (selectedTrash == Const.LY_NHUA) {
     return {...styles.questionSection, ...styles.backgroundLyNhua, ...commonStyles.container}
 
   }
-  else if (label == "túi nylon") {
+  else if (selectedTrash == Const.NYLON) {
     return {...styles.questionSection, ...styles.backgroundNylon, ...commonStyles.container}
 
   }
@@ -135,15 +139,15 @@ function getStyle(label) {
 const SubQuiz = ({history, answerResult, btnState, toogleState, selectedTrash, question}) => {
     return (
       <div className="container" style={{display: 'flex', alignItems: 'stretch', alignContent: 'stretch'}}>
-        {answerResult ? <Result {...{history, answerResult, question}}/> :
+        {answerResult ? <Result {...{history, answerResult, question, selectedTrash}}/> :
           <Question {...{btnState, toogleState, selectedTrash, question}}/>}
       </div>
     )
   }
 ;
 
-const Result = ({history, answerResult, question}) => (
-  <div style={getStyle(question.label)}>\
+const Result = ({history, answerResult, question, selectedTrash}) => (
+  <div style={getStyle(selectedTrash)}>
     <div style={styles.questionTitle}>
       <div style={styles.questionLabel}>
         {answerResult == "correct" ? "Bạn đã chọn chính xác!" : "Câu trả lời chưa đúng"}
@@ -171,7 +175,7 @@ const QuestionStyle = {
 const Question = ({btnState, toogleState, selectedTrash, question}) => {
 
   return question ? (
-    <div style={getStyle(question.label)}>
+    <div style={getStyle(selectedTrash)}>
       <div style={styles.questionTitle}>
         <div style={styles.questionContent}>Theo bạn,</div>
         <div style={styles.questionContent}>cái giá thật sự

@@ -102,7 +102,7 @@ export default class Home extends Component {
         <div style={commonStyles.footer}>
           <Button style={commonStyles.bottomButton}
                   onClick={() => this.routeChange()}>
-            Câu trả lời ở đây</Button>
+            Tìm hiểu tại đây</Button>
         </div>
       </div>
     );

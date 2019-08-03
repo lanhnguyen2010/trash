@@ -13,7 +13,7 @@ const fonts = {
 };
 
 const colors = {
-  pruRed: "#ED1B2E",
+  pruRed: "#ed2224",
   pruGrey: "#2B2B2B"
 }
 
