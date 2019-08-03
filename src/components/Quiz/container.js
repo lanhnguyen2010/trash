@@ -20,7 +20,7 @@ const QuizContainer = compose(
     componentDidMount() {
       const { history, updateSelectedTrashType } = this.props;
 
-      const btnStateInit = [false, false, false, false];
+      const btnStateInit = [false, false, false, false, false];
       const initState = {
         render: false,
         btnState: btnStateInit,
@@ -30,7 +30,10 @@ const QuizContainer = compose(
 
           console.log("selectedTrashType", Const.TrashType[index]);
           updateSelectedTrashType(Const.TrashType[index]);
-          history.push(Routes.SUB_QUIZ)
+
+          setTimeout(function () {
+            history.push(ROUTES.SUB_QUIZ)
+          }.bind(this), 2000);
         },
 
         updateRender: ((render) => {

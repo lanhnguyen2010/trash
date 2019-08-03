@@ -7,7 +7,7 @@ import {withStyles} from '@material-ui/styles';
 import ReactCodeInput from 'react-code-input';
 import {Button} from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
-import commonStyles, {fonts} from "../common"
+import commonStyles, {fonts, colors} from "../common"
 import * as Const from "../../constants/Const";
 
 
@@ -24,58 +24,52 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundImage: "url('./images/result_background.png')"
-  },
-
-  textField: {
-    marginTop: 20,
-    minWidth: 300
-  },
-
-  btnVerifyOtp: {
-    marginTop: 30
-  },
-  text: {
-    fontSize: 33,
-    color: 'white',
-    width: '70%',
-    paddingTop: 70,
-    textAlign: 'center',
-    marginBottom:40
+    paddingTop: '20%',
+    backgroundImage: "url('./images/result_background.jpg')",
   },
   textTitle: {
-    ...commonStyles.textNormal_bold,
+    color: colors.pruRed,
     fontSize: '3vh',
-    marginBottom: '5vh',
-    width:'70%',
-    margin: 'auto'
+    width: '80%',
+    fontFamily: fonts.bold,
+    textTransform: 'uppercase'
 
   },
   textThankYou: {
-    ...commonStyles.textNormal_bold,
-    fontSize: '3vh',
-    fontFamily: fonts.regular,
-    marginTop: '5vh',
-    width:'70%',
-    margin: '10vh auto'
+    color: colors.pruRed,
+    fontSize: '5vh',
+    marginTop: '3vh',
+    width: '80%',
+    fontFamily: fonts.bold,
+    textTransform: 'uppercase'
+  },
+  imageResult : {
+    marginBottom: '3vh'
   }
 };
 
 const finish = ({history, endFlow}) => {
   endFlow();
-  history.push(ROUTES.OTP);
+  history.push(ROUTES.THANK_YOU);
 };
 
 const GiftResultView = ({selectedGift, history, endFlow}) => (
-  <div className="container"  style={{...commonStyles.container, ...styles.container}}>
-    <div>
-    <div style={styles.textTitle}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC MÓN QUÀ MAY MẮN TỪ PRUDENTIAL</div>
-    <div style={styles.textThankYou}>CẢM ƠN BẠN ĐÃ THAM GIA CHƯƠNG TRÌNH</div>
-    <Button style={commonStyles.button} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
+  <div className="container"
+       style={{...commonStyles.container, ...styles.container}}>
+
+    <img className="resultImg" src={Const.GiftResource[selectedGift].image}
+         style={{...styles.imageResult,  width: Const.GiftResource[selectedGift].width}}/>
+
+
+    <div style={{...commonStyles.textNormal_bold,...styles.textTitle}}>CHÚC MỪNG BẠN ĐÃ NHẬN ĐƯỢC</div>
+
+    <div style={{...commonStyles.textNormal_bold,...styles.textThankYou}}>{Const.GiftResource[selectedGift].label}</div>
+    <div style={commonStyles.footer}>
+      <Button style={commonStyles.bottomButton} onClick={() => finish({history, endFlow})}>Hoàn thành</Button>
     </div>
   </div>
 );
+
 const GiftResult = withStyles(styles)(GiftResultView);
 
 const GiftResultContainer = compose(
@@ -88,8 +82,9 @@ const GiftResultContainer = compose(
   ),
   lifecycle({
     componentWillMount() {
-      const {history, isLoggedIn, saveGiftResult} = this.props;
-      saveGiftResult(false);
+      const {history, isLoggedIn, saveGiftResult, selectedGift} = this.props;
+      console.log("selectedGift", selectedGift);
+      saveGiftResult("luckyDraw");
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }

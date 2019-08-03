@@ -25,11 +25,36 @@ const SubQuizContainer = compose(
       const btnStateInit = ["normal", "normal", "normal"];
 
 
+      const showResult = (index) => {
+        const result = buildQuestion.answers[index] == correctAnswer ? "correct" : "wrong";
+        btnStateInit[index] = result;
+        if (result == "wrong") {
+          for (let i = 0; i < buildQuestion.answers.length; i++) {
+            if (buildQuestion.answers[i] == correctAnswer) {
+              btnStateInit[i] = "correct";
+            }
+          }
+        } else {
+
+          for (let i = 0; i < buildQuestion.answers.length; i++) {
+            if (index != i) {
+              btnStateInit[i] = "hidden";
+            }
+          }
+        }
+
+        this.setState({
+          ...this.props.state, btnState: btnStateInit
+        });
+
+        showResultScreen(result);
+      };
+
       const showResultScreen = (result) => {
         setTimeout(function () {
           console.log("onSelected", result);
           updateAnswerResult(result)
-        }.bind(this), 1000)
+        }.bind(this), 2000)
       };
 
       const correctAnswer = question.correctAnswers[utils.randomIndex(question.correctAnswers.length)];
@@ -45,15 +70,14 @@ const SubQuizContainer = compose(
       };
 
       const toogleState = (index) => {
-        const result = buildQuestion.answers[index] == correctAnswer ? "correct" : "wrong";
-        btnStateInit[index] = result;
-        for(let i =0; i<buildQuestion.answers.length; i++){
-          if(buildQuestion.answers[i] == correctAnswer){
-            btnStateInit[i] = "correct";
-          }
-        }
+        btnStateInit[index] = "correct";
+
+        setTimeout(function () {
+          showResult(index);
+        }.bind(this), 2000);
+
         saveQuizResult(buildQuestion, index);
-        showResultScreen(result);
+
         this.setState({
           ...this.props.state, btnState: btnStateInit, toogleState: (index) => {
           }

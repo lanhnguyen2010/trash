@@ -7,14 +7,18 @@ import {makeStyles, withStyles} from '@material-ui/styles';
 
 import {withRouter} from 'react-router-dom'
 
-import {Button, MenuItem, OutlinedInput, Select, TextField, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText} from '@material-ui/core';
+import {
+  Button, MenuItem, OutlinedInput, Select, TextField,
+  Dialog, DialogTitle, DialogActions, Checkbox,
+  FormControlLabel
+} from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
-import commonStyles, {fonts} from "../common"
+import commonStyles, {fonts, colors} from "../common"
 
 
 const styles = {
   main: {
-    backgroundImage: "url('./images/player_info_background.png')",
+    backgroundImage: "url('./images/background_global.png')",
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     width: '100%',
@@ -30,10 +34,10 @@ const styles = {
   textField: {
     ...commonStyles.textNormal_bold,
     textAlign: 'left',
-    marginTop: 30,
+    marginTop: '3vh',
     minWidth: '70%',
     minHeight: 70,
-    borderColor: 'rgba(255, 255, 255, 0.5)',
+    borderColor: colors.pruGrey,
     borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 100
@@ -41,8 +45,8 @@ const styles = {
 
   text: {
     ...commonStyles.textNormal_bold,
-    fontSize: '3vh',
-    color: 'white',
+    fontSize: '3.5vh',
+    color: colors.pruRed,
     width: '70%',
     paddingTop: "10vh",
     textAlign: 'center',
@@ -50,9 +54,8 @@ const styles = {
   },
 
   btnOtp: {
-    position:"relative",
+    position: "relative",
     alignSelf: "center",
-    backgroundColor: '#D20C08',
     fontSize: 18,
     borderRadius: "50px",
     color: 'white',
@@ -76,18 +79,21 @@ const useStyles = makeStyles(theme => ({
 const fieldMap = {
   phoneNumber: "Số Điện Thoại",
   email: "Email",
-  name:"Tên",
-  birthDay:'Ngày Sinh',
-  gender:'Giới Tính'
+  name: "Tên",
+  birthDay: 'Ngày Sinh',
+  gender: 'Giới Tính'
 }
-const OtpForm = ({history, doOtp, city}) => {
+const OtpForm = ({
+                   history, doOtp, city, checkIsPhoneNumberExist, isPhoneNumberExist, updateIsPhoneNumberExist,
+                   updateBtn, bntDisable
+                 }) => {
   let phoneNumberRef = null;
   let nameRef = null;
   let birthDayRef = null;
   let emailRef = null;
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [invalidField, setInvalidFields] = React.useState([]);
+  const [errorMessage, setErrorMessage] = React.useState([]);
 
   console.log(city);
 
@@ -105,42 +111,46 @@ const OtpForm = ({history, doOtp, city}) => {
 
   function handleClickOpen() {
     let data = {
-      phoneNumber: phoneNumberRef? phoneNumberRef.value:'',
-      name: nameRef?nameRef.value:'',
+      phoneNumber: phoneNumberRef ? phoneNumberRef.value : '',
+      name: nameRef ? nameRef.value : '',
       gender: gender,
-      birthDay: birthDayRef?birthDayRef.value:'',
-      email: emailRef?emailRef.value:'',
+      birthDay: birthDayRef ? birthDayRef.value : '',
+      // email: emailRef ? emailRef.value : '',
       city: city,
       time: new Date().toLocaleString()
-    }
+    };
     let invalidField = [];
     for (let key in data) {
       if (data.hasOwnProperty(key)) {
         console.log(key + " -> " + data[key]);
-        if(!data[key]){
+        if (!data[key]) {
           invalidField.push(fieldMap[key]);
         }
       }
     }
-    if(invalidField.length > 0){
-      setInvalidFields(invalidField);
+    if (invalidField.length > 0) {
+      setErrorMessage("Vui Lòng Nhập " + invalidField.join(', '));
       setOpen(true);
     } else {
-      doOtp(history, data);
+      checkIsPhoneNumberExist(phoneNumberRef.value, data, history);
     }
   }
 
   function handleClose() {
-    setOpen(false);
+    updateIsPhoneNumberExist(false)
+  }
+
+  function handlePopupClose() {
+    setOpen(false)
   }
 
   return (
     <div style={{...commonStyles.container, ...styles.main}}>
-      <div style={styles.text}> Vui lòng nhập thông tin cá nhân để nhận thông tin về chương trình</div>
+      <div style={styles.text}> Vui lòng nhập thông tin cá nhân của bạn</div>
       <div style={styles.container}>
         <TextField
           style={styles.textField}
-          placeholder="Tên"
+          placeholder="Tên*"
           id="name"
           variant="outlined"
           className='info'
@@ -154,14 +164,14 @@ const OtpForm = ({history, doOtp, city}) => {
           variant="outlined"
           input={<OutlinedInput labelWidth={labelWidth} name="gender" id="gender"/>}
         >
-          <MenuItem value={"GioiTinh"} disabled>Giới Tính</MenuItem>
+          <MenuItem value={"GioiTinh"} disabled>Giới Tính*</MenuItem>
           <MenuItem value={"Nam"}>Nam</MenuItem>
           <MenuItem value={"Nu"}>Nữ</MenuItem>
         </Select>
         <TextField
           className='info'
           style={styles.textField}
-          placeholder="Ngày Sinh"
+          placeholder="Ngày Sinh*"
           variant="outlined"
           helperText=""
           inputRef={input => birthDayRef = input}
@@ -169,7 +179,7 @@ const OtpForm = ({history, doOtp, city}) => {
         <TextField
           className='info'
           style={styles.textField}
-          placeholder="Số Điện Thoại"
+          placeholder="Số Điện Thoại*"
           variant="outlined"
           id="phoneNumber"
           inputRef={input => phoneNumberRef = input}
@@ -182,24 +192,51 @@ const OtpForm = ({history, doOtp, city}) => {
           id="email"
           inputRef={input => emailRef = input}
         />
+
+        <div style={{flexDirection:'row', display:'flex', justifyContent: 'center', alignItems:'center', marginTop: '3vh'}}>
+          <Checkbox
+            onChange={(event, checked) => {
+              updateBtn(!checked)
+            }}
+          >Tôi đồng ý với Chính sách bảo mật của Prudential Việt Nam</Checkbox>
+          <div style={{fontSize: '2vh'}}>Tôi đồng ý với <a style={{color: colors.pruRed}} href={"https://www.prudential.com.vn/vi/footer/privacy-policy/"}>Chính sách bảo mật của Prudential Việt Nam</a></div>
+        </div>
+
         <Button onClick={handleClickOpen}
-                style={{...commonStyles.bottomButton, marginTop: '20vh'}}>Tiếp Tục</Button>
+                disabled={bntDisable}
+                style={{
+                  ...commonStyles.bottomButton, marginTop: '10vh',
+                  background: bntDisable ? 'rgba(237, 27, 46, 0.5)' : colors.pruRed
+                }}>
+          Tiếp Tục
+        </Button>
+
       </div>
       <Dialog
-        open={open}
+        open={isPhoneNumberExist}
         keepMounted
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Vui Lòng Điền {invalidField.join(', ')}
-          </DialogContentText>
-        </DialogContent>
+        <DialogTitle id="alert-dialog-slide-title">Số Điện Thoại Đã Tồn Tại</DialogTitle>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={open}
+        keepMounted
+        onClose={handlePopupClose}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle id="alert-dialog-slide-title">{errorMessage}</DialogTitle>
+        <DialogActions>
+          <Button onClick={handlePopupClose} color="primary">
             Thoát
           </Button>
         </DialogActions>
@@ -213,7 +250,9 @@ const OtpContainer = compose(
   connect(
     selectors.root,
     {
-      doOtp: actions.doOtp
+      doOtp: actions.doOtp,
+      checkIsPhoneNumberExist: actions.checkIsPhoneNumberExist,
+      updateIsPhoneNumberExist: actions.updateIsPhoneNumberExist
     }
   ),
   lifecycle({
@@ -222,6 +261,12 @@ const OtpContainer = compose(
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }
+
+      this.setState({
+        bntDisable: true, updateBtn: (value) => {
+          this.setState({...this.props.state, bntDisable: value})
+        }
+      });
     }
   })
 )(Otp);

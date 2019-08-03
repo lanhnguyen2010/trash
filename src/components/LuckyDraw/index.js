@@ -5,6 +5,8 @@ import {selectors, actions} from "../../redux";
 import {lifecycle} from "recompose";
 import LuckyDraw from "./component"
 import * as ROUTES from "../../constants/routes";
+import * as Const from "../../constants/Const";
+import {selectedGift} from "../../redux/selectors";
 
 
 const LuckyDrawContainer = compose(
@@ -17,33 +19,38 @@ const LuckyDrawContainer = compose(
   ),
   lifecycle({
     componentWillMount() {
-      const {history, isLoggedIn} = this.props;
+      const {history, isLoggedIn, selectedGift, getRandomGift} = this.props;
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
+      } else {
+        getRandomGift();
       }
     },
     componentDidMount() {
 
-      const { getRandomGift, history } = this.props;
+      const {history, selectedGift} = this.props;
 
-      const initState = {
-        isLoading: false, onClickSpinner: () => {
-          this.setState({
-            isLoading: true, onClickSpinner: () => {
-            }
-          });
-
-          setTimeout(function () {
-            this.setState({isLoading: false});
-            getRandomGift();
-            history.push(ROUTES.GIFT_RESULT)
-
-          }.bind(this), 3000)
-
+      const clickSpinner = () => {
+        const giftFound = this.props.selectedGift;
+        if (!giftFound) {
+          window.alert("Hết quà!");
+          return;
         }
+        this.setState({
+          ...this.props.state, isLoading: true
+        });
+
+        setTimeout(function () {
+          if (giftFound) history.push(ROUTES.GIFT_RESULT)
+        }.bind(this), 7000)
+
       };
 
+      const initState = {
+        isLoading: false, onClickSpinner: clickSpinner
+      };
       this.setState(initState);
+
     }
   })
 )(LuckyDraw);

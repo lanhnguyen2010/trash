@@ -12,6 +12,11 @@ const fonts = {
   extraBold: "FSAlbertProExtraBold"
 };
 
+const colors = {
+  pruRed: "#ed2224",
+  pruGrey: "#2B2B2B"
+}
+
 const commonStyle = {
   container : {
     backgroundRepeat: 'no-repeat',
@@ -22,7 +27,6 @@ const commonStyle = {
   },
   topText: {
     fontSize: 33,
-    color: 'white',
     width: '70%',
     paddingTop: 70,
     textAlign: 'center',
@@ -31,7 +35,7 @@ const commonStyle = {
   },
   button: {
     alignSelf: "center",
-    backgroundColor: '#D20C08',
+    backgroundColor: colors.pruRed,
     fontSize: '3vh',
     paddingTop: 16,
     paddingBottom: 16,
@@ -58,9 +62,9 @@ const commonStyle = {
     width: "100%",
   },
   bottomButton: {
-    marginBottom: '10%',
+    marginBottom: '5%',
     alignSelf: "center",
-    backgroundColor: '#D20C08',
+    backgroundColor: colors.pruRed,
     fontSize: '3vh',
     paddingTop: 16,
     paddingBottom: 16,
@@ -94,4 +98,4 @@ const commonStyle = {
 
 export default commonStyle;
 
-export {fonts}
+export {fonts, colors}

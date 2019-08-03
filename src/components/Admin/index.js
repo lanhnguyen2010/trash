@@ -12,6 +12,7 @@ import {selectors, actions} from "../../redux";
 import {lifecycle} from "recompose";
 import {withStyles} from '@material-ui/styles';
 import MaterialTable from 'material-table'
+import * as CONST from '../../constants/Const'
 
 import {
   withRouter
@@ -95,9 +96,8 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
   const [value, setValue] = React.useState(0);
 
   let onghutinoxRef = null;
-  let onghutgaoRef = null;
   let tuivaiRef = null;
-  let daoniaRef = null;
+  let lysuRef = null;
   let binhthuytinhRef = null;
   let dateRef = null;
   let searchPhoneNumberRef = null;
@@ -109,7 +109,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
 
   const today = new Date();
 
-  let formattedDate=today.getDate() + "-" + today.getMonth() +"-"+ today.getFullYear();
+  let formattedDate=today.getDate() + "-" + (today.getMonth() + 1) +"-"+ today.getFullYear();
 
   const handleCityChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCity(event.target.value);
@@ -139,7 +139,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
     if (newValue === 6){
       getAllGiftResults();
     }
-    if (newValue === 7){
+    if (newValue === 6){
       updateIsLoggedIn(false);
       history.push(ROUTES.LOG_IN);
     }
@@ -152,11 +152,10 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           <Tab label="Gifts" {...a11yProps(0)} />
           <Tab label="Report" {...a11yProps(1)} />
           <Tab label="SMS" {...a11yProps(2)} />
-          <Tab label="Players" {...a11yProps(3)} />
+          <Tab label="Players(All)" {...a11yProps(3)} />
           <Tab label="OTP" {...a11yProps(4)} />
           <Tab label="Quiz Results" {...a11yProps(5)} />
-          <Tab label="Gift Results" {...a11yProps(6)} />
-          <Tab label="Log Out" {...a11yProps(7)} />
+          <Tab label="Log Out" {...a11yProps(6)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -197,21 +196,14 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
             type="number"
             inputRef={input => tuivaiRef = input}
           />
+
           <TextField
             style={styles.textField}
             required={true}
-            label="Dao Nĩa, Muỗng Gỗ"
-            id="daonia"
+            label="Ly sứ"
+            id="lysu"
             type="number"
-            inputRef={input => daoniaRef = input}
-          />
-          <TextField
-            style={styles.textField}
-            required={true}
-            label="Ống Hút Gạo"
-            id="onghutgao"
-            type="number"
-            inputRef={input => onghutgaoRef = input}
+            inputRef={input => lysuRef = input}
           />
           <TextField
             style={styles.textField}
@@ -226,8 +218,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
               city: citySelector,
               onghutinox: onghutinoxRef.value,
               tuivai: tuivaiRef.value,
-              daonia: daoniaRef.value,
-              onghutgao: onghutgaoRef.value,
+              lysu: lysuRef.value,
               binhthuytinh: binhthuytinhRef.value,
               date: dateRef.value
             });
@@ -252,8 +243,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
               <TableCell align="right">Ngày</TableCell>
               <TableCell align="right">Ống Hút Inox&nbsp;(cái)</TableCell>
               <TableCell align="right">Túi Vải&nbsp;(cái)</TableCell>
-              <TableCell align="right">Bộ Dao, Nĩa Gỗ&nbsp;(cái)</TableCell>
-              <TableCell align="right">Ống Hút Gạo&nbsp;(cái)</TableCell>
+              <TableCell align="right">Ly sứ&nbsp;(cái)</TableCell>
               <TableCell align="right">Bình Thủy Tinh&nbsp;(cái)</TableCell>
             </TableRow>
           </TableHead>
@@ -264,8 +254,7 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
                 <TableCell align="right">{row.date}</TableCell>
                 <TableCell align="right">{row.onghutinox}</TableCell>
                 <TableCell align="right">{row.tuivai}</TableCell>
-                <TableCell align="right">{row.daonia}</TableCell>
-                <TableCell align="right">{row.onghutgao}</TableCell>
+                <TableCell align="right">{row.lysu}</TableCell>
                 <TableCell align="right">{row.binhthuytinh}</TableCell>
               </TableRow>
             )))}
@@ -298,16 +287,24 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
         <MaterialTable
           title="Người chơi"
           columns={[
+            { title: 'Giờ', field: 'timeOnly'},
+            { title: 'Ngày', field: 'dateOnly'},
             { title: 'Tên', field: 'name' },
             { title: 'Giới Tính', field: 'gender' },
             { title: 'Ngày Sinh', field: 'birthDay'},
-            { title: 'Email', field: 'email'},
             { title: 'Số Điện Thoại', field: 'phoneNumber'},
-            { title: 'Thời Gian', field: 'time'}
+            { title: 'Email', field: 'email'},
+            { title: 'OTP', field: 'otp'},
+            { title: 'Hoạt Động', field: 'giftTypeLabel'},
+            { title: CONST.GiftResource.onghutinox.label, field: CONST.ONG_HUT_INOX},
+            { title: CONST.GiftResource.lysu.label, field: CONST.LY_SU},
+            { title: CONST.GiftResource.binhthuytinh.label, field: CONST.BINH_THUY_TINH},
+            { title: CONST.GiftResource.tuivai.label, field: CONST.TUI_VAI}
           ]}
           data={players}
           options={{
-            exportButton: true
+            exportButton: true,
+            sorting: true
           }}
         />}
     </TabPanel>
@@ -360,23 +357,6 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
             exportButton: true
           }}
         /> :''}
-      </TabPanel>
-      <TabPanel index={6} value={value}>
-        <Button onClick={()=> getAllGiftResults()}><u>Làm mới</u></Button>
-        {giftResults &&
-        <MaterialTable
-          title="Quà Đã Trao"
-          columns={[
-            { title: 'Số Điện Thoại', field: 'phoneNumber' },
-            { title: 'Quà', field: 'gift' },
-            { title: 'Chỉ nhận quà', field: 'giftOnly' },
-            { title: 'Thời Gian', field: 'date' }
-          ]}
-          data={giftResults}
-          options={{
-            exportButton: true
-          }}
-        />}
       </TabPanel>
     </div>
   );

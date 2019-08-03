@@ -9,64 +9,79 @@ import connect from "react-redux/es/connect/connect";
 import * as selectors from "../../redux/selectors";
 import {actions} from "../../redux";
 import {lifecycle} from "recompose";
-import commonStyle, {fonts} from "../common"
+import commonStyle, {fonts, colors} from "../common"
 
 
 const styles = {
-  text: {
-    ...commonStyle.textNormal_bold,
-    color: "#D20C08",
-    fontSize: '2.5vh'
-  },
-  textBlack: {
-    ...commonStyle.textNormal_bold,
-    color: "black",
-    fontSize: '2.5vh',
-  },
-  textEnd: {
-    ...commonStyle.textNormal_bold,
-    color: "#D20C08",
-    fontSize: '3vh',
-  },
-  textBlackEnd: {
-    ...commonStyle.textNormal_bold,
-    color: "black",
-    fontSize: '2.5vh',
-    fontFamily: fonts.regular,
-    marginTop: 30
-  },
-
-  logo: {
-    position: "fixed",
-    zIndex: 100,
-    top: 30,
-    left: 30
-  },
   pruImage: {
     width: '33.3%'
   },
   pruButton: {
     fontSize: 35,
-    marginBottom: '4%'
+    marginBottom: '7%'
   },
   image: {
-    width: '33.3%',
-    backgroundPosition: '50% 50%',
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
-  }
+    width: '100%',
+    height: '100%',
+    textAlign: 'center',
+    backgroundImage: "url('./images/moreInfo5.png')",
+    backgroundSize: 'cover',
+    alignItems: 'unset',
+  },
+  textTitleSmall: {
+    fontSize: '2.5vh',
+    color: colors.pruGrey,
+    fontFamily: fonts.bold,
+    padding: '1vh',
+    marginLeft: 'auto',
+    maxWidth: '100%'
+  },
+  textTitle: {
+    fontSize: '3.5vh',
+    padding: '1vh',
+    color: colors.pruRed,
+    fontFamily: fonts.bold,
+    marginLeft: 'auto',
+    maxWidth: '100%'
+  },
+  textTitleSmallEnd: {
+    fontSize: '2.5vh',
+    color: colors.pruGrey,
+    fontFamily: fonts.bold,
+    padding: '1vh',
+    marginLeft: 'auto',
+    maxWidth: '75%'
+  },
+  textTitleEnd: {
+    fontSize: '3.5vh',
+    padding: '1vh',
+    color: colors.pruRed,
+    fontFamily: fonts.bold,
+    marginLeft: 'auto',
+    maxWidth: '75%'
+  },
+  logo: {
+    position:"fixed",
+    zIndex: 100,
+    top: '5vh',
+    left: '5vh',
+    height: '7vh'
+  },
 };
 
 const MoreInfo = ({history, endFlow}) => {
   let trackRef;
   let btnRef;
-  let logoRef;
+  let btnDoneRef;
   const routeChange = () => {
-    trackRef.clickNext();
-    if (trackRef.index >= 3) {
-      btnRef.style.display = 'none';
-      logoRef.style.display = 'none'
+    if (trackRef.index >= 2) {
+      setTimeout(function () {
+        btnRef.style.display = 'none';
+      }.bind(this), 300)
     }
+
+    trackRef.clickNext();
+
 
     if (trackRef.index == 4) {
       setTimeout(function () {
@@ -78,49 +93,74 @@ const MoreInfo = ({history, endFlow}) => {
 
   return (
     <div className="container">
-      <img src="./images/logo.svg" alt="prudential logo" style={styles.logo} ref={t => logoRef = t}/>
       <AwesomeSlider style={{width: '100%', height: '100%', position: 'absolute'}}
                      bullets={false}
                      organicArrows={false}
                      ref={t => trackRef = t}>
 
-        <div data-src='./images/home1.png'/>
-        <div data-src='./images/home2.png'/>
-        <div data-src='./images/home3.png'/>
-        <div data-src='./images/home4.png'/>
+        <div style={{
+          ...styles.image,
+          backgroundPosition:'bottom',
+          backgroundImage: "url('./images/moreInfo1.jpg')",
+        }}>
+          <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
+        </div>
+        <div style={{
+          ...styles.image,
+          backgroundImage: "url('./images/moreInfo2.jpg')",
+        }}/>
+        <div style={{
+          ...styles.image,
+          backgroundImage: "url('./images/moreInfo3.jpg')",
+        }}/>
+        <div style={{
+          ...styles.image,
+          backgroundImage: "url('./images/moreInfo4.jpg')",
+          backgroundPosition: 'bottom'
+        }}>
+          <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
 
-        <div data-src='./images/moreInfo5.png'>
-          <div style={{...commonStyle.footer, flexDirection: 'row', background: 'white'}}>
-            <div style={{display: 'flex', flexDirection: 'column', width: "70%", padding: 30}}>
-              <div style={styles.textBlack}>Chung Tay Cùng Prudential Cam Kết</div>
-              <div style={styles.text}>"Chọn Giảm Dùng Nhựa Vì Sức Khoẻ Của Những Người Thân Yêu"</div>
-
-              <Button style={{...commonStyle.bottomButton, ...styles.pruButton}} onClick={() => routeChange()}>Tiếp
-                tục</Button>
-            </div>
-
-            <div style={{...styles.image, backgroundImage: "url('./images/pru_logo.png')"}}/>
+          <div style={commonStyle.footer}>
+            <Button style={commonStyle.bottomButton}
+                    onClick={() => routeChange()}
+                    ref={t => btnDoneRef = t}
+            >
+              Hoàn thành</Button>
           </div>
         </div>
 
-        <div data-src='./images/moreInfo5.png'>
-          <div style={{...commonStyle.footer, background: 'white'}}>
-            <div style={{display: 'flex', flexDirection: 'column', width: "75%", padding: 40}}>
-              <div style={styles.textEnd}>Cảm Ơn Sự Ủng Hộ Và Tinh Thần Hành Động Của Bạn.</div>
-              <div style={styles.textBlackEnd}>Nhân viên của Prudential tại quầy sẽ hướng dẫn bạn các bước tiếp theo
-              </div>
-            </div>
+        <div style={{
+          ...styles.image,
+          backgroundImage: "url('./images/moreInfo5.png')"
+        }}>
+          {/*<div style={styles.textTitleSmall}>Cùng Prudential hành động</div>*/}
+          {/*<div style={styles.textTitle}>Chọn giảm dùng nhựa</div>*/}
+          {/*<div style={styles.textTitleSmall}>Vì sức khoẻ của những người thân yêu</div>*/}
+
+          <div style={commonStyle.footer}>
+            <Button style={{...commonStyle.bottomButton}} onClick={() => routeChange()}>
+              Tôi chọn giảm dùng nhựa
+            </Button>
           </div>
         </div>
+
+        <div style={{
+          ...styles.image,
+          backgroundImage: "url('./images/moreInfo6.jpg')",
+        }}>
+        </div>
+
 
       </AwesomeSlider>
 
       <div style={commonStyle.footer}>
-        <Button style={{...commonStyle.bottomButton}}
+        <Button style={{...commonStyle.bottomButton, display: ''}}
                 onClick={() => routeChange()}
                 ref={t => btnRef = t}
         >
-          Tiếp tục</Button>
+          Cùng tiếp tục hành trình nhé</Button>
+
+
       </div>
 
     </div>

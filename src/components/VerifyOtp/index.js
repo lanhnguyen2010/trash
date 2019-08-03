@@ -8,12 +8,12 @@ import ReactCodeInput from 'react-code-input';
 import {Button} from '@material-ui/core';
 import {withRouter} from 'react-router-dom'
 import * as ROUTES from "../../constants/routes";
-import commonStyle from "../common";
+import commonStyle, {fonts, colors} from "../common";
 
 
 const styles = {
   main: {
-    backgroundImage: "url('./images/player_info_background.png')",
+    backgroundImage: "url('./images/background_global.png')",
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     width: '100%',
@@ -38,7 +38,7 @@ const styles = {
   text: {
     ...commonStyle.textNormal_bold,
     fontSize: '3vh',
-    color: 'white',
+    color: colors.pruRed,
     width: '70%',
     paddingTop: "10vh",
     textAlign: 'center',
@@ -65,7 +65,6 @@ const props = {
     borderRadius: '3px',
     fontSize: '14px',
     height: '30px',
-    color: 'red',
     border: '1px solid red'
   }
 };

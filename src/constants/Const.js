@@ -1,34 +1,44 @@
+export const LY_SU = "lysu";
 export const ONG_HUT_INOX = "onghutinox";
 export const TUI_VAI = "tuivai";
-export const DAO_NIA = "daonia";
-export const ONG_HUT_GAO = "onghutgao";
 export const BINH_THUY_TINH = "binhthuytinh";
 
-export const GiftType = [ONG_HUT_INOX, TUI_VAI, DAO_NIA, ONG_HUT_GAO, BINH_THUY_TINH];
 export const GiftResource = {
   onghutinox: {
     image: "./images/onghutinox.png", //TODO image url
-    label: "ỐNG HÚT INOX"
+    label: "Ống hút inox",
+    width: "50%"
   },
   tuivai : {
     image: "./images/tuivai.png",
-    label: "TÚI VẢI"
+    label: "Balo vải canvas",
+    width: "40%"
   },
-  daonia : {
-    image: "./images/daonia.png",
-    label: "BỘ DAO, NỈA, MUỔNG GỖ"
-  },
-  onghutgao : {
-    image: "./images/onghutgao.png",
-    label: "ỐNG HÚT GẠO"
+  lysu : {
+    image: "./images/lysu.png",
+    label: "Ly Sứ",
+    width: "70%",
   },
   binhthuytinh : {
     image: "./images/binhnuoc.png",
-    label: "BÌNH THUỶ TINH"
+    label: "Bình nước thủy tinh",
+    width: "25%"
   }
 };
 
-export const TrashType = ["chai", "lynhua", "hopnhua", "others"];
+export const GiftOutDegree = {
+  lysu: [2,9],
+  tuivai: [1,6],
+  onghutinox: [3,5,7,10],
+  binhthuytinh: [4, 8]
+};
+
+export const TrashType = ["chai", "lynhua", "hopnhua", "nylon", "others"];
+export const CHAI = "chai";
+export const LY_NHUA = "lynhua";
+export const HOP_NHUA = "hopnhua";
+export const NYLON = "nylon";
+
 
 export const Questions = {
   chai: {
@@ -54,7 +64,30 @@ export const Questions = {
       "50000đ/lốc",
       "5000đ"
     ]
-
+  },
+  nylon: {
+    label: "túi ni lông",
+    correctAnswers: [
+      "92.5% xác của loài hải âu có chứa nhựa",
+      "1000 sinh mạng loài rùa biển mỗi năm",
+      "13. 2000 hạt vi nhựa trong 1 lít nước uống đóng chai",
+      "817 loài sinh vật biển bị tác động bởi ô nhiễm rác nhựa",
+      "Ăn vào 50.000 hạt vi nhựa mỗi năm"
+    ],
+    wrongAnswers1:[
+      "50 năm ô nhiễm đại dương",
+      "Sự nhanh chóng",
+      "1% loài Hải Âu ở đại Dương có chứa rác nhựa",
+      "Gọn nhẹ, dễ dùng",
+      "20 năm ô nhiễm môi trường"
+    ],
+    wrongAnswers2: [
+      "Rác nhựa trên biển chỉ chiếm 10%",
+      "Đa năng",
+      "Sự tiện lợi",
+      "50000đ/lốc",
+      "5000đ"
+    ]
   },
   lynhua: {
     label: "ly nhựa",

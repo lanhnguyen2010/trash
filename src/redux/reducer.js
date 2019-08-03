@@ -16,7 +16,8 @@ const initialState = {
   players:'',
   inputData: '',
   quizResults:'',
-  giftResults:''
+  giftResults:'',
+  isPhoneNumberExist:false
 };
 
 const reducer = createReducer(initialState, {
@@ -24,10 +25,11 @@ const reducer = createReducer(initialState, {
     _.assign({}, state, {
       count: count
     }),
-  [Types.UPDATE_SELECTED_GIFT]: (state, {selectedGift}) =>
-    _.assign({}, state, {
+  [Types.UPDATE_SELECTED_GIFT]: (state, {selectedGift}) => {
+    console.log("UPDATE_SELECTED_GIFT ", selectedGift);
+    return _.assign({}, state, {
       selectedGift: selectedGift
-    }),
+    })},
   [Types.UPDATE_BOOTHS_DATA]: (state, {boothsData}) =>
     _.assign({}, state, {
       boothsData: boothsData
@@ -86,6 +88,11 @@ const reducer = createReducer(initialState, {
       giftResults: giftResults
     }),
 
+  [Types.UPDATE_IS_PHONE_NUMBER_EXIST]: (state, {isPhoneNumberExist}) =>
+    _.assign({}, state, {
+      isPhoneNumberExist: isPhoneNumberExist
+    }),
+
   [Types.END_FLOW]:  (state) =>
   _.assign({}, state, {
     count: 0,
@@ -96,7 +103,8 @@ const reducer = createReducer(initialState, {
     otpList: '',
     selectedTrash: "",
     answerResult: "",
-    inputDate: ""
+    inputDate: "",
+    isPhoneNumberExist: false
   })
 });
 
