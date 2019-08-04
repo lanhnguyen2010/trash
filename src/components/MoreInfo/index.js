@@ -158,8 +158,6 @@ const MoreInfo = ({history, endFlow}) => {
                 onClick={() => routeChange()}
                 ref={t => btnRef = t}
         >Tiếp theo</Button>
-
-
       </div>
 
     </div>
