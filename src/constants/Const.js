@@ -61,7 +61,7 @@ export const Questions = {
       "Rác nhựa trên biển chỉ chiếm 10%",
       "Đa năng",
       "Sự tiện lợi",
-      "50000đ/lốc",
+      "50.000đ/lốc",
       "5000đ"
     ]
   },
@@ -85,7 +85,7 @@ export const Questions = {
       "Rác nhựa trên biển chỉ chiếm 10%",
       "Đa năng",
       "Sự tiện lợi",
-      "50000đ/lốc",
+      "50.000đ/lốc",
       "5000đ"
     ]
   },
@@ -126,7 +126,7 @@ export const Questions = {
       "1% loài Hải Âu ở đại Dương có chứa rác nhựa",
       "1 hạt vi nhựa trong mỗi con nghêu",
       "1 tháng ô nhiễm môi trường",
-      "25000đ/12 cái",
+      "25.000đ/12 cái",
       "50 năm ô nhiễm đại dương"
     ],
     wrongAnswers2: [
@@ -147,7 +147,7 @@ export const Questions = {
       "80% rác thải nhựa từ đất liền trôi dạt ra biển"
     ],
     wrongAnswers1:[
-      "50000đ/lốc",
+      "50.000đ/lốc",
       "Gọn nhẹ, dễ dùng",
       "Rác nhựa trên biển chỉ chiếm 10%",
       "1 tháng ô nhiễm môi trường",
@@ -157,7 +157,7 @@ export const Questions = {
       "Gọn nhẹ, dễ dùng",
       "30 hạt vi nhựa vào cơ thể",
       "Sự tiện lợi nhanh chóng",
-      "10000d/lốc",
+      "10.000d/lốc",
       "3000đ/lốc"
     ]
   }

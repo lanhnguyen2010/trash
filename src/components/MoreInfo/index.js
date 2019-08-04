@@ -131,7 +131,7 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo5.png')"
+          backgroundImage: "url('./images/moreInfo5.jpg')"
         }}>
           {/*<div style={styles.textTitleSmall}>Cùng Prudential hành động</div>*/}
           {/*<div style={styles.textTitle}>Chọn giảm dùng nhựa</div>*/}
@@ -146,7 +146,7 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo6.jpg')",
+          backgroundImage: "url('./images/moreInfo6.png')",
         }}>
         </div>
 
