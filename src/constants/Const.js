@@ -45,8 +45,8 @@ export const Questions = {
     label: "chai nhựa",
     correctAnswers: [
       "92.5% xác của loài hải âu có chứa nhựa",
-      "1000 sinh mạng loài rùa biển mỗi năm",
-      "13. 2000 hạt vi nhựa trong 1 lít nước uống đóng chai",
+      "1.000 sinh mạng loài rùa biển mỗi năm",
+      "2.000 hạt vi nhựa trong 1 lít nước uống đóng chai",
       "817 loài sinh vật biển bị tác động bởi ô nhiễm rác nhựa",
       "Ăn vào 50.000 hạt vi nhựa mỗi năm"
     ],
@@ -62,14 +62,14 @@ export const Questions = {
       "Đa năng",
       "Sự tiện lợi",
       "50.000đ/lốc",
-      "5000đ"
+      "5.000đ"
     ]
   },
   nylon: {
     label: "túi ni lông",
     correctAnswers: [
       "92.5% xác của loài hải âu có chứa nhựa",
-      "1000 sinh mạng loài rùa biển mỗi năm",
+      "1.000 sinh mạng loài rùa biển mỗi năm",
       "13. 2000 hạt vi nhựa trong 1 lít nước uống đóng chai",
       "817 loài sinh vật biển bị tác động bởi ô nhiễm rác nhựa",
       "Ăn vào 50.000 hạt vi nhựa mỗi năm"
@@ -86,7 +86,7 @@ export const Questions = {
       "Đa năng",
       "Sự tiện lợi",
       "50.000đ/lốc",
-      "5000đ"
+      "5.000đ"
     ]
   },
   lynhua: {
@@ -99,8 +99,8 @@ export const Questions = {
       "2000 hạt vi nhựa trong 1 lít nước uống đóng chai"
     ],
     wrongAnswers1:[
-      "5000đ",
-      "3000đ/lốc",
+      "5.000đ",
+      "3.000đ/lốc",
       "Đa năng",
       "Sinh mạng 200 động vật biển mỗi năm",
       "20% loài Hải Âu ở đại dương có chứa rác nhựa trong cơ thể"
@@ -158,7 +158,7 @@ export const Questions = {
       "30 hạt vi nhựa vào cơ thể",
       "Sự tiện lợi nhanh chóng",
       "10.000d/lốc",
-      "3000đ/lốc"
+      "3.000đ/lốc"
     ]
   }
 
