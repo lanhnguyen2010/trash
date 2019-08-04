@@ -70,7 +70,7 @@ const props = {
 };
 
 
-const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber, city, isShowResend, resendOtp}) => {
+const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber, city, isShowResend, resendOtp, isDoingOtp}) => {
   let otpRef = null;
   console.log(phoneNumber);
 
@@ -87,7 +87,13 @@ const VerifyOtpForm = ({history, doVerifyOtp, phoneNumber, city, isShowResend, r
         <div style={styles.text}>Vui lòng nhập mã OTP để xác nhận</div>
         <ReactCodeInput className="otp" fields={4} {...props} onChange={handleOtpChange}/>
 
-        {isShowResend && <Button style={commonStyle.button} onClick={() => resendOtp()}>Gửi lại</Button>}
+        {isShowResend &&
+        <Button
+          disabled={isDoingOtp}
+          style={{...commonStyle.button,
+          background: (isDoingOtp) ? 'rgba(237, 27, 46, 0.5)' : colors.pruRed}}
+                onClick={() => resendOtp()}>
+          Gửi lại</Button>}
       </div>
     </div>)
 };

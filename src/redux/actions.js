@@ -41,6 +41,9 @@ const { Types, Creators: actions } = createActions(
     saveGiftResult: ["giftType"],
     updateGiftCount: ["selectedGift"],
 
+    updateLoggingIn: ["isLogging"],
+    updateDoingOtp: ["isDoingOtp"],
+
     endFlow: null
   },
   {

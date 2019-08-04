@@ -85,7 +85,7 @@ const fieldMap = {
 }
 const OtpForm = ({
                    history, doOtp, city, checkIsPhoneNumberExist, isPhoneNumberExist, updateIsPhoneNumberExist,
-                   updateBtn, bntDisable
+                   updateBtn, bntDisable, isDoingOtp
                  }) => {
   let phoneNumberRef = null;
   let nameRef = null;
@@ -203,10 +203,10 @@ const OtpForm = ({
         </div>
 
         <Button onClick={handleClickOpen}
-                disabled={bntDisable}
+                disabled={bntDisable || isDoingOtp}
                 style={{
                   ...commonStyles.bottomButton, marginTop: '10vh',
-                  background: bntDisable ? 'rgba(237, 27, 46, 0.5)' : colors.pruRed
+                  background: (bntDisable || isDoingOtp) ? 'rgba(237, 27, 46, 0.5)' : colors.pruRed
                 }}>
           Tiếp Tục
         </Button>
@@ -252,7 +252,8 @@ const OtpContainer = compose(
     {
       doOtp: actions.doOtp,
       checkIsPhoneNumberExist: actions.checkIsPhoneNumberExist,
-      updateIsPhoneNumberExist: actions.updateIsPhoneNumberExist
+      updateIsPhoneNumberExist: actions.updateIsPhoneNumberExist,
+      updateDoingOtp: actions.updateDoingOtp
     }
   ),
   lifecycle({
@@ -267,6 +268,10 @@ const OtpContainer = compose(
           this.setState({...this.props.state, bntDisable: value})
         }
       });
+    },
+    componentDidMount() {
+      const {history, updateDoingOtp} = this.props;
+      updateDoingOtp(false);
     }
   })
 )(Otp);

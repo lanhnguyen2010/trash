@@ -18,7 +18,9 @@ const initialState = {
   quizResults:'',
   giftResults:'',
   isPhoneNumberExist:false,
-  correctAnswerText: ''
+  correctAnswerText: '',
+  isLogging: false,
+  isDoingOtp: false
 };
 
 const reducer = createReducer(initialState, {
@@ -97,6 +99,14 @@ const reducer = createReducer(initialState, {
     _.assign({}, state, {
       correctAnswerText: correctAnswerText
     }),
+  [Types.UPDATE_LOGGING_IN]: (state, {isLogging}) =>
+    _.assign({}, state, {
+      isLogging: isLogging
+    }),
+  [Types.UPDATE_DOING_OTP]: (state, {isDoingOtp}) =>
+    _.assign({}, state, {
+      isDoingOtp: isDoingOtp
+    }),
   [Types.END_FLOW]:  (state) =>
   _.assign({}, state, {
     count: 0,
@@ -110,6 +120,8 @@ const reducer = createReducer(initialState, {
     inputDate: "",
     isPhoneNumberExist: false,
     correctAnswerText: "",
+    isDoingOtp: false,
+    isLogging: false
   })
 });
 

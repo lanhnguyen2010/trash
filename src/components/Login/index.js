@@ -14,6 +14,8 @@ import {
   Button
 } from '@material-ui/core';
 import * as ROUTES from "../../constants/routes";
+import {colors} from "../common";
+import commonStyle from "../common";
 
 
 const styles = {
@@ -34,11 +36,12 @@ const styles = {
   },
 
   btnLogin: {
+    color: 'white',
     marginTop: 30
   }
 };
 
-const LoginForm = ({history, doLogin}) => {
+const LoginForm = ({history, doLogin, isLogging}) => {
   let usernameRef = null;
   let passwordRef = null;
 
@@ -61,10 +64,13 @@ const LoginForm = ({history, doLogin}) => {
         type="password"
         inputRef={input => passwordRef = input}
       />
-      <Button onClick={() => {
+      <Button
+        disabled={isLogging}
+        onClick={() => {
         doLogin(history, usernameRef.value, passwordRef.value);
       }}
-      style={styles.btnLogin}>Login</Button>
+      style={{...styles.btnLogin,
+          background: (isLogging) ? 'rgba(237, 27, 46, 0.5)' : colors.pruRed}}>Login</Button>
     </div>)
 };
 
@@ -74,7 +80,8 @@ const LoginContainer = compose(
   connect(
     selectors.root,
     {
-      doLogin: actions.doLogin
+      doLogin: actions.doLogin,
+      updateLoggingIn: actions.updateLoggingIn
     }
   ),
   lifecycle({

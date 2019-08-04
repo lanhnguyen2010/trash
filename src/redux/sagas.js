@@ -33,6 +33,10 @@ const giftType = {
 }
 
 function* doLogin({navigation, email, password}) {
+  const isLogging = yield select(selectors.isLogging);
+  if (isLogging) return;
+
+  yield put(actions.updateLoggingIn(true));
   try {
     const user = yield call(firebaseService.auth.signInWithEmailAndPassword, email, password);
     console.log(user);
@@ -45,9 +49,11 @@ function* doLogin({navigation, email, password}) {
       window.alert("Account không thuộc về thành phố nào, chuyển mặc định về Hồ Chính Minh");
       yield put(actions.updateCity('Ho Chi Minh'));
     }
+    yield put(actions.updateLoggingIn(false));
     navigation.push(ROUTES.HOME);
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
+    yield put(actions.updateLoggingIn(false));
   }
 }
 
@@ -243,9 +249,10 @@ const sendRequest = async (path) => {
 };
 
 function* doOtp({navigation, data}) {
+  console.log("doOtp");
   try {
     console.log(data);
-    let invalidField = []
+    let invalidField = [];
     for (let key in data) {
       if (data.hasOwnProperty(key)) {
         console.log(key + " -> " + data[key]);
@@ -274,12 +281,20 @@ function* doOtp({navigation, data}) {
         window.alert(response.ErrorMessage)
       }
     }
+    yield put(actions.updateDoingOtp(false));
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
+    yield put(actions.updateDoingOtp(false));
   }
 }
 
 function* resendOtp() {
+
+  const isDoingOtp = yield select(selectors.isDoingOtp);
+  if (isDoingOtp) return;
+
+  yield put(actions.updateDoingOtp(true));
+
   const phoneNumber = yield select(selectors.phoneNumber);
 
   let otp = generateOTP();
@@ -293,6 +308,7 @@ function* resendOtp() {
   } else {
     console.log(response.ErrorMessage)
   }
+  yield put(actions.updateDoingOtp(false));
 }
 
 function* doVerifyOtp({navigation, phoneNumber, otp}) {
@@ -448,6 +464,10 @@ function* getAllGiftResults() {
 }
 
 function* checkIsPhoneNumberExist({phoneNumber, data, history}) {
+  const isDoingOtp = yield select(selectors.isDoingOtp);
+  if (isDoingOtp) return;
+
+  yield put(actions.updateDoingOtp(true));
   try {
     let city = yield select(selectors.city);
     const result = yield call(firebaseService.database.read, 'gifts/' + city + '/' + phoneNumber);
@@ -460,6 +480,7 @@ function* checkIsPhoneNumberExist({phoneNumber, data, history}) {
       yield call(doOtp, {navigation: history, data: data});
     } else{
       yield put(actions.updateIsPhoneNumberExist(true));
+      yield put(actions.updateDoingOtp(false));
     }
 
     // else{
