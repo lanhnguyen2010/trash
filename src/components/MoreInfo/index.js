@@ -157,10 +157,7 @@ const MoreInfo = ({history, endFlow}) => {
         <Button style={{...commonStyle.bottomButton, display: ''}}
                 onClick={() => routeChange()}
                 ref={t => btnRef = t}
-        >
-          Cùng tiếp tục hành trình nhé</Button>
-
-
+        >Tiếp theo</Button>
       </div>
 
     </div>
