@@ -20,7 +20,7 @@ const initialState = {
   isPhoneNumberExist:false,
   correctAnswerText: '',
   isLogging: false,
-  isDoingOtp: false
+  isDoingOtp: false,
 };
 
 const reducer = createReducer(initialState, {
@@ -107,22 +107,24 @@ const reducer = createReducer(initialState, {
     _.assign({}, state, {
       isDoingOtp: isDoingOtp
     }),
-  [Types.END_FLOW]:  (state) =>
-  _.assign({}, state, {
-    count: 0,
-    boothsData: '',
-    phoneNumber: '',
-    smsBalance: 0,
-    selectedGift: "",
-    otpList: '',
-    selectedTrash: "",
-    answerResult: "",
-    inputDate: "",
-    isPhoneNumberExist: false,
-    correctAnswerText: "",
-    isDoingOtp: false,
-    isLogging: false
-  })
+  [Types.END_FLOW]:  (state) => {
+    console.log("endFlow");
+   return _.assign({}, state, {
+      count: 0,
+      boothsData: '',
+      phoneNumber: '',
+      smsBalance: 0,
+      selectedGift: "",
+      otpList: '',
+      selectedTrash: "",
+      answerResult: "",
+      inputDate: "",
+      isPhoneNumberExist: false,
+      correctAnswerText: "",
+      isDoingOtp: false,
+      isLogging: false,
+    })
+  }
 });
 
 

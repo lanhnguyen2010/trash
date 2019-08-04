@@ -78,8 +78,9 @@ const HelloContainer = compose(
       }
     },
     componentDidMount() {
-      const {history} = this.props;
+      const {history, endFlow} = this.props;
       setTimeout(function () {
+        endFlow();
         history.push(ROUTES.QUIZ)
       }.bind(this), 3000)
 

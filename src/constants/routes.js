@@ -20,3 +20,5 @@ export const GIFT_SELECT = '/giftSelect';
 export const GIFT_KAHOOT = '/giftKahoot';
 export const THANK_YOU = '/thank-you';
 export const HELLO = '/hello';
+export const SUB_QUIZ_CORRECT = '/subQuizCorrect';
+export const SUB_QUIZ_WRONG = '/subQuizWrong';

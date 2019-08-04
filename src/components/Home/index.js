@@ -54,6 +54,7 @@ export default class Home extends Component {
 
   componentDidMount() {
     this.interval = setInterval(() => this.track.clickNext(), 3000);
+    console.log("home",this.props);
   }
 
   componentWillUnmount() {
