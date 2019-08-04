@@ -70,7 +70,7 @@ export const Questions = {
     correctAnswers: [
       "92.5% xác của loài hải âu có chứa nhựa",
       "1.000 sinh mạng loài rùa biển mỗi năm",
-      "13. 2000 hạt vi nhựa trong 1 lít nước uống đóng chai",
+      "2000 hạt vi nhựa trong 1 lít nước uống đóng chai",
       "817 loài sinh vật biển bị tác động bởi ô nhiễm rác nhựa",
       "Ăn vào 50.000 hạt vi nhựa mỗi năm"
     ],

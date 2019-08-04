@@ -153,7 +153,9 @@ const Result = ({history, answerResult, question, selectedTrash, correctAnswerTe
         {answerResult == "correct" ? "Bạn đã chọn chính xác!" : "Câu trả lời chưa đúng"}
       </div>
 
-      <div style={styles.questionResultTitle}>
+      <div style={{...styles.questionResultTitle,
+         textAlign: answerResult == "correct"? 'left' : 'center'
+      }}>
         {answerResult == "correct"? "Cái giá thật sự phải trả cho việc sử dụng nhựa thật sự đắt hơn chúng ta biết đấy."
         : correctAnswerText}
       </div>

@@ -61,7 +61,7 @@ const styles = {
     maxWidth: '75%'
   },
   logo: {
-    position:"fixed",
+    position: "fixed",
     zIndex: 100,
     top: '5vh',
     left: '5vh',
@@ -97,10 +97,9 @@ const MoreInfo = ({history, endFlow}) => {
                      bullets={false}
                      organicArrows={false}
                      ref={t => trackRef = t}>
-
         <div style={{
           ...styles.image,
-          backgroundPosition:'bottom',
+          backgroundPosition: 'bottom',
           backgroundImage: "url('./images/moreInfo1.png')",
         }}>
           <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
@@ -129,23 +128,36 @@ const MoreInfo = ({history, endFlow}) => {
           </div>
         </div>
 
-        <div style={{
-          ...styles.image,
-          backgroundImage: "url('./images/moreInfo5.jpg')"
-        }}>
+        {/*<div style={{*/}
+          {/*...styles.image,*/}
+          {/*backgroundPosition: 'bottom',*/}
+          {/*backgroundImagCe: "url('./images/moreInfo5.jpg')"*/}
+        {/*}} onClick={() => routeChange()}*/}
+        {/*>*/}
           {/*<div style={styles.textTitleSmall}>Cùng Prudential hành động</div>*/}
           {/*<div style={styles.textTitle}>Chọn giảm dùng nhựa</div>*/}
           {/*<div style={styles.textTitleSmall}>Vì sức khoẻ của những người thân yêu</div>*/}
 
-          <div style={commonStyle.footer}>
-            <Button style={{...commonStyle.bottomButton}} onClick={() => routeChange()}>
-              Tôi chọn giảm dùng nhựa
-            </Button>
-          </div>
+          {/*<div style={commonStyle.footer}>*/}
+            {/*<Button style={{...commonStyle.bottomButton}} onClick={() => routeChange()}>*/}
+            {/*Tôi chọn giảm dùng nhựa*/}
+            {/*</Button>*/}
+          {/*</div>*/}
+        {/*</div>*/}
+
+        <div style={{
+          ...styles.image,
+          backgroundPosition: 'bottom',
+          backgroundImage: "url('./images/moreInfo5.jpg')"
+        }}>
+          <Button style={{background:'transparent', width: '100%', height: '100%', left: 0, position: 'fixed'}}
+                  onClick={() => routeChange()}
+          />
         </div>
 
         <div style={{
           ...styles.image,
+          backgroundPosition: 'bottom',
           backgroundImage: "url('./images/moreInfo6.png')",
         }}>
         </div>
