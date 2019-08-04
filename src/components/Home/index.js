@@ -75,16 +75,16 @@ export default class Home extends Component {
 
           <div style={{
             ...styles.image,
-            backgroundImage: "url('./images/home1.jpg')",
-          }}>
-
-          </div>
-          <div style={{
-            ...styles.image,
-            backgroundImage: "url('./images/home2.jpg')",
+            backgroundImage: "url('./images/home2.png')",
             backgroundPosition: 'bottom'
           }}>
             <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
+          </div>
+          <div style={{
+            ...styles.image,
+            backgroundImage: "url('./images/home1.jpg')",
+          }}>
+
           </div>
           <div style={{
             ...styles.image,
@@ -93,7 +93,7 @@ export default class Home extends Component {
           </div>
           <div style={{
             ...styles.image,
-            backgroundImage: "url('./images/home4.jpg')",
+            backgroundImage: "url('./images/home4.png')",
             backgroundPosition: 'bottom',
           }}>
             <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>

@@ -101,7 +101,7 @@ const MoreInfo = ({history, endFlow}) => {
         <div style={{
           ...styles.image,
           backgroundPosition:'bottom',
-          backgroundImage: "url('./images/moreInfo1.jpg')",
+          backgroundImage: "url('./images/moreInfo1.png')",
         }}>
           <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
         </div>
@@ -115,7 +115,7 @@ const MoreInfo = ({history, endFlow}) => {
         }}/>
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo4.jpg')",
+          backgroundImage: "url('./images/moreInfo4.png')",
           backgroundPosition: 'bottom'
         }}>
           <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
