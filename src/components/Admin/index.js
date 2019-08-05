@@ -287,8 +287,8 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
         <MaterialTable
           title="Người chơi"
           columns={[
-            { title: 'Giờ', field: 'timeOnly'},
-            { title: 'Ngày', field: 'dateOnly'},
+            { title: 'Ngày', field: 'timeOnly'},
+            { title: 'Giờ', field: 'dateOnly'},
             { title: 'Tên', field: 'name' },
             { title: 'Giới Tính', field: 'gender' },
             { title: 'Ngày Sinh', field: 'birthDay'},
@@ -304,7 +304,8 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           data={players}
           options={{
             exportButton: true,
-            sorting: true
+            sorting: true,
+            exportAllData: true
           }}
         />}
     </TabPanel>
