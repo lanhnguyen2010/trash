@@ -145,7 +145,7 @@ const Question = ({btnState, toogleState}) => (
       <div className="box" style={btnState[3] ? styles.activeAnswer : styles.passiveAnswer}
            onClick={() => toogleState(3)}>
         <div style={{...styles.image, backgroundImage: "url('./images/quiz/nilon.png')"}}/>
-        <div style={{...styles.label, color: btnState[3] ? 'white' : colors.pruGrey}}>Túi nylon các loại</div>
+        <div style={{...styles.label, color: btnState[3] ? 'white' : colors.pruGrey}}>Túi nylon các loại*</div>
       </div>
     </div>
 
@@ -158,7 +158,7 @@ const Question = ({btnState, toogleState}) => (
          onClick={() => toogleState(4)}>
       <div style={{...styles.image, backgroundImage: "url('./images/quiz/other.png')", width: '30%'}}/>
       <div style={{...styles.label, color: btnState[4] ? 'white' : colors.pruGrey}}>Đồ nhựa khác (Muỗng nĩa, ống
-        hút,...)
+        hút,...)*
       </div>
     </div>
     <div style={styles.textBottom}>* Khuyến khích bỏ ít nhất 2 món</div>

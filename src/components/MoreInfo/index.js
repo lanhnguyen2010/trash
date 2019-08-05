@@ -151,17 +151,19 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          backgroundPosition: 'bottom',
-          backgroundImage: "url('./images/moreInfo5.jpg')"
+          // backgroundPosition: 'bottom',
+          backgroundImage: "url('./images/moreInfo5.png')"
         }}>
-          <Button style={{background:'transparent', width: '100%', height: '100%', left: 0, position: 'fixed'}}
-                  onClick={() => routeChange()}
-          />
+          <div style={commonStyle.footer}>
+          <Button style={{...commonStyle.bottomButton}} onClick={() => routeChange()}>
+          Tôi chọn giảm dùng nhựa
+          </Button>
+          </div>
         </div>
 
         <div style={{
           ...styles.image,
-          backgroundPosition: 'bottom',
+          // backgroundPosition: 'bottom',
           backgroundImage: "url('./images/moreInfo6.png')",
         }}>
         </div>

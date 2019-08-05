@@ -43,7 +43,7 @@ const styles = {
     textAlign: 'center',
     color: colors.pruGrey,
     lineHeight: '5vh',
-    paddingLeft: '5%',
+    padding: '5%',
     marginTop: '5vh'
   },
 
