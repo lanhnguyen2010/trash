@@ -10,7 +10,7 @@ import * as selectors from './selectors'
 const SMS_API_KEY = "F4978B22B0F6EBC4C0270D5EFA2D0D";
 const SMS_SECRET_KEY = "7AA38C072D3822BEA821562A8A896D";
 const SMS_BRANDNAME = "Svoucher";
-let sandbox = 1
+let sandbox = 0
 const numberGiftForOnePhoneNumber = 1;
 
 function* loadData() {
