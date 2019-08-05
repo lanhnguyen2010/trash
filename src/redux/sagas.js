@@ -10,7 +10,7 @@ import * as selectors from './selectors'
 const SMS_API_KEY = "F4978B22B0F6EBC4C0270D5EFA2D0D";
 const SMS_SECRET_KEY = "7AA38C072D3822BEA821562A8A896D";
 const SMS_BRANDNAME = "Svoucher";
-let sandbox = 0
+let sandbox = 1
 const numberGiftForOnePhoneNumber = 1;
 
 function* loadData() {
@@ -425,6 +425,8 @@ function* saveGiftResult({giftType}) {
   const selectedGift = yield select(selectors.selectedGift);
   let city = yield select(selectors.city);
 
+  if (!phoneNumber || !selectedGift ) return;
+
   console.log("selectedGid", selectedGift);
   yield call(firebaseService.database.create, "gifts/" + city + "/" + phoneNumber,
     {
@@ -516,6 +518,7 @@ function* rootSaga() {
   yield takeEvery(Types.GET_ALL_QUIZ_RESULTS, getAllQuizResults);
   yield takeEvery(Types.GET_ALL_GIFT_RESULTS, getAllGiftResults);
   yield takeEvery(Types.CHECK_IS_PHONE_NUMBER_EXIST, checkIsPhoneNumberExist);
+  yield takeEvery(Types.UPDATE_GIFT_COUNT, updateGiftCount);
 }
 
 export {rootSaga};
