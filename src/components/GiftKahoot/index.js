@@ -92,8 +92,7 @@ const GiftKahootContainer = compose(
     componentWillMount() {
       const {history, isLoggedIn, saveGiftResult, selectedGift, updateGiftCount} = this.props;
       saveGiftResult("kahoot");
-      updateGiftCount("binhthuytinh");
-      //TODO check tonight
+      updateGiftCount(selectedGift);
 
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)

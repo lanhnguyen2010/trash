@@ -142,7 +142,7 @@ function* updateGiftCount({selectedGift}) {
 
   const result = yield call(firebaseService.database.read, "booths/" + city + '/' + formattedDate);
 
-  console.log("getRandomGif: ", result);
+  console.log("getGift: ", result);
   let giftsQuantity = {
     onghutinox: 0,
     tuivai: 0,
@@ -158,8 +158,22 @@ function* updateGiftCount({selectedGift}) {
     }
   }
 
-  if (giftsQuantity[selectedGift] > 0) {
-    giftsQuantity[selectedGift]--;
+  console.log("updateGiftCount ", selectedGift);
+
+  let splitGift = selectedGift.split(',');
+  console.log("updateGiftCount split", splitGift);
+  if (splitGift.length > 1) {
+    if (giftsQuantity[splitGift[0]] > 0) {
+      giftsQuantity[splitGift[0]]--;
+    }
+
+    if (giftsQuantity[splitGift[1]] > 0) {
+      giftsQuantity[splitGift[1]]--;
+    }
+  } else {
+    if (giftsQuantity[selectedGift] > 0) {
+      giftsQuantity[selectedGift]--;
+    }
   }
   yield call(firebaseService.database.create, "booths/" + city + '/' + formattedDate, giftsQuantity);
 
@@ -356,18 +370,18 @@ function* getAllPlayers() {
     let giftResults = yield select(selectors.giftResults);
     console.log("giftResults: ", players);
 
-    if(giftResults.length > 0){
-      giftResults.forEach(function(gift) {
+    if (giftResults.length > 0) {
+      giftResults.forEach(function (gift) {
         let player = {...gift, ...result[gift.phoneNumber], otp: otps[gift.phoneNumber]};
         let nameArr = player.date.split(', ');
 
-        player.dateOnly =  nameArr[0];
-        player.timeOnly =  nameArr[1];
+        player.dateOnly = nameArr[0];
+        player.timeOnly = nameArr[1];
         player.giftTypeLabel = giftType[player.giftType];
-        player[CONST.ONG_HUT_INOX] = player.gift? (player.gift.includes(CONST.ONG_HUT_INOX)? 1 :'') :'';
-        player[CONST.BINH_THUY_TINH] = player.gift? (player.gift.includes(CONST.BINH_THUY_TINH)? 1 :'') :'';
-        player[CONST.LY_SU] = player.gift? (player.gift.includes(CONST.LY_SU)? 1 :'') :'';
-        player[CONST.TUI_VAI] = player.gift? (player.gift.includes(CONST.TUI_VAI)? 1 :'') :'';
+        player[CONST.ONG_HUT_INOX] = player.gift ? (player.gift.includes(CONST.ONG_HUT_INOX) ? 1 : '') : '';
+        player[CONST.BINH_THUY_TINH] = player.gift ? (player.gift.includes(CONST.BINH_THUY_TINH) ? 1 : '') : '';
+        player[CONST.LY_SU] = player.gift ? (player.gift.includes(CONST.LY_SU) ? 1 : '') : '';
+        player[CONST.TUI_VAI] = player.gift ? (player.gift.includes(CONST.TUI_VAI) ? 1 : '') : '';
 
         players.push(player);
       })
@@ -425,7 +439,7 @@ function* saveGiftResult({giftType}) {
   const selectedGift = yield select(selectors.selectedGift);
   let city = yield select(selectors.city);
 
-  if (!phoneNumber || !selectedGift ) return;
+  if (!phoneNumber || !selectedGift) return;
 
   console.log("selectedGid", selectedGift);
   yield call(firebaseService.database.create, "gifts/" + city + "/" + phoneNumber,
@@ -480,7 +494,7 @@ function* checkIsPhoneNumberExist({phoneNumber, data, history}) {
       console.log("checkIsPhoneNumberExist history", history);
       yield put(actions.updateIsPhoneNumberExist(false));
       yield call(doOtp, {navigation: history, data: data});
-    } else{
+    } else {
       yield put(actions.updateIsPhoneNumberExist(true));
       yield put(actions.updateDoingOtp(false));
     }
