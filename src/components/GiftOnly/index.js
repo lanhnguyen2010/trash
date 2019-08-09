@@ -48,8 +48,9 @@ const styles = {
   }
 };
 
-const finish = ({history}) => {
+const finish = ({history, endFlow}) => {
   history.push(ROUTES.THANK_YOU);
+  endFlow();
 };
 
 const GiftOnlyView = ({selectedGift, history, endFlow}) => (
@@ -81,7 +82,7 @@ const GiftOnlyContainer = compose(
     componentWillMount() {
       const {history, isLoggedIn, saveGiftResult, updateGiftCount,selectedGift} = this.props;
       saveGiftResult("giftOnly");
-      updateGiftCount(selectedGift);
+      // updateGiftCount(selectedGift);
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }

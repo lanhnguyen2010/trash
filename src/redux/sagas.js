@@ -382,6 +382,7 @@ function* getAllPlayers() {
         player[CONST.BINH_THUY_TINH] = player.gift ? (player.gift.includes(CONST.BINH_THUY_TINH) ? 1 : '') : '';
         player[CONST.LY_SU] = player.gift ? (player.gift.includes(CONST.LY_SU) ? 1 : '') : '';
         player[CONST.TUI_VAI] = player.gift ? (player.gift.includes(CONST.TUI_VAI) ? 1 : '') : '';
+        player.phoneNumber = `'${player.phoneNumber}`;
 
         players.push(player);
       })

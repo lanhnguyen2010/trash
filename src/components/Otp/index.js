@@ -253,15 +253,17 @@ const OtpContainer = compose(
       doOtp: actions.doOtp,
       checkIsPhoneNumberExist: actions.checkIsPhoneNumberExist,
       updateIsPhoneNumberExist: actions.updateIsPhoneNumberExist,
-      updateDoingOtp: actions.updateDoingOtp
+      updateDoingOtp: actions.updateDoingOtp,
+      endFlow: actions.endFlow
     }
   ),
   lifecycle({
     componentWillMount() {
-      const {history, isLoggedIn} = this.props;
+      const {history, isLoggedIn, endFlow} = this.props;
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }
+      endFlow();
 
       this.setState({
         bntDisable: true, updateBtn: (value) => {

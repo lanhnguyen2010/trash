@@ -289,9 +289,10 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
           columns={[
             { title: 'Ngày', field: 'timeOnly'},
             { title: 'Giờ', field: 'dateOnly'},
+            { title: 'Thành phố', field: ''},
             { title: 'Tên', field: 'name' },
-            { title: 'Giới Tính', field: 'gender' },
             { title: 'Ngày Sinh', field: 'birthDay'},
+            { title: 'Giới Tính', field: 'gender' },
             { title: 'Số Điện Thoại', field: 'phoneNumber'},
             { title: 'Email', field: 'email'},
             { title: 'OTP', field: 'otp'},
