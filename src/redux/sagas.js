@@ -1,4 +1,6 @@
 import {call, put, takeEvery, takeLatest, select} from "redux-saga/effects";
+import moment from "moment";
+
 
 import {actions, Types} from "./actions";
 import firebaseService from "../components/Firebase";
@@ -373,10 +375,17 @@ function* getAllPlayers() {
     if (giftResults.length > 0) {
       giftResults.forEach(function (gift) {
         let player = {...gift, ...result[gift.phoneNumber], otp: otps[gift.phoneNumber]};
-        let nameArr = player.date.split(', ');
+        // let nameArr = player.date.split(', ');
 
-        player.dateOnly = nameArr[0];
-        player.timeOnly = nameArr[1];
+        // let date = new Date(player.date);
+        // let dateString = moment(date).format("DD/MM/YYYY, HH:mm:ss");
+        // if (dateString == "Invalid date") {
+        //   dateString = player.date;
+        // }
+        // let nameArr = dateString.split(', ');
+        let momnetVal = moment(player.date, "HH:mm:ss, DD/MM/YYYY");
+        player.dateOnly = momnetVal.format("DD/MM/YYYY");
+        player.timeOnly = momnetVal.format("HH:mm:ss");
         player.giftTypeLabel = giftType[player.giftType];
         player[CONST.ONG_HUT_INOX] = player.gift ? (player.gift.includes(CONST.ONG_HUT_INOX) ? 1 : '') : '';
         player[CONST.BINH_THUY_TINH] = player.gift ? (player.gift.includes(CONST.BINH_THUY_TINH) ? 1 : '') : '';

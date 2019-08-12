@@ -287,8 +287,8 @@ const AdminForm = ({history, updateGift, getGifts, boothsData, checkSmsAccountBa
         <MaterialTable
           title="Người chơi"
           columns={[
-            { title: 'Ngày', field: 'timeOnly'},
-            { title: 'Giờ', field: 'dateOnly'},
+            { title: 'Ngày', field: 'dateOnly'},
+            { title: 'Giờ', field: 'timeOnly'},
             { title: 'Thành phố', field: ''},
             { title: 'Tên', field: 'name' },
             { title: 'Ngày Sinh', field: 'birthDay'},
