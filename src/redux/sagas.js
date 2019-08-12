@@ -456,7 +456,7 @@ function* saveGiftResult({giftType}) {
     {
       gift: selectedGift,
       giftType: giftType,
-      date: new Date().toLocaleString()
+      date: moment().format("HH:mm:ss, DD/MM/YYYY")
     });
 }
 
