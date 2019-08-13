@@ -365,17 +365,18 @@ function* getAllPlayers() {
     const result = yield call(firebaseService.database.read, "players/" + city);
     let players = [];
 
-    console.log("date gifts: ", players);
+    // console.log("date gifts: ", players);
     yield call(getAllGiftResults);
     let otps = yield call(firebaseService.database.read, "otps/" + city);
 
     let giftResults = yield select(selectors.giftResults);
-    console.log("giftResults: ", players);
+    // console.log("giftResults: ", players);
 
     if (giftResults.length > 0) {
       giftResults.forEach(function (gift) {
         let player = {...gift, ...result[gift.phoneNumber], otp: otps[gift.phoneNumber]};
-        // let nameArr = player.date.split(', ');
+        let date = player.date;
+        let nameArr = date.split(', ');
 
         // let date = new Date(player.date);
         // let dateString = moment(date).format("DD/MM/YYYY, HH:mm:ss");
@@ -383,9 +384,49 @@ function* getAllPlayers() {
         //   dateString = player.date;
         // }
         // let nameArr = dateString.split(', ');
-        let momnetVal = moment(player.date, "HH:mm:ss, DD/MM/YYYY");
-        player.dateOnly = momnetVal.format("DD/MM/YYYY");
-        player.timeOnly = momnetVal.format("HH:mm:ss");
+        // let momnetVal = moment(player.date, "HH:mm:ss, DD/MM/YYYY");
+        // player.dateOnly = momnetVal.format("DD/MM/YYYY");
+        // player.timeOnly = momnetVal.format("HH:mm:ss");
+        // let pattern = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
+
+        if (nameArr.length > 1) {
+          if (nameArr[0].includes(":")) {
+            player.dateOnly = nameArr[1];
+            player.timeOnly = nameArr[0];
+          } else {
+            player.dateOnly = nameArr[0];
+            player.timeOnly = nameArr[1];
+          }
+
+          if (player.timeOnly && player.timeOnly.includes('M')) {
+            let momentVar = moment(player.dateOnly, "MM/DD/YYYY");
+            let momentTime = moment(player.timeOnly, "HH:mm:ss A");
+            player.dateOnly = momentVar.format("DD/MM/YYYY");
+            player.timeOnly = momentTime.format("HH:mm:ss");
+          }
+
+          if (player.dateOnly != "Invalid date") {
+            let momentVar = moment(player.dateOnly, "DD/MM/YYYY");
+            player.dateOnly = momentVar.format("DD/MM/YYYY");
+          }
+
+        } else {
+          let date = player.date;
+          if (date.includes("-")) {
+            let format = moment(date, "YYYY-MM-DD HH:mm:ss");
+            player.dateOnly = format.format("DD/MM/YYYY");
+            player.timeOnly = format.format("HH:mm:ss");
+          } else {
+            let format = moment(date, "MM/DD/YYYY HH:mm:ss A");
+            player.dateOnly = format.format("DD/MM/YYYY");
+            player.timeOnly = format.format("HH:mm:ss");
+          }
+        }
+
+
+
+        // player.dateOnly = player.date;
+        // player.timeOnly = nameArr[1];
         player.giftTypeLabel = giftType[player.giftType];
         player[CONST.ONG_HUT_INOX] = player.gift ? (player.gift.includes(CONST.ONG_HUT_INOX) ? 1 : '') : '';
         player[CONST.BINH_THUY_TINH] = player.gift ? (player.gift.includes(CONST.BINH_THUY_TINH) ? 1 : '') : '';
@@ -397,7 +438,7 @@ function* getAllPlayers() {
       })
     }
 
-    console.log("players: ", players)
+    // console.log("players: ", players);
 
 
     yield put(actions.updatePlayers(players));
@@ -465,16 +506,16 @@ function* getAllGiftResults() {
     let city = yield select(selectors.city);
     const result = yield call(firebaseService.database.read, "gifts/" + city);
 
-    console.log("Get GiftsResults", result);
+    // console.log("Get GiftsResults", result);
     let giftResults = [];
     for (let key in result) {
       if (result.hasOwnProperty(key)) {
-        console.log(key + " -> " + result[key]);
+        // console.log(key + " -> " + result[key]);
         let phoneNumberGift = '';
         let gifts = result[key];
         for (let keySnap in gifts) {
           if (gifts.hasOwnProperty(keySnap)) {
-            console.log(keySnap + " -> " + gifts[keySnap]);
+            // console.log(keySnap + " -> " + gifts[keySnap]);
             phoneNumberGift = gifts[keySnap];
           }
         }
@@ -482,7 +523,7 @@ function* getAllGiftResults() {
         giftResults.push(phoneNumberGift)
       }
     }
-    console.log("phonenumber gifts: ", giftResults);
+    // console.log("phonenumber gifts: ", giftResults);
     yield put(actions.updateGiftResults(giftResults));
   } catch (error) {
     console.log(error.message)
