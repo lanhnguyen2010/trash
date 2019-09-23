@@ -74,46 +74,37 @@ const styles = {
 };
 
 
-const GiftSelectView = ({history, updateSelectedGift, btnState, onSelected}) => {
+const GiftQuickAnswerView = ({history, updateSelectedGift, btnState, onSelected}) => {
   return (
     <div className="container"  style={{...commonStyles.container,...styles.container,
       backgroundImage: "url('./images/background_global.png')",
 
     }}>
       <div style={{...commonStyles.textNormal_bold, ...styles.title}}>Hãy chọn hoạt động bạn vừa tham gia nhé</div>
+
       <Button style={btnState[0]? styles.selectedOption : styles.normalOption}
               onClick={() => {
-                console.log("onclick select", this);
+                updateSelectedGift("binhthuytinh,onghutinox");
                 onSelected(0);
-              }}>Quyên góp nhựa</Button>
-
+              }}>Chiến thắng</Button>
       <Button style={btnState[1]? styles.selectedOption : styles.normalOption}
               onClick={() => {
-                console.log("onclick select", this);
-                updateSelectedGift("binhthuytinh");
+                updateSelectedGift("onghutinox");
                 onSelected(1);
-              }}>Hoạt động chụp hình</Button>
-      <Button style={btnState[2]? styles.selectedOption : styles.normalOption}
-              onClick={() => {
-                updateSelectedGift("binhthuytinh,onghutinox");
-                onSelected(2);
-              }}>Trò chơi Kahoot</Button>
-      <Button style={btnState[3]? styles.selectedOption : styles.normalOption}
-              onClick={() => {
-                onSelected(3);
-              }}>Trả lời nhanh</Button>
+              }}>Thua</Button>
     </div>)
 };
 
-const nextPage = [ROUTES.LUCKY_DRAW, ROUTES.GIFT_ONLY, ROUTES.GIFT_KAHOOT, ROUTES.GIFT_QUICK_ANSWER];
+// const nextPage = [ROUTES.LUCKY_DRAW, ROUTES.GIFT_ONLY, ROUTES.GIFT_KAHOOT, ROUTES.GIFT_QUICK_ANSWER];
 
-const GiftSelect = withStyles(styles)(GiftSelectView);
+const GiftQuickAnswer = withStyles(styles)(GiftQuickAnswerView);
 
-const GiftSelectContainer = compose(
+const GiftQuickAnswerContainer = compose(
   connect(
     selectors.root,
     {
-      updateSelectedGift: actions.updateSelectedGift
+      updateSelectedGift: actions.updateSelectedGift,
+      saveGiftResult: actions.saveGiftResult,
     }
   ),
   lifecycle({
@@ -122,13 +113,12 @@ const GiftSelectContainer = compose(
       if (!isLoggedIn) {
         history.push(ROUTES.LOG_IN)
       }
-      let btnStateIntit = [false, false, false, false];
-
+      let btnStateIntit = [false, false];
       this.setState({btnState: btnStateIntit,
         onSelected: (index) => {
           btnStateIntit[index] = true;
           setTimeout(function () {
-            history.push(nextPage[index])
+            history.push(ROUTES.GIFT_QUICK_ANSWER_RESULT)
           }.bind(this), 500);
           this.setState({btnState: btnStateIntit, onSelected: () => {}})
 
@@ -136,6 +126,6 @@ const GiftSelectContainer = compose(
       });
     }
   })
-)(GiftSelect);
+)(GiftQuickAnswer);
 
-export default GiftSelectContainer;
+export default GiftQuickAnswerContainer;

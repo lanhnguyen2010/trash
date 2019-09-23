@@ -26,13 +26,14 @@ let fieldMap = {
   name: "Tên",
   birthDay: 'Ngày Sinh',
   gender: 'Giới Tính'
-}
+};
 
 const giftType = {
   kahoot: 'Game Kahoot',
   giftOnly: 'Nhận Quà',
-  luckyDraw: 'Lucky Draw'
-}
+  luckyDraw: 'Lucky Draw',
+  giftQuickAnswer: 'Trả lời nhanh'
+};
 
 function* doLogin({navigation, email, password}) {
   const isLogging = yield select(selectors.isLogging);

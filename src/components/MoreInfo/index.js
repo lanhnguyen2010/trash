@@ -163,7 +163,7 @@ const MoreInfo = ({history, endFlow}) => {
 
         <div style={{
           ...styles.image,
-          // backgroundPosition: 'bottom',
+          backgroundPosition: 'center',
           backgroundImage: "url('./images/moreInfo6.png')",
         }}>
         </div>

@@ -26,6 +26,8 @@ import GiftKahoot from './components/GiftKahoot';
 import ThankYou from './components/ThankYou';
 import Hello from './components/Hello';
 import SubQuizWrong from './components/SubQuizWrong';
+import GiftQuickAnswer from './components/GiftQuickAnswer';
+import GiftQuickAnswerResult from './components/GiftQuickAnswerResult';
 
 
 const AppStateLess = () => (
@@ -48,6 +50,8 @@ const AppStateLess = () => (
       <Route path={ROUTES.THANK_YOU} component={ThankYou}/>
       <Route path={ROUTES.HELLO} component={Hello}/>
       <Route path={ROUTES.SUB_QUIZ_WRONG} component={SubQuizWrong}/>
+      <Route path={ROUTES.GIFT_QUICK_ANSWER} component={GiftQuickAnswer}/>
+      <Route path={ROUTES.GIFT_QUICK_ANSWER_RESULT} component={GiftQuickAnswerResult}/>
     </Router>
   </Provider>
 );

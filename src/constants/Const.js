@@ -61,16 +61,16 @@ export const Questions = {
       "Rác nhựa trên biển chỉ chiếm 10%",
       "Đa năng",
       "Sự tiện lợi",
-      "50.000đ/lốc",
+      "50.000đ/chai",
       "5.000đ"
     ]
   },
   nylon: {
-    label: "túi ni lông",
+    label: "túi nylon",
     correctAnswers: [
       "92.5% xác của loài hải âu có chứa nhựa",
       "1.000 sinh mạng loài rùa biển mỗi năm",
-      "2000 hạt vi nhựa trong 1 lít nước uống đóng chai",
+      "500 năm phân hủy",
       "817 loài sinh vật biển bị tác động bởi ô nhiễm rác nhựa",
       "Ăn vào 50.000 hạt vi nhựa mỗi năm"
     ],
@@ -85,7 +85,7 @@ export const Questions = {
       "Rác nhựa trên biển chỉ chiếm 10%",
       "Đa năng",
       "Sự tiện lợi",
-      "50.000đ/lốc",
+      "50.000đ/ký",
       "5.000đ"
     ]
   },
@@ -96,7 +96,7 @@ export const Questions = {
       "Tính mạng gần 1 triệu người bị ảnh hưởng bởi ô nhiễm môi trường",
       "Ăn vào 50.000 hạt vi nhựa mỗi năm",
       "80% rác thải nhựa từ đất liền trôi dạt ra biển",
-      "2000 hạt vi nhựa trong 1 lít nước uống đóng chai"
+      "2000 hạt vi nhựa trong cơ thể"
     ],
     wrongAnswers1:[
       "5.000đ",
@@ -119,7 +119,7 @@ export const Questions = {
       "500 năm ô nhiễm đại dương",
       "99% loài chim biển sẽ phải ăn rác nhựa",
       "8 hạt vi nhựa trong phần thịt mỗi con nghêu hào",
-      "Làm mất 50% giá trị của một mẻ cá ngư dân đánh bắt",
+      "Chất styrene gây ung thư",
       "100.000 động vật biển chết đi mỗi năm"
     ],
     wrongAnswers1:[
@@ -147,7 +147,7 @@ export const Questions = {
       "80% rác thải nhựa từ đất liền trôi dạt ra biển"
     ],
     wrongAnswers1:[
-      "50.000đ/lốc",
+      "50.000đ/ký",
       "Gọn nhẹ, dễ dùng",
       "Rác nhựa trên biển chỉ chiếm 10%",
       "1 tháng ô nhiễm môi trường",
@@ -161,5 +161,4 @@ export const Questions = {
       "3.000đ/lốc"
     ]
   }
-
 };
