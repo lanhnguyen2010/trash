@@ -51,7 +51,7 @@ const styles = {
   },
 
   background: {
-    backgroundImage: "url('./images/background_global.png')"
+    backgroundImage: "url('https://drive.google.com/uc?id=1bstaXlVrudiAu22jF9ebkhjpLeuXKA5I')"
   },
 
   image: {

@@ -94,22 +94,22 @@ const styles = {
   },
 
   backgroundChaiNhua: {
-    backgroundImage: "url('./images/backgroundChaiNhua.jpg')"
+    backgroundImage: "url('https://drive.google.com/uc?id=1MKGqOZFVElTtslwTbRD2oN6SImUX5wgU')"
   },
 
   backgroundLyNhua: {
-    backgroundImage: "url('./images/backgroundLyNhua.jpg')"
+    backgroundImage: "url('https://drive.google.com/uc?id=10xPCZAcUsEHhdaThhYQJrbcRJkJwua23')"
   },
 
   backgroundHop: {
-    backgroundImage: "url('./images/backgroundHopNhua.jpg')"
+    backgroundImage: "url('https://drive.google.com/uc?id=1pwvR_oVo8vK656DsaXIHI3IvUgDHbXFf')"
   },
 
   backgroundOther: {
-    backgroundImage: "url('./images/backgroundDoDungNhua.jpg')"
+    backgroundImage: "url('https://drive.google.com/uc?id=1oD8H5KOs94Ekdn0NX1ev-EzWRYzcKtxH')"
   },
   backgroundNylon: {
-    backgroundImage: "url('./images/backgroundTuiNilon.jpg')"
+    backgroundImage: "url('https://drive.google.com/uc?id=1Utlz2hE3YC7v11go2rLerDD73TtyBmL7')"
   },
   questionSection: {
     paddingTop: '44%',

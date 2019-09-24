@@ -50,6 +50,13 @@ const styles = {
   }
 };
 
+const ImageUrl = {
+  home2: "url('https://drive.google.com/uc?id=1avS-if4iFMzL7R0Ibdgy6h2qNSoOTjmt')",
+  home1: "url('https://drive.google.com/uc?id=1BXqNxA80xo2SWRfE1b0MxjU1Gd--3A6K')",
+  home3: "url('https://drive.google.com/uc?id=1oycnxgPiZpdQiyfK-2jqg8pxh9OBigmR')",
+  home4: "url('https://drive.google.com/uc?id=1tTZrOUJjnHvi135Pia310iwr-VkxPI4K')",
+};
+
 export default class Home extends Component {
 
   componentDidMount() {
@@ -76,26 +83,26 @@ export default class Home extends Component {
 
           <div style={{
             ...styles.image,
-            backgroundImage: "url('./images/home2.png')",
+            backgroundImage: ImageUrl.home2,
             backgroundPosition: 'bottom'
           }}>
             <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
           </div>
           <div style={{
             ...styles.image,
-            backgroundImage: "url('./images/home1.png')",
+            backgroundImage: ImageUrl.home1,
           }}>
             <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
           </div>
           <div style={{
             ...styles.image,
-            backgroundImage: "url('./images/home3.png')",
+            backgroundImage: ImageUrl.home3,
           }}>
             <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
           </div>
           <div style={{
             ...styles.image,
-            backgroundImage: "url('./images/home4.png')",
+            backgroundImage: ImageUrl.home4,
             backgroundPosition: 'bottom',
           }}>
             <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>

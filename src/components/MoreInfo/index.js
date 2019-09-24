@@ -91,6 +91,15 @@ const MoreInfo = ({history, endFlow}) => {
     }
   };
 
+  const ImageUrl = {
+    moreInfo1: "url('https://drive.google.com/uc?id=180KIt4pYvt-7ALB0k1ecyfZq1otKJPRF')",
+    moreInfo2: "url('https://drive.google.com/uc?id=1cg8Ih7uxdmQs49KhZumsr4Hwd6g82yV0')",
+    moreInfo3: "url('https://drive.google.com/uc?id=1whPUVfjsH17FBXR7Daa6bLqLj_zhFb1-')",
+    moreInfo4: "url('https://drive.google.com/uc?id=169iTF04SgfrBLvLw6TomH0Nrzp8ntiuO')",
+    moreInfo5: "url('https://drive.google.com/uc?id=1gzT65Fna4N5x6kRqYeueR4fqhLwJobD3')",
+    moreInfo6: "url('https://drive.google.com/uc?id=1mGUYxVtp6tjDaOn5UZnIJM-Vy1fdSLQh')",
+  };
+
   return (
     <div className="container">
       <AwesomeSlider style={{width: '100%', height: '100%', position: 'absolute'}}
@@ -100,25 +109,25 @@ const MoreInfo = ({history, endFlow}) => {
         <div style={{
           ...styles.image,
           backgroundPosition: 'bottom',
-          backgroundImage: "url('./images/moreInfo1.png')",
+          backgroundImage: ImageUrl.moreInfo1,
         }}>
           <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
         </div>
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo2.png')",
+          backgroundImage: ImageUrl.moreInfo2,
         }}>
           <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
         </div>
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo3.png')",
+          backgroundImage: ImageUrl.moreInfo3,
         }}>
           <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
         </div>
         <div style={{
           ...styles.image,
-          backgroundImage: "url('./images/moreInfo4.png')",
+          backgroundImage: ImageUrl.moreInfo4,
           backgroundPosition: 'bottom'
         }}>
           <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
@@ -152,7 +161,7 @@ const MoreInfo = ({history, endFlow}) => {
         <div style={{
           ...styles.image,
           // backgroundPosition: 'bottom',
-          backgroundImage: "url('./images/moreInfo5.png')"
+          backgroundImage: ImageUrl.moreInfo5,
         }}>
           <div style={commonStyle.footer}>
           <Button style={{...commonStyle.bottomButton}} onClick={() => routeChange()}>
@@ -164,7 +173,7 @@ const MoreInfo = ({history, endFlow}) => {
         <div style={{
           ...styles.image,
           backgroundPosition: 'center',
-          backgroundImage: "url('./images/moreInfo6.png')",
+          backgroundImage: ImageUrl.moreInfo6,
         }}>
         </div>
 
