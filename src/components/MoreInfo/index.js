@@ -24,7 +24,7 @@ const styles = {
     width: '100%',
     height: '100%',
     textAlign: 'center',
-    backgroundImage: "url('./images/moreInfo5.png')",
+    backgroundImage: "url('https://drive.google.com/uc?id=1gzT65Fna4N5x6kRqYeueR4fqhLwJobD3'",
     backgroundSize: 'cover',
     alignItems: 'unset',
   },
