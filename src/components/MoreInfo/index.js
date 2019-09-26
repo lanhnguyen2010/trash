@@ -93,7 +93,7 @@ const MoreInfo = ({history, endFlow}) => {
 
   return (
     <div className="container">
-      <AwesomeSlider style={{width: '100%', height: '100%', position: 'absolute'}}
+      <AwesomeSlider style={{width: '100%', height: '100%', position: 'absolute', pointerEvents: 'none'}}
                      bullets={false}
                      organicArrows={false}
                      ref={t => trackRef = t}>

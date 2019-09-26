@@ -9,9 +9,9 @@ import * as CONST from "../constants/Const";
 import React from 'react';
 import * as selectors from './selectors'
 
-const SMS_API_KEY = "F4978B22B0F6EBC4C0270D5EFA2D0D";
-const SMS_SECRET_KEY = "7AA38C072D3822BEA821562A8A896D";
-const SMS_BRANDNAME = "Svoucher.vn";
+const SMS_API_KEY = "3658F6DA4E53D989243658460E036F";
+const SMS_SECRET_KEY = "6DA4995BBC3328486326DDA78E097B";
+const SMS_BRANDNAME = "Verify";
 let sandbox = 0
 const numberGiftForOnePhoneNumber = 1;
 
