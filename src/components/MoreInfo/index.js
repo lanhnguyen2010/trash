@@ -10,6 +10,7 @@ import * as selectors from "../../redux/selectors";
 import {actions} from "../../redux";
 import {lifecycle} from "recompose";
 import commonStyle, {fonts, colors} from "../common"
+import {loadState} from "../../localStoragePersist";
 
 
 const styles = {
@@ -69,21 +70,34 @@ const styles = {
   },
 };
 
-const MoreInfo = ({history, endFlow}) => {
+const MoreInfo = ({history, endFlow, text, updateText}) => {
   let trackRef;
   let btnRef;
   let btnDoneRef;
   const routeChange = () => {
-    if (trackRef.index >= 2) {
+    // if (trackRef.index >= 2) {
+    //   setTimeout(function () {
+    //     btnRef.style.display = 'none';
+    //     btnDoneRef.style.display = '';
+    //   }.bind(this), 300)
+    // }
+
+    console.log("routeChange", trackRef.index);
+    if (trackRef.index === 4) {
+      btnRef.style.display = 'none';
+    } else if (trackRef.index >= 3) {
       setTimeout(function () {
-        btnRef.style.display = 'none';
+        updateText("Tôi chọn giảm dùng nhựa")
+      }.bind(this), 300)
+    } else if (trackRef.index >= 2){
+      setTimeout(function () {
+        updateText("Hoàn thành")
       }.bind(this), 300)
     }
-
     trackRef.clickNext();
 
 
-    if (trackRef.index == 4) {
+    if (trackRef.index === 4) {
       setTimeout(function () {
         endFlow();
         history.push(ROUTES.HOME)
@@ -123,13 +137,13 @@ const MoreInfo = ({history, endFlow}) => {
         }}>
           <img src="./images/logo.png" alt="prudential logo" style={styles.logo}/>
 
-          <div style={commonStyle.footer}>
-            <Button style={commonStyle.bottomButton}
-                    onClick={() => routeChange()}
-                    ref={t => btnDoneRef = t}
-            >
-              Hoàn thành</Button>
-          </div>
+          {/*<div style={commonStyle.footer}>*/}
+            {/*<Button style={commonStyle.bottomButton}*/}
+                    {/*onClick={() => routeChange()}*/}
+                    {/*ref={t => btnDoneRef = t}*/}
+            {/*>*/}
+              {/*Hoàn thành</Button>*/}
+          {/*</div>*/}
         </div>
 
         {/*<div style={{*/}
@@ -154,11 +168,11 @@ const MoreInfo = ({history, endFlow}) => {
           // backgroundPosition: 'bottom',
           backgroundImage: "url('./images/moreInfo5.png')"
         }}>
-          <div style={commonStyle.footer}>
-          <Button style={{...commonStyle.bottomButton}} onClick={() => routeChange()}>
-          Tôi chọn giảm dùng nhựa
-          </Button>
-          </div>
+          {/*<div style={commonStyle.footer}>*/}
+          {/*<Button style={{...commonStyle.bottomButton}} onClick={() => routeChange()}>*/}
+          {/*Tôi chọn giảm dùng nhựa*/}
+          {/*</Button>*/}
+          {/*</div>*/}
         </div>
 
         <div style={{
@@ -172,10 +186,15 @@ const MoreInfo = ({history, endFlow}) => {
       </AwesomeSlider>
 
       <div style={commonStyle.footer}>
-        <Button style={{...commonStyle.bottomButton, display: ''}}
+        {/*<Button style={{...commonStyle.bottomButton, display: 'none'}}*/}
+                {/*onClick={() => routeChange()}*/}
+                {/*ref={t => btnDoneRef = t}*/}
+        {/*>*/}
+          {/*Hoàn thành</Button>*/}
+        <Button style={commonStyle.bottomButton}
                 onClick={() => routeChange()}
                 ref={t => btnRef = t}
-        >Tiếp theo</Button>
+        >{text}</Button>
       </div>
 
     </div>
@@ -191,7 +210,13 @@ const MoreInfoContainer = compose(
   ),
   lifecycle({
     componentWillMount() {
-
+      const initState = {
+        text: "Tiếp theo",
+        updateText: ((text) => {
+          this.setState({...this.props.state, text:text});
+        })
+      };
+      this.setState(initState);
     }
   })
 )(MoreInfo);
