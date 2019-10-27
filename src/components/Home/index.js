@@ -9,25 +9,25 @@ import commonStyles from "../common"
 
 const styles = {
   text: {
-    position:"relative",
+    position: "relative",
     fontSize: 35,
-    textAlign:"center",
+    textAlign: "center",
     width: "74%",
     margin: "2%",
-    marginBottom:"4%",
-    marginLeft:"13%"
+    marginBottom: "4%",
+    marginLeft: "13%"
   },
   button: {
-    position:"relative",
+    position: "relative",
     alignSelf: "center",
     backgroundColor: '#D20C08',
     fontSize: 22,
     width: "74%",
     borderRadius: 50,
-    margin:'1%'
+    margin: '1%'
   },
   logo: {
-    position:"fixed",
+    position: "fixed",
     zIndex: 100,
     top: '2.5vh',
     left: '2.5vh',
@@ -61,7 +61,7 @@ export default class Home extends Component {
 
   componentDidMount() {
     this.interval = setInterval(() => this.track.clickNext(), 3000);
-    console.log("home",this.props);
+    console.log("home", this.props);
   }
 
   componentWillUnmount() {
@@ -75,11 +75,12 @@ export default class Home extends Component {
   render() {
     return (
       <div className="container">
-        <AwesomeSlider style={{width: '100%', height:'100%', position:'absolute'}}
-                       bullets={false}
-                       infinite={true}
-                       organicArrows={false}
-                       ref={t => this.track = t}>
+        <AwesomeSlider
+          style={{width: '100%', height: '100%', position: 'absolute', pointerEvents: 'none'}}
+          bullets={false}
+          infinite={true}
+          organicArrows={false}
+          ref={t => this.track = t}>
 
           <div style={{
             ...styles.image,
